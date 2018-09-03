@@ -110,6 +110,16 @@ function extendData(data) {
 					if (field === 'company' && settings.fields[field].type === 'string') value = chance.company();
 					if (field === 'country' && settings.fields[field].type === 'string') value = chance.country();
 					if (field === 'email' && settings.fields[field].type === 'string') value = chance.email();
+					if (field === 'color' && settings.fields[field].type === 'string') value = chance.color();
+					if (field === 'ip' && settings.fields[field].type === 'string') value = chance.ip();
+					if (field === 'profession' && settings.fields[field].type === 'string') value = chance.profession();
+					if (field === 'url' && settings.fields[field].type === 'string') value = chance.url();
+					if (field === 'city' && settings.fields[field].type === 'string') value = chance.city();
+					if (field === 'street' && settings.fields[field].type === 'string') value = chance.street();
+					if (field === 'zip' && settings.fields[field].type === 'int') value = parseInt(chance.zip());
+					if (field === 'weekday' && settings.fields[field].type === 'string') value = chance.weekday();
+					if (field === 'year' && settings.fields[field].type === 'int') value = parseInt(chance.year());
+					if (field === 'password' && settings.fields[field].type === 'string') value = chance.hash();
 
 					if (value === '' && settings.fields[field].type === 'string') {
 						let minLength = minStrLength(settings.fields[field].entries),
