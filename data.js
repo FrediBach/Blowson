@@ -82,14 +82,14 @@ module.exports = {
     waypointChats: [
         { id: 1, waypoint_id: 1, user_id: 1, message: 'Can be quite hard with low base!', datetime: '2018-07-02T12:00:00+01:00' },
         { id: 2, waypoint_id: 2, user_id: 2, message: 'Oh yes, it can!', datetime: '2018-07-02T12:23:05+01:00' },
-        { id: 3, waypoint_id: 250, user_id: 30, message: 'Maybe we should remove this one?', datetime: '2018-01-02T12:23:05+01:00' }
+        { id: 250, waypoint_id: 250, user_id: 30, message: 'Maybe we should remove this one?', datetime: '2018-01-02T12:23:05+01:00' }
     ],
     wings: [
         { id: 1, model: 'Zeno', brand: 'Ozone', certification: 'D' },
-        { id: 2, model: 'Mentor 3', brand: 'Nova', certification: 'B' },
-        { id: 3, model: 'Delta 2', brand: 'Ozone', certification: 'C' },
+        { id: 2, model: 'Mentor', brand: 'Nova', certification: 'B' },
+        { id: 3, model: 'Delta', brand: 'Ozone', certification: 'C' },
         { id: 4, model: 'Sprint', brand: 'Gin', certification: 'A' },
-        { id: 50, model: 'Mentor 3', brand: 'Advance', certification: 'B' }
+        { id: 50, model: 'Iota', brand: 'Advance', certification: 'B' }
     ],
     flights: [
         { id: 1, user_id: 1, league_id: 1, wing_id: 1, date: '2018-07-02T12:00:00+01:00', score: 200, file_id: 4, comment: 'Bockig!' },

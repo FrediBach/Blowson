@@ -140,7 +140,11 @@ function extendData(data) {
 						} else if (maxWords > 1) {
 							value = chance.sentence({ words: Math.floor(Math.random() * maxWords) + minWords }).slice(0, -1);
 						} else {
-							value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
+							if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
+								value = chance.capitalize(chance.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
+							} else {
+								value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
+							}
 						}
 					}
 
