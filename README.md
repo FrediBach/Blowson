@@ -51,3 +51,7 @@ If you repeat a value, it is handled as Enum values, so only available values wi
 ## Optional values
 
 Key value pairs that don't show up in every entry are handled as optional and randomly added to new entries.
+
+## Step detection
+
+Let's say you have the numbers 25, 50 and 100 in your sample data. In this case we assume, that only 25, 50, 75 and 100 is a possible random number. It respects the steps.

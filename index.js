@@ -140,9 +140,10 @@ function extendData(data) {
 
 					if (value === '' && settings.fields[field].type === 'int') {
 						let minInt = minNumber(settings.fields[field].entries),
-							maxInt = maxNumber(settings.fields[field].entries);
+							maxInt = maxNumber(settings.fields[field].entries),
+							minGap = minGapOfIntArray(settings.fields[field].entries);
 						
-						value = Math.floor(Math.random() * maxInt) + minInt;
+						value = randomIntWithStep(minInt, maxInt, minGap);
 					}
 
 					if (value === '' && settings.fields[field].type === 'float') {
@@ -260,6 +261,45 @@ function minNumber(intArray) {
 
 function maxNumber(intArray) {
 	return Math.max.apply(Math, intArray);
+}
+
+function minGapOfIntArray(intArray) {
+	let minGap = 999999999;
+
+	for (let value1 of intArray) {
+		for (let value2 of intArray) {
+			if (value1 !== value2 && Math.abs(value1 - value2) < minGap) {
+				minGap = Math.abs(value1 - value2);
+			}
+		}
+	}
+
+	return minGap;
+}
+
+function randomIntWithStep(min, max, step) {
+	let delta,
+		range,
+		rand;
+	
+	if (arguments.length < 2) {
+		max = min;
+		min = 0;
+	}
+
+	if (!step) {
+		step = 1;
+	}
+
+	delta = max - min;
+	range = delta / step;
+	rand = Math.random();
+	rand *= range;
+	rand = Math.floor(rand);
+	rand *= step;
+	rand += min;
+
+	return rand;
 }
 
 function minStrLength(strArray) {
