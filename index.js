@@ -47,6 +47,8 @@ function extendData(data) {
 					} else {
 						fieldType = 'string';
 					}
+				} else if (typeof fieldValue === 'object') {
+					fieldType = 'JSON';
 				}
 
 				if (typeof typeDef.fields[field] === 'undefined') {
@@ -120,6 +122,10 @@ function extendData(data) {
 					if (field === 'weekday' && settings.fields[field].type === 'string') value = chance.weekday();
 					if (field === 'year' && settings.fields[field].type === 'int') value = parseInt(chance.year());
 					if (field === 'password' && settings.fields[field].type === 'string') value = chance.hash();
+
+					if (value === '' && settings.fields[field].type === 'JSON') {
+						value = {};
+					}
 
 					if (value === '' && settings.fields[field].type === 'string') {
 						let minLength = minStrLength(settings.fields[field].entries),
