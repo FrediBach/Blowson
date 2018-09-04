@@ -10,9 +10,9 @@ module.exports = {
         { id: 3, key: 'blocked' }
     ],
     userConfigs: [
-        { id: 1, user_id: 1, configs: { 'mainLeague': 1, 'interfaceDensity': 'normal', 'focusedInterface': false } },
-        { id: 2, user_id: 2, configs: { 'mainLeague': 2, 'interfaceDensity': 'normal', 'focusedInterface': false } },
-        { id: 30, user_id: 30, configs: { 'mainLeague': 1, 'interfaceDensity': 'normal', 'focusedInterface': false } }
+        { id: 1, user_id: 1/*, configs: { 'mainLeague': 1, 'interfaceDensity': 'normal', 'focusedInterface': false }*/ },
+        { id: 2, user_id: 2/*, configs: { 'mainLeague': 2, 'interfaceDensity': 'normal', 'focusedInterface': false }*/ },
+        { id: 30, user_id: 30/*, configs: { 'mainLeague': 1, 'interfaceDensity': 'normal', 'focusedInterface': false }*/ }
     ],
     leagues: [
         { id: 1, name: 'Switzerland', yearly: true, description: 'Waypoint are all placed in Switzerland by local instructors and top pilots.', created: '2018-05-01T12:00:00+01:00', seasonStart: '10-01', seasonEnd: '09-31', file_id: 2 },
@@ -98,7 +98,7 @@ module.exports = {
     ],
     favoriteFlights: [
         { id: 1, user_id: 1, flight_id: 1, datetime: '2018-07-02T12:00:00+01:00' },
-        { id: 1, user_id: 1, flight_id: 2, datetime: '2018-01-02T12:00:00+01:00' },
+        { id: 2, user_id: 1, flight_id: 2, datetime: '2018-01-02T12:00:00+01:00' },
         { id: 100, user_id: 30, flight_id: 100, datetime: '2018-02-02T12:00:00+01:00' }
     ],
     flightWaypoints: [
