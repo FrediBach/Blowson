@@ -110,7 +110,7 @@ module.exports = {
     flightComments: [
         { id: 1, flight_id: 1, user_id: 2, datetime: '2018-08-02T14:06:11+01:00', text: 'Ok, that was nice!' },
         { id: 2, flight_id: 2, user_id: 1, datetime: '2018-08-02T14:09:11+01:00', text: 'Thanks' },
-        { id: 2, flight_id: 100, user_id: 30, datetime: '2018-01-02T14:09:11+01:00', text: 'That is a really nice flight. Congrats I\'m jelaous.' }
+        { id: 250, flight_id: 100, user_id: 30, datetime: '2018-01-02T14:09:11+01:00', text: 'That is a really nice flight. Congrats I\'m jelaous.' }
     ],
     leagueSeasonUserScores: [
         { id: 1, user_id: 1, league_id: 1, season: '2018', score: 200, flightCount: 1 },
