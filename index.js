@@ -154,9 +154,10 @@ function extendData(data) {
 
 					if (value === '' && settings.fields[field].type === 'float') {
 						let minFloat = minNumber(settings.fields[field].entries),
-							maxFloat = maxNumber(settings.fields[field].entries);
+							maxFloat = maxNumber(settings.fields[field].entries),
+							maxPrecision = getMaxPrecision(settings.fields[field].entries);
 
-						value = Math.random() * maxFloat + minFloat;
+						value = Number((Math.random() * maxFloat + minFloat).toFixed(maxPrecision));
 					}
 
 					if (value === '' && settings.fields[field].type === 'char') {
@@ -259,6 +260,32 @@ function findGap(numArray) {
 	} else {
 		return false;
 	}
+}
+
+function floatPrecision(a) {
+	if (!isFinite(a)) return 0;
+
+	var e = 1, p = 0;
+
+	while (Math.round(a * e) / e !== a) {
+		e *= 10; p++;
+	}
+
+	return p;
+}
+
+function getMaxPrecision(floatArray) {
+	maxPrecision = 0;
+
+	for (value of floatArray) {
+		let precision = floatPrecision(value);
+
+		if (precision > maxPrecision) {
+			maxPrecision = precision;
+		}
+	}
+
+	return maxPrecision;
 }
 
 function minNumber(intArray) {
