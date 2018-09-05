@@ -122,6 +122,7 @@ function extendData(data) {
 					if (field === 'weekday' && settings.fields[field].type === 'string') value = chance.weekday();
 					if (field === 'year' && settings.fields[field].type === 'int') value = parseInt(chance.year());
 					if (field === 'password' && settings.fields[field].type === 'string') value = chance.hash();
+					if (field === 'guid' && settings.fields[field].type === 'string') value = chance.guid();
 
 					if (value === '' && settings.fields[field].type === 'JSON') {
 						value = {};
@@ -145,6 +146,14 @@ function extendData(data) {
 							} else {
 								value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
 							}
+						}
+
+						if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+							value = value.toUpperCase();
+						} else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+							value = value.toLowerCase();
+						} else if (everythingCapitalized(settings.fields[field].entries)) {
+							value = capitalize(value);
 						}
 					}
 
@@ -292,6 +301,19 @@ function getMaxPrecision(floatArray) {
 	return maxPrecision;
 }
 
+function everythingCapitalized(stringArray) {
+	isCapitalized = true;
+
+	for (str of stringArray) {
+		if (capitalize(str) !== str) {
+			isCapitalized = false;
+			break;
+		}
+	}
+
+	return isCapitalized;
+}
+
 function minNumber(intArray) {
 	return Math.min.apply(Math, intArray);
 }
@@ -380,5 +402,9 @@ function convertStringDateArray(stringDateArray) {
 
 	return newArray;
 }
+
+capitalize = function(str) {
+	return str.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
+};
 
 writeFile.sync(savePath, `module.exports = ${stringify(extendData(data))};`);
