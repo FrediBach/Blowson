@@ -13,7 +13,7 @@ And than in your script:
 const extendData = require('json-data-extender');
 const data = require('./data.js');
 
-const extendedData = extendData('./data.js');
+const extendedData = extendData(data);
 
 console.log(extendedData);
 ```
