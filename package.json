@@ -6,7 +6,7 @@
   "main": "dist/json-data-extender.js",
   "umd:main": "dist/json-data-extender.umd.js",
   "module": "dist/json-data-extender.m.js",
-  "repo": "https://github.com/FrediBach/json-data-extender",
+  "repository": "FrediBach/json-data-extender",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "microbundle",

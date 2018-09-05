@@ -1,7 +1,7 @@
-const Chance = require('chance');
+import Chance from 'chance';
 const chance = new Chance();
 
-function randomTime() {
+export function randomTime() {
     let hours = String(chance.hour({ twentyfour: true })),
         minutes = String(chance.minute()),
         seconds = String(chance.second());
@@ -13,7 +13,7 @@ function randomTime() {
     return [hours, minutes, seconds].join(':');
 }
 
-function randomDate(start, end) {
+export function randomDate(start, end) {
     var d = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
@@ -25,7 +25,7 @@ function randomDate(start, end) {
     return [year, month, day].join('-');
 }
 
-function randomDatetime(start, end) {
+export function randomDatetime(start, end) {
     var d = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
@@ -40,7 +40,7 @@ function randomDatetime(start, end) {
     return [year, month, day].join('-') + 'T' + [hours, minutes, seconds].join(':') + '+01:00';
 }
 
-function findGap(numArray) {
+export function findGap(numArray) {
     let min = Math.min.apply(Math, numArray),
         max = Math.max.apply(Math, numArray),
         missingNums = [],
@@ -62,7 +62,7 @@ function findGap(numArray) {
     }
 }
 
-function floatPrecision(a) {
+export function floatPrecision(a) {
     if (!isFinite(a)) return 0;
 
     var e = 1, p = 0;
@@ -74,7 +74,7 @@ function floatPrecision(a) {
     return p;
 }
 
-function getMaxPrecision(floatArray) {
+export function getMaxPrecision(floatArray) {
     let maxPrecision = 0,
         value;
 
@@ -89,7 +89,7 @@ function getMaxPrecision(floatArray) {
     return maxPrecision;
 }
 
-function everythingCapitalized(stringArray) {
+export function everythingCapitalized(stringArray) {
     let isCapitalized = true,
         str;
 
@@ -103,15 +103,15 @@ function everythingCapitalized(stringArray) {
     return isCapitalized;
 }
 
-function minNumber(intArray) {
+export function minNumber(intArray) {
     return Math.min.apply(Math, intArray);
 }
 
-function maxNumber(intArray) {
+export function maxNumber(intArray) {
     return Math.max.apply(Math, intArray);
 }
 
-function minGapOfIntArray(intArray) {
+export function minGapOfIntArray(intArray) {
     let minGap = 999999999,
         value1,
         value2;
@@ -127,7 +127,7 @@ function minGapOfIntArray(intArray) {
     return minGap;
 }
 
-function randomIntWithStep(min, max, step) {
+export function randomIntWithStep(min, max, step) {
     let delta,
         range,
         rand;
@@ -152,47 +152,47 @@ function randomIntWithStep(min, max, step) {
     return rand;
 }
 
-function minStrLength(strArray) {
+export function minStrLength(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) { return str.length; }));
 }
 
-function maxStrLength(strArray) {
+export function maxStrLength(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) { return str.length; }));
 }
 
-function minWordCount(strArray) {
+export function minWordCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) { return str.split(' ').length; }));
 }
 
-function maxWordCount(strArray) {
+export function maxWordCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) { return str.split(' ').length; }));
 }
 
-function minSentenceCount(strArray) {
+export function minSentenceCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) { return str.split(/[\.\!\?]+/).length; }));
 }
 
-function maxSentenceCount(strArray) {
+export function maxSentenceCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) { return str.split(/[\.\!\?]+/).length; }));
 }
 
-function minParagraphCount(strArray) {
+export function minParagraphCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) { return str.replace(/\n$/gm, '').split(/\n/).length; }));
 }
 
-function maxParagraphCount(strArray) {
+export function maxParagraphCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) { return str.replace(/\n$/gm, '').split(/\n/).length; }));
 }
 
-function minDate(dateArray) {
+export function minDate(dateArray) {
     return new Date(Math.min.apply(null, dateArray));
 }
 
-function maxDate(dateArray) {
+export function maxDate(dateArray) {
     return new Date(Math.max.apply(null, dateArray));
 }
 
-function convertStringDateArray(stringDateArray) {
+export function convertStringDateArray(stringDateArray) {
     let newArray = [],
         dateString;
 
@@ -203,23 +203,23 @@ function convertStringDateArray(stringDateArray) {
     return newArray;
 }
 
-function capitalize(str) {
+export function capitalize(str) {
     return str.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
 };
 
-function isDateString(str) {
+export function isDateString(str) {
     return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(str);
 }
 
-function isDatetimeString(str) {
+export function isDatetimeString(str) {
     return /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$/.test(str);
 }
 
-function isTimeString(str) {
+export function isTimeString(str) {
     return /^[0-9]{2}:[0-9]{2}:[0-9]{2}$/.test(str);
 }
 
-function getWeights(allEntries, uniqueEntries) {
+export function getWeights(allEntries, uniqueEntries) {
     let weightedEntries = {},
         weights = [],
         entry;
@@ -238,33 +238,3 @@ function getWeights(allEntries, uniqueEntries) {
 
     return weights;
 }
-
-module.exports = {
-    randomTime,
-    randomDate,
-    randomDatetime,
-    findGap,
-    floatPrecision,
-    getMaxPrecision,
-    everythingCapitalized,
-    minNumber,
-    maxNumber,
-    minGapOfIntArray,
-    randomIntWithStep,
-    minStrLength,
-    maxStrLength,
-    minWordCount,
-    maxWordCount,
-    minSentenceCount,
-    maxSentenceCount,
-    minParagraphCount,
-    maxParagraphCount,
-    minDate,
-    maxDate,
-    convertStringDateArray,
-    capitalize,
-    isDateString,
-    isDatetimeString,
-    isTimeString,
-    getWeights
-};

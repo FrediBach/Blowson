@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const txtgen = require('txtgen');
-const Chance = require('chance');
-const chance = new Chance();
-const {
+import _ from 'lodash';
+import txtgen from 'txtgen';
+import Chance from 'chance';
+
+import {
     randomTime,
     randomDate,
     randomDatetime,
@@ -29,7 +29,9 @@ const {
     isDatetimeString,
     isTimeString,
     getWeights
-} = require('./helpers');
+} from './helpers';
+
+const chance = new Chance();
 
 module.exports = function extendData(data) {
     let types = [],
