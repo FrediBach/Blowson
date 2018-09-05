@@ -1,9 +1,22 @@
 # json-data-extender
-Extend JSON sample data based on some very simple rules.
+Extend JSON like sample data based on some very simple rules.
 
-## Basic usage
+## Usage
 
-Check the sample file `data.js` to get an idea how to structure sample data. The `data-extended.js` is an extended sample.
+Installation:
+
+`npm i json-data-extender --save`
+
+And than in your script:
+
+```
+const extendData = require('json-data-extender');
+const data = require(dataPath);
+
+extendData(data);
+```
+
+Have a look at the index.js for a complete example and check out data.js for an example data file.
 
 ## Extend ID range
 

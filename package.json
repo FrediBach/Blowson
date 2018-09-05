@@ -1,10 +1,16 @@
 {
   "name": "json-data-extender",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Extend JSON data",
-  "main": "index.js",
+  "source": "src/extend.js",
+  "main": "dist/json-data-extender.js",
+  "umd:main": "dist/json-data-extender.umd.js",
+  "module": "dist/json-data-extender.m.js",
+  "repo": "https://github.com/FrediBach/json-data-extender",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "microbundle",
+    "dev": "microbundle watch"
   },
   "author": "Fredi Bach",
   "license": "MIT",
@@ -14,5 +20,8 @@
     "lodash": "^4.17.10",
     "txtgen": "^2.2.2",
     "write": "^1.0.3"
+  },
+  "devDependencies": {
+    "microbundle": "^0.6.0"
   }
 }
