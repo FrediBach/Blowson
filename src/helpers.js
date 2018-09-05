@@ -176,6 +176,14 @@ function maxSentenceCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) { return str.split(/[\.\!\?]+/).length; }));
 }
 
+function minParagraphCount(strArray) {
+    return Math.min.apply(Math, strArray.map(function (str) { return str.replace(/\n$/gm, '').split(/\n/).length; }));
+}
+
+function maxParagraphCount(strArray) {
+    return Math.max.apply(Math, strArray.map(function (str) { return str.replace(/\n$/gm, '').split(/\n/).length; }));
+}
+
 function minDate(dateArray) {
     return new Date(Math.min.apply(null, dateArray));
 }
@@ -249,6 +257,8 @@ module.exports = {
     maxWordCount,
     minSentenceCount,
     maxSentenceCount,
+    minParagraphCount,
+    maxParagraphCount,
     minDate,
     maxDate,
     convertStringDateArray,

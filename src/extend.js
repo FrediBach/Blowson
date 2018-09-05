@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const txtgen = require('txtgen');
 const Chance = require('chance');
 const chance = new Chance();
 const {
@@ -18,6 +19,8 @@ const {
     maxWordCount,
     minSentenceCount,
     maxSentenceCount,
+    minParagraphCount,
+    maxParagraphCount,
     minDate,
     maxDate,
     convertStringDateArray,
@@ -161,10 +164,14 @@ module.exports = function extendData(data) {
                             minWords = minWordCount(settings.fields[field].entries),
                             maxWords = maxWordCount(settings.fields[field].entries),
                             minSentences = minSentenceCount(settings.fields[field].entries),
-                            maxSentences = maxSentenceCount(settings.fields[field].entries);
+                            maxSentences = maxSentenceCount(settings.fields[field].entries),
+                            minParagraphs = minParagraphCount(settings.fields[field].entries),
+                            maxParagraphs = maxParagraphCount(settings.fields[field].entries);
 
-                        if (maxSentences > 1) {
-                            value = chance.paragraph({ words: Math.floor(Math.random() * maxSentences) + minSentences });
+                        if (maxParagraphs > 1) {
+                            value = txtgen.article(Math.floor(Math.random() * maxParagraphs) + minParagraphs);
+                        } else if (maxSentences > 1) {
+                            value = txtgen.paragraph(Math.floor(Math.random() * maxSentences) + minSentences);
                         } else if (maxWords > 1) {
                             value = chance.sentence({ words: Math.floor(Math.random() * maxWords) + minWords }).slice(0, -1);
                         } else {
