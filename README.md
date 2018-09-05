@@ -11,9 +11,11 @@ And than in your script:
 
 ```
 const extendData = require('json-data-extender');
-const data = require(dataPath);
+const data = require('./data.js');
 
-extendData(data);
+const extendedData = extendData('./data.js');
+
+console.log(extendedData);
 ```
 
 Have a look at the index.js for a complete example and check out data.js for an example data file.
