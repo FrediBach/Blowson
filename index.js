@@ -55,6 +55,7 @@ function extendData(data) {
 					typeDef.fields[field] = {
 						types: [fieldType],
 						entries: [fieldValue],
+						allEntries: [fieldValue],
 						cnt: 1
 					};
 				} else {
@@ -62,6 +63,7 @@ function extendData(data) {
 					typeDef.fields[field].types = _.uniq(typeDef.fields[field].types);
 					typeDef.fields[field].entries.push(fieldValue);
 					typeDef.fields[field].entries = _.uniq(typeDef.fields[field].entries);
+					typeDef.fields[field].allEntries.push(fieldValue);
 					typeDef.fields[field].cnt++;
 				}
 			}
@@ -76,6 +78,21 @@ function extendData(data) {
 			}
 			if (typeDef.fields[field].entries.length < typeDef.fields[field].cnt) {
 				typeDef.fields[field].repeatEntries = true;
+
+				// Get weights:
+				let weightedEntries = {};
+				let weights = [];
+				for (let entry of typeDef.fields[field].allEntries) {
+					if (typeof weightedEntries[entry] === 'undefined') {
+						weightedEntries[entry] = 1;
+					} else {
+						weightedEntries[entry]++;
+					}
+				}
+				for (let entry of typeDef.fields[field].entries) {
+					weights.push(weightedEntries[entry]);
+				}
+				typeDef.fields[field].weights = weights;
 			} else {
 				typeDef.fields[field].repeatEntries = false;
 			}
@@ -102,7 +119,7 @@ function extendData(data) {
 					let value = '';
 
 					if (settings.fields[field].repeatEntries) {
-						value = _.sample(settings.fields[field].entries);
+						value = chance.weighted(settings.fields[field].entries, settings.fields[field].weights);
 					}
 
 					if (field === 'id') value = id;

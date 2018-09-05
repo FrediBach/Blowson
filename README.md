@@ -30,6 +30,7 @@ Currently detected keys:
 - weekday
 - year
 - password
+- GUID
 
 ## Other auto detections
 
@@ -55,3 +56,7 @@ Key value pairs that don't show up in every entry are handled as optional and ra
 ## Step detection
 
 Let's say you have the numbers 25, 50 and 100 in your sample data. In this case we assume, that only 25, 50, 75 and 100 is a possible random number. It respects the steps.
+
+## Weighted randomness
+
+For example if you have a gender field in your user type. Two of the sample users are male and one is female, than the randomly added enries will respect that frequency and add more males than femals to your sample data.
