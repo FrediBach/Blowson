@@ -2,6 +2,16 @@
   "name": "json-data-extender",
   "version": "0.1.0",
   "description": "Extend JSON data",
+  "author": "Fredi Bach",
+  "license": "MIT",
+  "homepage": "https://github.com/FrediBach/json-data-extender",
+  "keywords": [
+    "json",
+    "data",
+    "extender",
+    "sample",
+    "fake"
+  ],
   "source": "src/extend.js",
   "main": "dist/json-data-extender.js",
   "umd:main": "dist/json-data-extender.umd.js",
@@ -12,8 +22,6 @@
     "build": "microbundle",
     "dev": "microbundle watch"
   },
-  "author": "Fredi Bach",
-  "license": "MIT",
   "dependencies": {
     "chance": "^1.0.16",
     "json-stringify-pretty-compact": "^1.2.0",
