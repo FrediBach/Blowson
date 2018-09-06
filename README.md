@@ -98,7 +98,7 @@ If a field type can't be detected by its key, JSON Data Extender will try to gue
 - Datetime
 - Time
 
-Sentence, paragraph and article will be generated in English and they script will try to guess a correct range of amounts. So for example if your sample looks like this:
+Sentence, paragraph and article will be generated in English and the script will try to guess a correct range of amounts. So for example if your sample looks like this:
 
 ```
 {
@@ -121,7 +121,7 @@ The script will guess that you want tiitle sentences with at least three words a
 }
 ```
 
-Well, it will just generate a random sentence, so probably contextually compltetely unrelated, but that's all we need for sample data.
+Well, it will just generate a random sentence, so probably contextually completely unrelated, but that's all we need for sample data.
 
 ## Repeated values
 
@@ -153,7 +153,31 @@ Because the score `500` is repeated twice, all generated values will use either 
 
 ## Range detection
 
-The range of your sample values is being respected. For example in the example above, `user_id` has samples between 1 and 72, so only values between 1 and 72 will be generated. Not only integers and floats can have ranges, date and datetime can have ranges, as well.
+The range of your sample values is being respected. For example in the example above, `user_id` has samples between 1 and 72, so only values between 1 and 72 will be generated. Not only integers and floats can have ranges, date and datetime can have ranges, as well. So for example if you have a birthday field like in this sample data:
+
+```
+{
+    "users": [
+        "id": 1, "firstname": "Mike", "birthday": "1975-09-03",
+        "id": 2, "firstname": "Alex", "birthday": "1922-03-01",
+        "id": 5, "firstname": "Lucy", "birthday": "1988-11-21"
+    ]
+}
+```
+
+The range detected will be 1922-03-01 to 1988-11-21 and the generated data could look like this:
+
+```
+{
+    "users": [
+        "id": 1, "firstname": "Mike", "birthday": "1975-09-03",
+        "id": 2, "firstname": "Alex", "birthday": "1922-03-01",
+        "id": 3, "firstname": "Kevin", "birthday": "1966-12-18",
+        "id": 4, "firstname": "Tom", "birthday": "1933-02-08",
+        "id": 5, "firstname": "Lucy", "birthday": "1988-11-21"
+    ]
+}
+```
 
 ## Weighted randomness
 
