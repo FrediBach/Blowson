@@ -216,3 +216,22 @@ In the above case, the score would be a random number between 1 and 1000. If you
 ## Floating point precision
 
 If you have floating point numbers in your data, the script will respect the precision of them. Let's say you have the numbers 1.56, 1.4 and 12.64, than the script will never add a number like 4.192234 as that would exceed the precision of two.
+
+## Relationship fields
+
+In a context where you use sample data to fill a database, you often will have to define relationship fields like `user_id`. Now to have realistic values in those fields, you need to follow one simple rule, always define your field value range to the size of the table you're connecting to. Here's an example:
+
+```
+{
+    "users": [
+        "id": 1, "firstname": "Mike", "age": 12,
+        "id": 50, "firstname": "Lucy", "age": 31
+    ],
+    "comments": [
+        "id": 1, "user_id": 1, "text": "Some text",
+        "id": 250, "user_id": 50, "text": "Some more text"
+    ]
+}
+```
+
+First 50 users are generated with ids from 1 to 50, so the `user_id` relationship field in the comments table should be synced to that range, so we add 1 and 50. As 250 comments will be generated, every user will have an average of five comments.
