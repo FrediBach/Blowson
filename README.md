@@ -3,7 +3,7 @@ Extend JSON like sample data based on some very simple rules.
 
 ## About
 
-JSON Data Extender was created to make mocking of API's easier and more powerful. It's an integral part of a Frontend First Development worflow: [www.frontendfirstdevelopment.com](http://www.frontendfirstdevelopment.com/)
+JSON Data Extender was created to make mocking of API's with realistic sample data easier and more powerful. It's an integral part of a Frontend First Development workflow described here: [www.frontendfirstdevelopment.com](http://www.frontendfirstdevelopment.com/)
 
 Other related projects and libraries are: [JSON Data Import](https://github.com/hasura/json-data-import) (for Hasura)
 
