@@ -132,6 +132,8 @@ The script will guess that you want tiitle sentences with at least three words a
 
 Well, it will just generate a random sentence, so probably contextually completely unrelated, but that's all we need for sample data.
 
+Additionally, long words will appear once in a while to make it possible to test UI problems.
+
 ## Repeated values
 
 If you repeat a value, it is handled like enumerations, so only available values will be used. Here's an example:
