@@ -80,6 +80,15 @@ As you could see in the example above, JSON Data Extender correctly guessed that
 - year
 - password
 - GUID
+- product
+- material
+- iban
+- bic
+- avatar
+- username
+- homepage
+- job
+- mimetype
 
 ## Other auto detections
 

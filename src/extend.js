@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import txtgen from 'txtgen';
 import Chance from 'chance';
+import faker from 'faker';
 
 import {
     randomTime,
@@ -28,7 +29,8 @@ import {
     isDateString,
     isDatetimeString,
     isTimeString,
-    getWeights
+    getWeights,
+    getNumberDirection
 } from './helpers';
 
 const chance = new Chance();
@@ -143,7 +145,7 @@ module.exports = function extendData(data) {
                     if (field === 'lastname' && settings.fields[field].type === 'string') value = chance.last();
                     if (field === 'company' && settings.fields[field].type === 'string') value = chance.company();
                     if (field === 'country' && settings.fields[field].type === 'string') value = chance.country();
-                    if (field === 'email' && settings.fields[field].type === 'string') value = chance.email();
+                    if (field === 'email' && settings.fields[field].type === 'string') value = faker.internet.exampleEmail();
                     if (field === 'color' && settings.fields[field].type === 'string') value = chance.color();
                     if (field === 'ip' && settings.fields[field].type === 'string') value = chance.ip();
                     if (field === 'profession' && settings.fields[field].type === 'string') value = chance.profession();
@@ -155,6 +157,15 @@ module.exports = function extendData(data) {
                     if (field === 'year' && settings.fields[field].type === 'int') value = parseInt(chance.year());
                     if (field === 'password' && settings.fields[field].type === 'string') value = chance.hash();
                     if (field === 'guid' && settings.fields[field].type === 'string') value = chance.guid();
+                    if (field === 'product' && settings.fields[field].type === 'string') value = faker.commerce.productName();
+                    if (field === 'material' && settings.fields[field].type === 'string') value = faker.commerce.productMaterial();
+                    if (field === 'iban' && settings.fields[field].type === 'string') value = faker.finance.iban();
+                    if (field === 'bic' && settings.fields[field].type === 'string') value = faker.finance.bic();
+                    if (field === 'avatar' && settings.fields[field].type === 'string') value = faker.image.avatar();
+                    if (field === 'username' && settings.fields[field].type === 'string') value = faker.internet.userName();
+                    if (field === 'homepage' && settings.fields[field].type === 'string') value = faker.internet.url();
+                    if (field === 'job' && settings.fields[field].type === 'string') value = faker.name.jobTitle();
+                    if (field === 'mimetype' && settings.fields[field].type === 'string') value = faker.system.mimeType();
 
                     if (value === '' && settings.fields[field].type === 'JSON') {
                         value = {};

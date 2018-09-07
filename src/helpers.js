@@ -238,3 +238,34 @@ export function getWeights(allEntries, uniqueEntries) {
 
     return weights;
 }
+
+export function getNumberDirection(entries) {
+    let direction = null,
+        lastValue = null,
+        noDirection = false,
+        value;
+
+    for (value of entries) {
+        if (lastValue !== null && value > lastValue) {
+            if (direction === 'desc') {
+                noDirection = true;
+                break;
+            }
+            direction = 'asc';
+        }
+        if (lastValue !== null && value < lastValue) {
+            if (direction === 'asc') {
+                noDirection = true;
+                break;
+            }
+            direction = 'desc';
+        }
+        lastValue = value;
+    }
+
+    if (noDirection || direction === null) {
+        return false;
+    } else {
+        return direction;
+    }
+}

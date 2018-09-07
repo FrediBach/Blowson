@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "chance": "^1.0.16",
+    "faker": "^4.1.0",
     "json-stringify-pretty-compact": "^1.2.0",
     "lodash": "^4.17.10",
     "txtgen": "^2.2.2",
