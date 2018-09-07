@@ -179,6 +179,19 @@ The range detected will be 1922-03-01 to 1988-11-21 and the generated data could
 }
 ```
 
+Ranges can be used in creative ways. For example if you want to restrict coordinates to all be in a specific rectanle, all you have to do is put two coordinates in your sample to the edges of that rectangle, something liek this:
+
+```
+{
+    "waypoints": [
+        "id": 1, "lat": 46.204, "lng": 6.1432,
+        "id": 10, "lat": 47.678, "lng": 9.173
+    ]
+}
+```
+
+This would roughly limit the randomly generated waypoints to be inside of Switzerland.
+
 ## Weighted randomness
 
 Another feature of the above used sample data is that the score `500` is twice in the sample data and `250` only once. This will be detected and the score 500 will have a higher chance of occuring in the generated data (twice as likely to be exact).
@@ -259,3 +272,5 @@ In a context where you use sample data to fill a database, you often will have t
 ```
 
 First 50 users are generated with ids from 1 to 50, so the `user_id` relationship field in the comments table should be synced to that range, so we add 1 and 50. As 250 comments will be generated, every user will have an average of five comments.
+
+If you use a JS export as in the examples you can find in the package, it's a good idea to first define constants for all this sizes, so that you only have one place where you need to change them.
