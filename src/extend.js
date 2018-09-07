@@ -35,6 +35,11 @@ import {
 
 const chance = new Chance();
 
+txtgen.addTemplates([
+    'congratulations to the {{noun}} that won the {{adjective}} {{noun}} with {{a_noun}}',
+    'incomprehensibilities of a {{adjective}} {{noun}} and {{a_noun}} made {{a_noun}} {{adjective}}'
+]);
+
 module.exports = function extendData(data) {
     let types = [],
         type;
