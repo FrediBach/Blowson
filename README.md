@@ -285,3 +285,52 @@ In a context where you use sample data to fill a database, you often will have t
 First 50 users are generated with ids from 1 to 50, so the `user_id` relationship field in the comments table should be synced to that range, so we add 1 and 50. As 250 comments will be generated, every user will have an average of five comments.
 
 If you use a JS export as in the examples you can find in the package, it's a good idea to first define constants for all this sizes, so that you only have one place where you need to change them.
+
+## Template variables
+
+You can include other fields in the same entry with into a string with template variables with double curly braces. Here's an example:
+
+```
+{
+    "users": [
+        "id": 1, "firstname": "Mike", "slogan": "Hi, I'm {{field.firstname}}. How can I help you?",
+        "id": 2, "firstname": "Tom", "slogan": "Hi, I'm {{field.firstname}}. How can I help you?",
+        "id": 5, "firstname": "Lucy", "slogan": "Visit my homepage: www.{{field.firstname|lower}}.com"
+    ]
+}
+```
+
+We've repeated the first slogan to make sure that it wont be repeated with random text. Additionally, we used the lowercase filter in the second template.
+
+The result will be something like this:
+
+```
+{
+    "users": [
+        "id": 1, "firstname": "Mike", "slogan": "Hi, I'm Mike. How can I help you?",
+        "id": 2, "firstname": "Tom", "slogan": "Hi, I'm Tom. How can I help you?",
+        "id": 3, "firstname": "Jeff", "slogan": "Visit my homepage: www.jeff.com",
+        "id": 4, "firstname": "Kim", "slogan": "Hi, I'm Kim. How can I help you?",
+        "id": 5, "firstname": "Lucy", "slogan": "Visit my homepage: www.lucy.com"
+    ]
+}
+```
+
+The available filters are:
+
+- slug
+- lower
+- upper
+- md5
+
+Additionally you can use the `?` option to define a default value, in case the field you're referencing is optional. This could look like this:
+
+```
+{
+    "files": [
+        { id: 1, width: 250, height: 100, url: 'https://imgplaceholder.com/{{field.width?250}}x{{field.height?100}}' },
+        { id: 2, width: 500, height: 250, url: 'https://imgplaceholder.com/{{field.width?500}}x{{field.height?250}}' },
+        { id: 5, url: 'https://imgplaceholder.com/{{field.width?400}}x{{field.height?200}}' }
+    ]
+}
+```

@@ -1,8 +1,8 @@
 module.exports = {
     users: [
-        { id: 1, firstname: 'Fredi', lastname: 'Bach', country: 'CH', birthday: '1975-09-03', sex: 'm', email: 'osxcode@gmail.com', userStatus_id: 2, registered: '2018-06-22T09:02:11+01:00', file_id: 1 },
-        { id: 2, firstname: 'Samuel', lastname: 'Patzen', country: 'CH', birthday: '1978-02-01', sex: 'm', email: 'patzen@bluewin.ch', userStatus_id: 2, registered: '2018-07-01T09:05:11+01:00' },
-        { id: 30, firstname: 'Vreni', lastname: 'Beispiel', country: 'CH', birthday: '1983-02-01', sex: 'f', email: 'vreni.beispiel@domain.ch', userStatus_id: 1, registered: '2018-04-01T09:04:11+01:00' }
+        { id: 1, firstname: 'Fredi', lastname: 'Bach', slug: '{{field.firstname|slug}}-{{field.lastname|slug}}', country: 'CH', birthday: '1975-09-03', sex: 'm', email: 'osxcode@gmail.com', userStatus_id: 2, registered: '2018-06-22T09:02:11+01:00', file_id: 1 },
+        { id: 2, firstname: 'Samuel', lastname: 'Patzen', slug: '{{field.firstname|slug}}-{{field.lastname|slug}}', country: 'IT', birthday: '1978-02-01', sex: 'm', email: 'patzen@bluewin.ch', userStatus_id: 2, registered: '2018-07-01T09:05:11+01:00' },
+        { id: 30, firstname: 'Vreni', lastname: 'Beispiel', slug: '{{field.firstname|slug}}-{{field.lastname|slug}}', country: 'FR', birthday: '1983-02-01', sex: 'f', email: 'vreni.beispiel@domain.ch', userStatus_id: 1, registered: '2018-04-01T09:04:11+01:00' }
     ],
     userStatuses: [
         { id: 1, key: 'inactive' },
@@ -30,9 +30,9 @@ module.exports = {
         { id: 50, user_id: 4, league_id: 2 }
     ],
     files: [
-        { id: 1, mimetype_id: 1, width: 250, height: 250, url: 'https://imgplaceholder.com/250x250/cccccc/757575/ion-happy-outline' },
-        { id: 2, mimetype_id: 1, width: 800, height: 400, url: 'https://imgplaceholder.com/800x400/cccccc/757575/fa-image' },
-        { id: 3, mimetype_id: 1, width: 300, height: 200, url: 'https://imgplaceholder.com/300x200/cccccc/757575/fa-map-marker' },
+        { id: 1, mimetype_id: 1, width: 250, height: 250, url: 'https://imgplaceholder.com/{{field.width?250}}x{{field.height?250}}/cccccc/757575/ion-happy-outline' },
+        { id: 2, mimetype_id: 1, width: 800, height: 400, url: 'https://imgplaceholder.com/{{field.width?800}}x{{field.height?400}}/cccccc/757575/fa-image' },
+        { id: 3, mimetype_id: 1, width: 300, height: 200, url: 'https://imgplaceholder.com/{{field.width?300}}x{{field.height?200}}/cccccc/757575/fa-map-marker' },
         { id: 4, mimetype_id: 3, url: 'https://mycdn.com/fredi-bach/2018-07-02-001.igc' },
         { id: 5, mimetype_id: 3, url: 'https://mycdn.com/fredi-bach/2018-07-03-001.igc' },
         { id: 25, mimetype_id: 3, url: 'https://mycdn.com/fredi-bach/2018-07-03-001.igc' }

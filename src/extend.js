@@ -2,6 +2,8 @@ import _ from 'lodash';
 import txtgen from 'txtgen';
 import Chance from 'chance';
 import faker from 'faker';
+import slugify from 'slugify';
+import md5 from 'md5';
 
 import {
     randomTime,
@@ -142,115 +144,117 @@ module.exports = function extendData(data) {
 
                     if (settings.fields[field].repeatEntries) {
                         value = chance.weighted(settings.fields[field].entries, settings.fields[field].weights);
-                    }
+                    } else {
 
-                    if (field === 'id') value = id;
-                    if (field === 'age' && settings.fields[field].type === 'int') value = chance.age();
-                    if (field === 'firstname' && settings.fields[field].type === 'string') value = chance.first();
-                    if (field === 'lastname' && settings.fields[field].type === 'string') value = chance.last();
-                    if (field === 'company' && settings.fields[field].type === 'string') value = chance.company();
-                    if (field === 'country' && settings.fields[field].type === 'string') value = chance.country();
-                    if (field === 'email' && settings.fields[field].type === 'string') value = faker.internet.exampleEmail();
-                    if (field === 'color' && settings.fields[field].type === 'string') value = chance.color();
-                    if (field === 'ip' && settings.fields[field].type === 'string') value = chance.ip();
-                    if (field === 'profession' && settings.fields[field].type === 'string') value = chance.profession();
-                    if (field === 'url' && settings.fields[field].type === 'string') value = chance.url();
-                    if (field === 'city' && settings.fields[field].type === 'string') value = chance.city();
-                    if (field === 'street' && settings.fields[field].type === 'string') value = chance.street();
-                    if (field === 'zip' && settings.fields[field].type === 'int') value = parseInt(chance.zip());
-                    if (field === 'weekday' && settings.fields[field].type === 'string') value = chance.weekday();
-                    if (field === 'year' && settings.fields[field].type === 'int') value = parseInt(chance.year());
-                    if (field === 'password' && settings.fields[field].type === 'string') value = chance.hash();
-                    if (field === 'guid' && settings.fields[field].type === 'string') value = chance.guid();
-                    if (field === 'product' && settings.fields[field].type === 'string') value = faker.commerce.productName();
-                    if (field === 'material' && settings.fields[field].type === 'string') value = faker.commerce.productMaterial();
-                    if (field === 'iban' && settings.fields[field].type === 'string') value = faker.finance.iban();
-                    if (field === 'bic' && settings.fields[field].type === 'string') value = faker.finance.bic();
-                    if (field === 'avatar' && settings.fields[field].type === 'string') value = faker.image.avatar();
-                    if (field === 'username' && settings.fields[field].type === 'string') value = faker.internet.userName();
-                    if (field === 'homepage' && settings.fields[field].type === 'string') value = faker.internet.url();
-                    if (field === 'job' && settings.fields[field].type === 'string') value = faker.name.jobTitle();
-                    if (field === 'mimetype' && settings.fields[field].type === 'string') value = faker.system.mimeType();
+                        if (field === 'id') value = id;
+                        if (field === 'age' && settings.fields[field].type === 'int') value = chance.age();
+                        if (field === 'firstname' && settings.fields[field].type === 'string') value = chance.first();
+                        if (field === 'lastname' && settings.fields[field].type === 'string') value = chance.last();
+                        if (field === 'company' && settings.fields[field].type === 'string') value = chance.company();
+                        if (field === 'country' && settings.fields[field].type === 'string') value = chance.country();
+                        if (field === 'email' && settings.fields[field].type === 'string') value = faker.internet.exampleEmail();
+                        if (field === 'color' && settings.fields[field].type === 'string') value = chance.color();
+                        if (field === 'ip' && settings.fields[field].type === 'string') value = chance.ip();
+                        if (field === 'profession' && settings.fields[field].type === 'string') value = chance.profession();
+                        if (field === 'url' && settings.fields[field].type === 'string') value = chance.url();
+                        if (field === 'city' && settings.fields[field].type === 'string') value = chance.city();
+                        if (field === 'street' && settings.fields[field].type === 'string') value = chance.street();
+                        if (field === 'zip' && settings.fields[field].type === 'int') value = parseInt(chance.zip());
+                        if (field === 'weekday' && settings.fields[field].type === 'string') value = chance.weekday();
+                        if (field === 'year' && settings.fields[field].type === 'int') value = parseInt(chance.year());
+                        if (field === 'password' && settings.fields[field].type === 'string') value = chance.hash();
+                        if (field === 'guid' && settings.fields[field].type === 'string') value = chance.guid();
+                        if (field === 'product' && settings.fields[field].type === 'string') value = faker.commerce.productName();
+                        if (field === 'material' && settings.fields[field].type === 'string') value = faker.commerce.productMaterial();
+                        if (field === 'iban' && settings.fields[field].type === 'string') value = faker.finance.iban();
+                        if (field === 'bic' && settings.fields[field].type === 'string') value = faker.finance.bic();
+                        if (field === 'avatar' && settings.fields[field].type === 'string') value = faker.image.avatar();
+                        if (field === 'username' && settings.fields[field].type === 'string') value = faker.internet.userName();
+                        if (field === 'homepage' && settings.fields[field].type === 'string') value = faker.internet.url();
+                        if (field === 'job' && settings.fields[field].type === 'string') value = faker.name.jobTitle();
+                        if (field === 'mimetype' && settings.fields[field].type === 'string') value = faker.system.mimeType();
 
-                    if (value === '' && settings.fields[field].type === 'JSON') {
-                        value = {};
-                    }
+                        if (value === '' && settings.fields[field].type === 'JSON') {
+                            value = {};
+                        }
 
-                    if (value === '' && settings.fields[field].type === 'string') {
-                        let minLength = minStrLength(settings.fields[field].entries),
-                            maxLength = maxStrLength(settings.fields[field].entries),
-                            minWords = minWordCount(settings.fields[field].entries),
-                            maxWords = maxWordCount(settings.fields[field].entries),
-                            minSentences = minSentenceCount(settings.fields[field].entries),
-                            maxSentences = maxSentenceCount(settings.fields[field].entries),
-                            minParagraphs = minParagraphCount(settings.fields[field].entries),
-                            maxParagraphs = maxParagraphCount(settings.fields[field].entries);
+                        if (value === '' && settings.fields[field].type === 'string') {
+                            let minLength = minStrLength(settings.fields[field].entries),
+                                maxLength = maxStrLength(settings.fields[field].entries),
+                                minWords = minWordCount(settings.fields[field].entries),
+                                maxWords = maxWordCount(settings.fields[field].entries),
+                                minSentences = minSentenceCount(settings.fields[field].entries),
+                                maxSentences = maxSentenceCount(settings.fields[field].entries),
+                                minParagraphs = minParagraphCount(settings.fields[field].entries),
+                                maxParagraphs = maxParagraphCount(settings.fields[field].entries);
 
-                        if (maxParagraphs > 1) {
-                            value = txtgen.article(Math.floor(Math.random() * maxParagraphs) + minParagraphs);
-                        } else if (maxSentences > 1) {
-                            value = txtgen.paragraph(Math.floor(Math.random() * maxSentences) + minSentences);
-                        } else if (maxWords > 1) {
-                            value = chance.sentence({ words: Math.floor(Math.random() * maxWords) + minWords }).slice(0, -1);
-                        } else {
-                            if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
-                                value = chance.capitalize(chance.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
+                            if (maxParagraphs > 1) {
+                                value = txtgen.article(Math.floor(Math.random() * maxParagraphs) + minParagraphs);
+                            } else if (maxSentences > 1) {
+                                value = txtgen.paragraph(Math.floor(Math.random() * maxSentences) + minSentences);
+                            } else if (maxWords > 1) {
+                                value = chance.sentence({ words: Math.floor(Math.random() * maxWords) + minWords }).slice(0, -1);
                             } else {
-                                value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
+                                if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
+                                    value = chance.capitalize(chance.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
+                                } else {
+                                    value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
+                                }
+                            }
+
+                            if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                                value = value.toUpperCase();
+                            } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                                value = value.toLowerCase();
+                            } else if (everythingCapitalized(settings.fields[field].entries)) {
+                                value = capitalize(value);
                             }
                         }
 
-                        if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
-                            value = value.toUpperCase();
-                        } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
-                            value = value.toLowerCase();
-                        } else if (everythingCapitalized(settings.fields[field].entries)) {
-                            value = capitalize(value);
+                        if (value === '' && settings.fields[field].type === 'int') {
+                            let minInt = minNumber(settings.fields[field].entries),
+                                maxInt = maxNumber(settings.fields[field].entries),
+                                minGap = minGapOfIntArray(settings.fields[field].entries);
+
+                            value = randomIntWithStep(minInt, maxInt, minGap);
                         }
-                    }
 
-                    if (value === '' && settings.fields[field].type === 'int') {
-                        let minInt = minNumber(settings.fields[field].entries),
-                            maxInt = maxNumber(settings.fields[field].entries),
-                            minGap = minGapOfIntArray(settings.fields[field].entries);
+                        if (value === '' && settings.fields[field].type === 'float') {
+                            let minFloat = minNumber(settings.fields[field].entries),
+                                maxFloat = maxNumber(settings.fields[field].entries),
+                                maxPrecision = getMaxPrecision(settings.fields[field].entries);
 
-                        value = randomIntWithStep(minInt, maxInt, minGap);
-                    }
-
-                    if (value === '' && settings.fields[field].type === 'float') {
-                        let minFloat = minNumber(settings.fields[field].entries),
-                            maxFloat = maxNumber(settings.fields[field].entries),
-                            maxPrecision = getMaxPrecision(settings.fields[field].entries);
-
-                        value = Number((Math.random() * maxFloat + minFloat).toFixed(maxPrecision));
-                    }
-
-                    if (value === '' && settings.fields[field].type === 'char') {
-                        if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
-                            value = chance.letter({ casing: 'upper' });
-                        } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
-                            value = chance.letter({ casing: 'lower' });
-                        } else {
-                            value = chance.letter();
+                            value = Number((Math.random() * maxFloat + minFloat).toFixed(maxPrecision));
                         }
-                    }
 
-                    if (value === '' && settings.fields[field].type === 'date') {
-                        let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
-                            maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries));
+                        if (value === '' && settings.fields[field].type === 'char') {
+                            if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                                value = chance.letter({ casing: 'upper' });
+                            } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                                value = chance.letter({ casing: 'lower' });
+                            } else {
+                                value = chance.letter();
+                            }
+                        }
 
-                        value = randomDate(minDateDate, maxDateDate);
-                    }
+                        if (value === '' && settings.fields[field].type === 'date') {
+                            let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
+                                maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries));
 
-                    if (value === '' && settings.fields[field].type === 'datetime') {
-                        let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
-                            maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries));
+                            value = randomDate(minDateDate, maxDateDate);
+                        }
 
-                        value = randomDatetime(minDateDate, maxDateDate);
-                    }
+                        if (value === '' && settings.fields[field].type === 'datetime') {
+                            let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
+                                maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries));
 
-                    if (value === '' && settings.fields[field].type === 'time') {
-                        value = randomTime();
+                            value = randomDatetime(minDateDate, maxDateDate);
+                        }
+
+                        if (value === '' && settings.fields[field].type === 'time') {
+                            value = randomTime();
+                        }
+
                     }
 
                     if (settings.fields[field].required || Math.random() >= 0.5) {
@@ -261,6 +265,48 @@ module.exports = function extendData(data) {
                 data[settings.key].push(row);
             }
 
+        }
+
+    }
+
+    // Replace template variables:
+    for (let type in data) {
+        for (let row in data[type]) {
+            for (let field in data[type][row]) {
+                let value = data[type][row][field];
+
+                if (typeof value === 'string') {
+                    data[type][row][field] = value.replace(/{{\s*([\w\.\?\|]+)\s*}}/g, function (match, capture) {
+                        let defaultParts = capture.split('?'),
+                            filterParts = defaultParts[0].split('|'),
+                            parts = filterParts[0].split('.');
+
+                        if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
+                            if (filterParts.length > 1) {
+                                let filter = filterParts[1];
+
+                                if (filter === 'slug') {
+                                    return slugify(String(data[type][row][parts[1]]), {lower: true});
+                                } else if (filter === 'lower') {
+                                    return String(data[type][row][parts[1]]).toLowerCase();
+                                } else if (filter === 'uppper') {
+                                    return String(data[type][row][parts[1]]).toLowerCase();
+                                } else if (filter === 'md5') {
+                                    return md5(String(data[type][row][parts[1]]));
+                                } else {
+                                    return data[type][row][parts[1]];
+                                }
+                            } else {
+                                return data[type][row][parts[1]];
+                            }
+                        } else if (defaultParts.length > 1) {
+                            return defaultParts[1];
+                        }
+
+                        return match;
+                    });
+                }
+            }
         }
     }
 
