@@ -288,7 +288,7 @@ If you use a JS export as in the examples you can find in the package, it's a go
 
 ## Template variables
 
-You can include other fields in the same entry with into a string with template variables with double curly braces. Here's an example:
+You can include other fields from the same entry into a string with template variables. Here's an example:
 
 ```
 {
