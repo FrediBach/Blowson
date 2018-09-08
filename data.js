@@ -4,7 +4,7 @@ module.exports = {
         { id: 2, firstname: 'Samuel', lastname: 'Patzen', slug: '{{field.firstname|slug}}-{{field.lastname|slug}}', country: 'IT', birthday: '1978-02-01', sex: 'm', email: 'patzen@bluewin.ch', userStatus_id: 2, registered: '2018-07-01T09:05:11+01:00' },
         { id: 30, firstname: 'Vreni', lastname: 'Beispiel', slug: '{{field.firstname|slug}}-{{field.lastname|slug}}', country: 'FR', birthday: '1983-02-01', sex: 'f', email: 'vreni.beispiel@domain.ch', userStatus_id: 1, registered: '2018-04-01T09:04:11+01:00' }
     ],
-    userStatuses: [
+    userStatuss: [
         { id: 1, key: 'inactive' },
         { id: 2, key: 'active' },
         { id: 3, key: 'blocked' }

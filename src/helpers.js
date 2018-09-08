@@ -1,4 +1,7 @@
 import Chance from 'chance';
+import slugify from 'slugify';
+import md5 from 'md5';
+
 const chance = new Chance();
 
 export function randomTime() {
@@ -267,5 +270,21 @@ export function getNumberDirection(entries) {
         return false;
     } else {
         return direction;
+    }
+}
+
+export function filterValue(value, filter) {
+    value = String(value);
+
+    if (filter === 'slug') {
+        return slugify(value, { lower: true });
+    } else if (filter === 'lower') {
+        return value.toLowerCase();
+    } else if (filter === 'uppper') {
+        return value.toLowerCase();
+    } else if (filter === 'md5') {
+        return md5(value);
+    } else {
+        return value;
     }
 }

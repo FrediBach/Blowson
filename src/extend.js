@@ -2,8 +2,6 @@ import _ from 'lodash';
 import txtgen from 'txtgen';
 import Chance from 'chance';
 import faker from 'faker';
-import slugify from 'slugify';
-import md5 from 'md5';
 
 import {
     randomTime,
@@ -32,7 +30,8 @@ import {
     isDatetimeString,
     isTimeString,
     getWeights,
-    getNumberDirection
+    getNumberDirection,
+    filterValue
 } from './helpers';
 
 const chance = new Chance();
@@ -44,7 +43,9 @@ txtgen.addTemplates([
 
 module.exports = function extendData(data) {
     let types = [],
-        type;
+        type,
+        row,
+        field;
 
     for (type in data) {
         let typeDef = {
@@ -270,9 +271,9 @@ module.exports = function extendData(data) {
     }
 
     // Replace template variables:
-    for (let type in data) {
-        for (let row in data[type]) {
-            for (let field in data[type][row]) {
+    for (type in data) {
+        for (row in data[type]) {
+            for (field in data[type][row]) {
                 let value = data[type][row][field];
 
                 if (typeof value === 'string') {
@@ -283,22 +284,37 @@ module.exports = function extendData(data) {
 
                         if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
                             if (filterParts.length > 1) {
-                                let filter = filterParts[1];
-
-                                if (filter === 'slug') {
-                                    return slugify(String(data[type][row][parts[1]]), {lower: true});
-                                } else if (filter === 'lower') {
-                                    return String(data[type][row][parts[1]]).toLowerCase();
-                                } else if (filter === 'uppper') {
-                                    return String(data[type][row][parts[1]]).toLowerCase();
-                                } else if (filter === 'md5') {
-                                    return md5(String(data[type][row][parts[1]]));
-                                } else {
-                                    return data[type][row][parts[1]];
-                                }
+                                return filterValue(data[type][row][parts[1]], filterParts[1]);
                             } else {
                                 return data[type][row][parts[1]];
                             }
+                        } else if (parts[0] === 'field' && parts.length === 3 && typeof data[type][row][parts[1] + '_id'] !== 'undefined' && typeof data[parts[1] + 's'] !== 'undefined') {
+                            let id = data[type][row][parts[1] + '_id'],
+                                refType = parts[1] + 's',
+                                refRow,
+                                refField,
+                                found = false;
+
+                            for (refRow in data[refType]) {
+                                for (refField in data[refType][refRow]) {
+                                    if (found && refField === parts[2]) {
+                                        if (filterParts.length > 1) {
+                                            return filterValue(data[refType][refRow][refField], filterParts[1]);
+                                        } else {
+                                            return data[refType][refRow][refField];
+                                        }
+                                    }
+
+                                    if (refField === 'id' && data[refType][refRow][refField] === id) {
+                                        found = true;
+                                    }
+                                }
+                            }
+
+                            if (defaultParts.length > 1) {
+                                return defaultParts[1];
+                            }
+
                         } else if (defaultParts.length > 1) {
                             return defaultParts[1];
                         }

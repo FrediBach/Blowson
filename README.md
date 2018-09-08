@@ -334,3 +334,20 @@ Additionally you can use the `?` option to define a default value, in case the f
     ]
 }
 ```
+
+And finally, fields can be referenced from a relationship. So for example if you have a type user and a type message (anonymous message to the user), than you can use a field from the user in the message to create messages that fit the context. Something like:
+
+```
+{
+    "users": [
+        "id": 1, "firstname": "Mike",
+        "id": 2, "firstname": "Alex",
+        "id": 5, "firstname": "Lucy"
+    ],
+    "messages": [
+        "id": 1, "user_id": 1, "text": "Hi {{field.user.firstname}}, well done. Congrats!",
+        "id": 2, "user_id": 2, "text": "Hi {{field.user.firstname}}, well done. Congrats!",
+        "id": 25, "user_id": 5, "text": "Hello {{field.user.firstname}}, don't stop what you're doing!",
+    ]
+}
+```
