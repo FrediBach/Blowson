@@ -1,7 +1,13 @@
 import _ from 'lodash';
-import txtgen from 'txtgen';
 import Chance from 'chance';
 import faker from 'faker';
+
+import {
+    paragraph,
+    article,
+    addTemplates,
+    generator
+} from './txtgen/main'; // Extended version of the Txtgen library. Original at: https://github.com/ndaidong/txtgen
 
 import {
     randomTime,
@@ -36,7 +42,7 @@ import {
 
 const chance = new Chance();
 
-txtgen.addTemplates([
+addTemplates([
     'congratulations to the {{noun}} that won the {{adjective}} {{noun}} with {{a_noun}}',
     'incomprehensibilities of a {{adjective}} {{noun}} and {{a_noun}} made {{a_noun}} {{adjective}}'
 ]);
@@ -190,9 +196,9 @@ module.exports = function extendData(data) {
                                 maxParagraphs = maxParagraphCount(settings.fields[field].entries);
 
                             if (maxParagraphs > 1) {
-                                value = txtgen.article(Math.floor(Math.random() * maxParagraphs) + minParagraphs);
+                                value = article(Math.floor(Math.random() * maxParagraphs) + minParagraphs);
                             } else if (maxSentences > 1) {
-                                value = txtgen.paragraph(Math.floor(Math.random() * maxSentences) + minSentences);
+                                value = paragraph(Math.floor(Math.random() * maxSentences) + minSentences);
                             } else if (maxWords > 1) {
                                 value = chance.sentence({ words: Math.floor(Math.random() * maxWords) + minWords }).slice(0, -1);
                             } else {
@@ -282,7 +288,17 @@ module.exports = function extendData(data) {
                             filterParts = defaultParts[0].split('|'),
                             parts = filterParts[0].split('.');
 
-                        if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
+                        if (parts[0] === 'number' && parts.length === 1) {
+                            return Math.floor(Math.random() * 10);
+                        } else if (parts[0] === 'word' && parts.length === 2) {
+                            if (typeof generator[parts[1]] !== 'undefined') {
+                                if (filterParts.length > 1) {
+                                    return filterValue(generator[parts[1]](), filterParts[1]);
+                                } else {
+                                    return generator[parts[1]]();
+                                }
+                            }
+                        } else if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
                             if (filterParts.length > 1) {
                                 return filterValue(data[type][row][parts[1]], filterParts[1]);
                             } else {

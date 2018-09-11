@@ -284,6 +284,8 @@ export function filterValue(value, filter) {
         return value.toLowerCase();
     } else if (filter === 'md5') {
         return md5(value);
+    } else if (filter === 'capitalize') {
+        return capitalize(value);
     } else {
         return value;
     }

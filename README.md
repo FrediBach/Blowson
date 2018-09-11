@@ -321,6 +321,7 @@ The available filters are:
 - slug
 - lower
 - upper
+- capitalize
 - md5
 
 Additionally you can use the `?` option to define a default value, in case the field you're referencing is optional. This could look like this:
@@ -335,7 +336,7 @@ Additionally you can use the `?` option to define a default value, in case the f
 }
 ```
 
-And finally, fields can be referenced from a relationship. So for example if you have a type user and a type message (anonymous message to the user), than you can use a field from the user in the message to create messages that fit the context. Something like:
+What makes field variables really powerful is that fields can be referenced from a relationship. So for example if you have a type user and a type message (anonymous message to the user), than you can use a field from the user in the message to create messages that fit the context. Something like:
 
 ```
 {
@@ -351,3 +352,5 @@ And finally, fields can be referenced from a relationship. So for example if you
     ]
 }
 ```
+
+And finally, to enable you to create semi random sentences, you can use `{{word.noun}}`, `{{word.a_noun}}`, `{{word.nouns}}`, `{{word.adjective}}`, `{{word.an_adjective}}` and `{{number}}` to creatively construct them.
