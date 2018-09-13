@@ -292,3 +292,15 @@ export function filterValue(value, filter) {
         return value;
     }
 }
+
+export function applyFilters(value, filters) {
+    let filtered = filterValue(value, filters[1]),
+        nr = 2;
+
+    while (filters.length > nr) {
+        filtered = filterValue(filtered, filters[nr]);
+        nr++;
+    }
+
+    return filtered;
+}
