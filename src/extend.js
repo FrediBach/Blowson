@@ -293,14 +293,26 @@ module.exports = function extendData(data) {
                         } else if (parts[0] === 'word' && parts.length === 2) {
                             if (typeof generator[parts[1]] !== 'undefined') {
                                 if (filterParts.length > 1) {
-                                    return filterValue(generator[parts[1]](), filterParts[1]);
+                                    let filtered = filterValue(generator[parts[1]](), filterParts[1]);
+                                    
+                                    if (filterParts.length > 2) {
+                                        filtered = filterValue(filtered, filterParts[2]);
+                                    }
+
+                                    return filtered;
                                 } else {
                                     return generator[parts[1]]();
                                 }
                             }
                         } else if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
                             if (filterParts.length > 1) {
-                                return filterValue(data[type][row][parts[1]], filterParts[1]);
+                                let filtered = filterValue(data[type][row][parts[1]], filterParts[1]);
+
+                                if (filterParts.length > 2) {
+                                    filtered = filterValue(filtered, filterParts[2]);
+                                }
+
+                                return filtered;
                             } else {
                                 return data[type][row][parts[1]];
                             }
@@ -315,7 +327,13 @@ module.exports = function extendData(data) {
                                 for (refField in data[refType][refRow]) {
                                     if (found && refField === parts[2]) {
                                         if (filterParts.length > 1) {
-                                            return filterValue(data[refType][refRow][refField], filterParts[1]);
+                                            let filtered = filterValue(data[refType][refRow][refField], filterParts[1]);
+
+                                            if (filterParts.length > 2) {
+                                                filtered = filterValue(filtered, filterParts[2]);
+                                            }
+
+                                            return filtered;
                                         } else {
                                             return data[refType][refRow][refField];
                                         }
@@ -337,6 +355,8 @@ module.exports = function extendData(data) {
 
                         return match;
                     });
+
+                    data[type][row][field] = data[type][row][field].replace(/  +/g, ' ');
                 }
             }
         }

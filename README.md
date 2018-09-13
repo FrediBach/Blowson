@@ -323,6 +323,9 @@ The available filters are:
 - upper
 - capitalize
 - md5
+- optional
+
+Currently you can combine a maximum of two filters, so for example you can do something like `{{word.noun|capitalize}} {{word.noun|capitalize|optional}} {{number|optional}}` to generate a product names that is either one word, one word with a number, two words or two words with a number, all words capitalized.
 
 Additionally you can use the `?` option to define a default value, in case the field you're referencing is optional. This could look like this:
 

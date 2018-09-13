@@ -286,6 +286,8 @@ export function filterValue(value, filter) {
         return md5(value);
     } else if (filter === 'capitalize') {
         return capitalize(value);
+    } else if (filter === 'optional' && Math.random() >= 0.5) {
+        return '';
     } else {
         return value;
     }
