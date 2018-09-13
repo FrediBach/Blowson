@@ -323,7 +323,10 @@ The available filters are:
 - upper
 - capitalize
 - md5
+- date:dateFormat
 - optional
+
+The date filter uses the `date-fns` library to format your dates. For example if you want to only show the year of a date field `created`, do it like this: `{{field.created|date:YYYY}}`
 
 You can combine multiple filters, so for example you can do something like `{{word.noun|capitalize}} {{word.noun|capitalize|optional}} {{number|optional}}` to generate a product names that is either one word, one word with a number, two words or two words with a number, all words capitalized.
 

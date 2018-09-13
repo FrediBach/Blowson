@@ -284,7 +284,7 @@ module.exports = function extendData(data) {
                 let value = data[type][row][field];
 
                 if (typeof value === 'string') {
-                    data[type][row][field] = value.replace(/{{\s*([\w\.\?\|]+)\s*}}/g, function (match, capture) {
+                    data[type][row][field] = value.replace(/{{\s*([\w\.\?\|\:]+)\s*}}/g, function (match, capture) {
                         let defaultParts = capture.split('?'),
                             filterParts = defaultParts[0].split('|'),
                             parts = filterParts[0].split('.');

@@ -1,6 +1,7 @@
 import Chance from 'chance';
 import slugify from 'slugify';
 import md5 from 'md5';
+import {format} from 'date-fns';
 
 const chance = new Chance();
 
@@ -33,12 +34,15 @@ export function randomDatetime(start, end) {
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear(),
-        hours = d.getHours(),
-        minutes = d.getMinutes(),
-        seconds = d.getSeconds();
+        hours = '' + d.getHours(),
+        minutes = '' + d.getMinutes(),
+        seconds = '' + d.getSeconds();
 
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
+    if (hours.length < 2) hours = '0' + hours;
+    if (minutes.length < 2) minutes = '0' + minutes;
+    if (seconds.length < 2) seconds = '0' + seconds;
 
     return [year, month, day].join('-') + 'T' + [hours, minutes, seconds].join(':') + '+01:00';
 }
@@ -288,6 +292,9 @@ export function filterValue(value, filter) {
         return capitalize(value);
     } else if (filter === 'optional' && Math.random() >= 0.5) {
         return '';
+    } else if (filter.substring(0, 5) === 'date:') {
+        let filterSplit = filter.split(':');
+        return format(new Date(value), filterSplit[1]);
     } else {
         return value;
     }
