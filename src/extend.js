@@ -3,6 +3,7 @@ import Chance from 'chance';
 import faker from 'faker';
 
 import {
+    sentence,
     paragraph,
     article,
     addTemplates,
@@ -291,6 +292,8 @@ module.exports = function extendData(data) {
 
                         if (parts[0] === 'number' && parts.length === 1) {
                             return Math.floor(Math.random() * 10);
+                        } else if (parts[0] === 'sentence' && parts.length === 1) {
+                            return sentence();
                         } else if (parts[0] === 'word' && parts.length === 2) {
                             if (typeof generator[parts[1]] !== 'undefined') {
                                 if (filterParts.length > 1) {
