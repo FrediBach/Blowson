@@ -1,5 +1,7 @@
 # Blowson
 
+<img src="https://github.com/FrediBach/Blowson/blob/master/src/blowson-logo-icon.svg" align="right" title="Blowson" width="200" height="200">
+
 Blow up JSON like sample data in an awesomely realistic way!
 
 > Blowson is awesome!
