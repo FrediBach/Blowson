@@ -1,7 +1,7 @@
 {
-  "name": "json-data-extender",
+  "name": "Blowson",
   "version": "0.7.0",
-  "description": "Extend JSON data",
+  "description": "Blow up JSON like sample data in an awesomely realistic way!",
   "author": "Fredi Bach",
   "license": "MIT",
   "homepage": "https://github.com/FrediBach/json-data-extender",
@@ -12,11 +12,11 @@
     "sample",
     "fake"
   ],
-  "source": "src/extend.js",
-  "main": "dist/json-data-extender.js",
-  "umd:main": "dist/json-data-extender.umd.js",
-  "module": "dist/json-data-extender.m.js",
-  "repository": "FrediBach/json-data-extender",
+  "source": "src/blowson.js",
+  "main": "dist/blowson.js",
+  "umd:main": "dist/blowson.umd.js",
+  "module": "dist/blowson.m.js",
+  "repository": "FrediBach/Blowson",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "microbundle",

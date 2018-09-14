@@ -49,7 +49,7 @@ addTemplates([
     'incomprehensibilities of a {{adjective}} {{noun}} and {{a_noun}} made {{a_noun}} {{adjective}}'
 ]);
 
-module.exports = function extendData(data) {
+module.exports = function blowson(data) {
     let types = [],
         type,
         row,

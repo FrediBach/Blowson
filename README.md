@@ -1,9 +1,12 @@
-# json-data-extender
-Extend JSON like sample data based on some very simple rules.
+# Blowson
+
+*Blow* up J*SON* like sample data in an awesomely realistic way!
 
 ## About
 
-JSON Data Extender was created to make mocking of API's with realistic sample data easier and more powerful. It's an integral part of a Frontend First Development workflow described here: [www.frontendfirstdevelopment.com](http://www.frontendfirstdevelopment.com/)
+Blowson was created to make mocking of API's with realistic sample data easier and more powerful. It's an integral part of a Frontend First Development workflow described here: [www.frontendfirstdevelopment.com](http://www.frontendfirstdevelopment.com/)
+
+This library was originally called JSON Data Extender and renamed to Blowson: [JSON Data Extender](https://github.com/FrediBach/json-data-extender)
 
 Other related projects and libraries are: [JSON Data Import](https://github.com/hasura/json-data-import) (for Hasura)
 
@@ -11,15 +14,15 @@ Other related projects and libraries are: [JSON Data Import](https://github.com/
 
 Installation:
 
-`npm i json-data-extender --save`
+`npm i blowson --save`
 
 And than in your script:
 
 ```
-const extendData = require('json-data-extender');
+const blowson = require('blowson');
 const data = require('./data.js');
 
-const extendedData = extendData(data);
+const extendedData = blowson(data);
 
 console.log(extendedData);
 ```
@@ -28,7 +31,7 @@ Have a look at the index.js for a complete example and check out data.js for an 
 
 ## Extend ID range
 
-For JSON Data Extender to work, your types need an `id` field and the entries need to have a gap. So for example if you have ids 1, 2, 3 and 10, it will add fake entries with ids 4,5,6,7,8 and 9. For types without a gap in its ids, nothing will be added. Only one gap is being detected.
+For Blowson to work, your types need an `id` field and the entries need to have a gap. So for example if you have ids 1, 2, 3 and 10, it will add fake entries with ids 4,5,6,7,8 and 9. For types without a gap in its ids, nothing will be added. Only one gap is being detected.
 
 Here's an example data file to better illustrate how this works:
 
@@ -60,7 +63,7 @@ The gap can theoretically be as big as you like, but I'm sure at some point node
 
 ## Detect specific keys
 
-As you could see in the example above, JSON Data Extender correctly guessed that `firstname` is a field for ... well, firstnames. Here are all the currently detected field keys:
+As you could see in the example above, Blowson correctly guessed that `firstname` is a field for ... well, firstnames. Here are all the currently detected field keys:
 
 - id
 - age
@@ -92,7 +95,7 @@ As you could see in the example above, JSON Data Extender correctly guessed that
 
 ## Other auto detections
 
-If a field type can't be detected by its key, JSON Data Extender will try to guess the type by it's content. The following detections currently exists:
+If a field type can't be detected by its key, Blowson will try to guess the type by it's content. The following detections currently exists:
 
 - Word
 - Sentence
@@ -237,7 +240,7 @@ Only one entry has the field `admin`, so that field will be an optional one. Her
 
 ## Step detection
 
-Let's say you have the numbers 25, 50 and 100 in your sample data. In this case we assume, that only 25, 50, 75 and 100 is a possible random number. JSON Data Extender respects the steps between values by detecting the minimal gap between numbers. If you don't want a minimum gap, just add a minimal gap of one to your sample data like this:
+Let's say you have the numbers 25, 50 and 100 in your sample data. In this case we assume, that only 25, 50, 75 and 100 is a possible random number. Blowson respects the steps between values by detecting the minimal gap between numbers. If you don't want a minimum gap, just add a minimal gap of one to your sample data like this:
 
 ```
 {
