@@ -1,6 +1,6 @@
 # Blowson
 
-*Blow* up J*SON* like sample data in an awesomely realistic way!
+Blow up JSON like sample data in an awesomely realistic way!
 
 ## About
 
