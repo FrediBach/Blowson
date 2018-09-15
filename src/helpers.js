@@ -311,3 +311,39 @@ export function applyFilters(value, filters) {
 
     return filtered;
 }
+
+export function getFieldByPath(row, path, data) {
+    let found = false,
+        nextSteps = path.slice(0),
+        currentRow = row;
+
+    if (path.length === 0) {
+        return null;
+    }
+
+    while (!found) {
+        let nextStep = nextSteps.shift();
+        
+        if (typeof currentRow[nextStep + '_id'] !== 'undefined') {
+            let item;
+
+            if (typeof data[nextStep + 's'] !== 'undefined') {
+                for (item in data[nextStep + 's']) {
+                    if (data[nextStep + 's'][item]['id'] === currentRow[nextStep + '_id']) {
+                        currentRow = data[nextStep + 's'][item];
+                    }
+                }
+            }
+        } else if (typeof currentRow[nextStep] !== 'undefined') {
+            return currentRow[nextStep];
+        } else {
+            return null;
+        }
+
+        if (nextSteps.length === 0) {
+            found = true;
+        }
+    }
+
+    return null;
+}

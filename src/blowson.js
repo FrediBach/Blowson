@@ -39,7 +39,8 @@ import {
     getWeights,
     getNumberDirection,
     filterValue,
-    applyFilters
+    applyFilters,
+    getFieldByPath
 } from './helpers';
 
 const chance = new Chance();
@@ -308,33 +309,21 @@ module.exports = function blowson(data) {
                             } else {
                                 return data[type][row][parts[1]];
                             }
-                        } else if (parts[0] === 'field' && parts.length === 3 && typeof data[type][row][parts[1] + '_id'] !== 'undefined' && typeof data[parts[1] + 's'] !== 'undefined') {
-                            let id = data[type][row][parts[1] + '_id'],
-                                refType = parts[1] + 's',
-                                refRow,
-                                refField,
-                                found = false;
+                        } else if (parts[0] === 'field' && parts.length > 2) {
+                            let path = parts.slice(1),
+                                value = getFieldByPath(data[type][row], path, data);
 
-                            for (refRow in data[refType]) {
-                                for (refField in data[refType][refRow]) {
-                                    if (found && refField === parts[2]) {
-                                        if (filterParts.length > 1) {
-                                            return applyFilters(data[refType][refRow][refField], filterParts);
-                                        } else {
-                                            return data[refType][refRow][refField];
-                                        }
-                                    }
-
-                                    if (refField === 'id' && data[refType][refRow][refField] === id) {
-                                        found = true;
-                                    }
+                            if (value !== null) {
+                                if (filterParts.length > 1) {
+                                    return applyFilters(value, filterParts);
+                                } else {
+                                    return value;
                                 }
                             }
 
                             if (defaultParts.length > 1) {
                                 return defaultParts[1];
                             }
-
                         } else if (defaultParts.length > 1) {
                             return defaultParts[1];
                         }
