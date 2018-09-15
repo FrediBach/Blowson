@@ -2,6 +2,7 @@ import Chance from 'chance';
 import slugify from 'slugify';
 import md5 from 'md5';
 import {format} from 'date-fns';
+import {pluralize} from './txtgen/util';
 
 const chance = new Chance();
 
@@ -323,14 +324,15 @@ export function getFieldByPath(row, path, data) {
 
     while (!found) {
         let nextStep = nextSteps.shift();
-        
-        if (typeof currentRow[nextStep + '_id'] !== 'undefined') {
-            let item;
 
-            if (typeof data[nextStep + 's'] !== 'undefined') {
-                for (item in data[nextStep + 's']) {
-                    if (data[nextStep + 's'][item]['id'] === currentRow[nextStep + '_id']) {
-                        currentRow = data[nextStep + 's'][item];
+        if (typeof currentRow[nextStep + '_id'] !== 'undefined') {
+            let item,
+                pluralNextStep = pluralize(nextStep);
+
+            if (typeof data[pluralNextStep] !== 'undefined') {
+                for (item in data[pluralNextStep]) {
+                    if (data[pluralNextStep][item]['id'] === currentRow[nextStep + '_id']) {
+                        currentRow = data[pluralNextStep][item];
                     }
                 }
             }
