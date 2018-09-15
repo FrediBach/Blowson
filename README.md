@@ -301,13 +301,12 @@ You can include other fields from the same entry into a string with template var
 {
     "users": [
         "id": 1, "firstname": "Mike", "slogan": "Hi, I'm {{field.firstname}}. How can I help you?",
-        "id": 2, "firstname": "Tom", "slogan": "Hi, I'm {{field.firstname}}. How can I help you?",
         "id": 5, "firstname": "Lucy", "slogan": "Visit my homepage: www.{{field.firstname|lower}}.com"
     ]
 }
 ```
 
-We've repeated the first slogan to make sure that it wont be repeated with random text. Additionally, we used the lowercase filter in the second template.
+As soon as Blowson detects template variables in a string, it will repeat those template string in all entries. You will not have random text anymore.
 
 The result will be something like this:
 

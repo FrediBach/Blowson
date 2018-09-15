@@ -18,7 +18,7 @@ module.exports = {
         { id: 1, name: 'Switzerland {{field.created|date:YYYY}}', yearly: true, description: 'Waypoint are all placed in Switzerland by local instructors and top pilots.', created: '2018-05-01T12:00:00+01:00', seasonStart: '10-01', seasonEnd: '09-31', file_id: 2 },
         { id: 2, name: 'Austria', yearly: true, description: 'Waypoint are all placed in Austria by local instructors and top pilots.', created: '2018-01-02T12:00:00+01:00', seasonStart: '10-01', seasonEnd: '09-31', file_id: 2 },
         { id: 3, name: 'Vol Liber Grischun Clubmeisterschaft', yearly: false, created: '2018-02-02T12:00:00+01:00', seasonStart: '2018-10-01', seasonEnd: '2048-10-01' },
-        { id: 10, name: 'Switzerland {{field.created|date:YYYY}}', yearly: true, created: '2018-03-02T12:00:00+01:00', seasonStart: '2018-10-01', seasonEnd: '2048-10-01' }
+        { id: 10, name: 'Italy {{field.created|date:YYYY}}', yearly: true, created: '2018-03-02T12:00:00+01:00', seasonStart: '2018-10-01', seasonEnd: '2048-10-01' }
     ],
     userLeagues: [
         { id: 1, user_id: 1, league_id: 1, isAdmin: true },

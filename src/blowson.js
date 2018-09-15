@@ -70,7 +70,8 @@ module.exports = function blowson(data) {
         for (entry in data[type]) {
             for (field in data[type][entry]) {
                 let fieldValue = data[type][entry][field],
-                    fieldType = 'undefined';
+                    fieldType = 'undefined',
+                    containsTemplate = false;
 
                 if (typeof fieldValue === 'boolean') {
                     fieldType = 'boolean';
@@ -90,6 +91,9 @@ module.exports = function blowson(data) {
                     } else if (fieldValue.length === 1) {
                         fieldType = 'char';
                     } else {
+                        if (/{{\s*([\w\.\?\|\:]+)\s*}}/.test(fieldValue)) {
+                            containsTemplate = true;
+                        }
                         fieldType = 'string';
                     }
                 } else if (typeof fieldValue === 'object') {
@@ -101,6 +105,7 @@ module.exports = function blowson(data) {
                         types: [fieldType],
                         entries: [fieldValue],
                         allEntries: [fieldValue],
+                        containsTemplate: containsTemplate,
                         cnt: 1
                     };
                 } else {
@@ -110,6 +115,9 @@ module.exports = function blowson(data) {
                     typeDef.fields[field].entries = _.uniq(typeDef.fields[field].entries);
                     typeDef.fields[field].allEntries.push(fieldValue);
                     typeDef.fields[field].cnt++;
+                    if (containsTemplate) {
+                        typeDef.fields[field].containsTemplate = true;
+                    }
                 }
             }
         }
@@ -121,7 +129,7 @@ module.exports = function blowson(data) {
             if (typeDef.fields[field].types.length === 1) {
                 typeDef.fields[field].type = typeDef.fields[field].types[0];
             }
-            if (typeDef.fields[field].entries.length < typeDef.fields[field].cnt) {
+            if (typeDef.fields[field].entries.length < typeDef.fields[field].cnt || typeDef.fields[field].containsTemplate) {
                 typeDef.fields[field].repeatEntries = true;
                 typeDef.fields[field].weights = getWeights(typeDef.fields[field].allEntries, typeDef.fields[field].entries);
             } else {
@@ -152,7 +160,7 @@ module.exports = function blowson(data) {
                 for (field in settings.fields) {
                     let value = '';
 
-                    if (settings.fields[field].repeatEntries) {
+                    if (settings.fields[field].repeatEntries || settings.fields[field].containsTemplate) {
                         value = chance.weighted(settings.fields[field].entries, settings.fields[field].weights);
                     } else {
 
