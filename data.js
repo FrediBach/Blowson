@@ -10,9 +10,10 @@ module.exports = {
         { id: 3, key: 'blocked' }
     ],
     userConfigs: [
-        { id: 1, user_id: 1/*, configs: { 'mainLeague': 1, 'interfaceDensity': 'normal', 'focusedInterface': false }*/ },
-        { id: 2, user_id: 2/*, configs: { 'mainLeague': 2, 'interfaceDensity': 'normal', 'focusedInterface': false }*/ },
-        { id: 30, user_id: 30/*, configs: { 'mainLeague': 1, 'interfaceDensity': 'normal', 'focusedInterface': false }*/ }
+        { id: 1, user_id: 1, configs: { 'mainLeague': 1, 'interfaceDensity': 'normal', 'focusedInterface': false } },
+        { id: 2, user_id: 2, configs: { 'mainLeague': 2, 'interfaceDensity': 'normal', 'focusedInterface': false } },
+        { id: 3, user_id: 3 },
+        { id: 30, user_id: 30, configs: { 'mainLeague': 10, 'interfaceDensity': 'dense', 'focusedInterface': true } }
     ],
     leagues: [
         { id: 1, name: 'Switzerland {{field.created|date:YYYY}}', yearly: true, description: 'Waypoint are all placed in Switzerland by local instructors and top pilots.', created: '2018-05-01T12:00:00+01:00', seasonStart: '10-01', seasonEnd: '09-31', file_id: 2 },

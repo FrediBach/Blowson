@@ -349,3 +349,40 @@ export function getFieldByPath(row, path, data) {
 
     return null;
 }
+
+export function detectFieldType(fieldValue) {
+    let fieldType = 'undefined',
+        containsTemplate = false;
+
+    if (typeof fieldValue === 'boolean') {
+        fieldType = 'boolean';
+    } else if (typeof fieldValue === 'number') {
+        if (Math.round(fieldValue) === fieldValue) {
+            fieldType = 'int';
+        } else {
+            fieldType = 'float';
+        }
+    } else if (typeof fieldValue === 'string') {
+        if (isDateString(fieldValue)) {
+            fieldType = 'date';
+        } else if (isDatetimeString(fieldValue)) {
+            fieldType = 'datetime';
+        } else if (isTimeString(fieldValue)) {
+            fieldType = 'time';
+        } else if (fieldValue.length === 1) {
+            fieldType = 'char';
+        } else {
+            if (/{{\s*([\w\.\?\|\:]+)\s*}}/.test(fieldValue)) {
+                containsTemplate = true;
+            }
+            fieldType = 'string';
+        }
+    } else if (typeof fieldValue === 'object') {
+        fieldType = 'JSON';
+    }
+
+    return {
+        fieldType: fieldType,
+        containsTemplate: containsTemplate
+    }
+}

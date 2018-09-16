@@ -40,7 +40,8 @@ import {
     getNumberDirection,
     filterValue,
     applyFilters,
-    getFieldByPath
+    getFieldByPath,
+    detectFieldType
 } from './helpers';
 
 const chance = new Chance();
@@ -70,35 +71,7 @@ module.exports = function blowson(data) {
         for (entry in data[type]) {
             for (field in data[type][entry]) {
                 let fieldValue = data[type][entry][field],
-                    fieldType = 'undefined',
-                    containsTemplate = false;
-
-                if (typeof fieldValue === 'boolean') {
-                    fieldType = 'boolean';
-                } else if (typeof fieldValue === 'number') {
-                    if (Math.round(fieldValue) === fieldValue) {
-                        fieldType = 'int';
-                    } else {
-                        fieldType = 'float';
-                    }
-                } else if (typeof fieldValue === 'string') {
-                    if (isDateString(fieldValue)) {
-                        fieldType = 'date';
-                    } else if (isDatetimeString(fieldValue)) {
-                        fieldType = 'datetime';
-                    } else if (isTimeString(fieldValue)) {
-                        fieldType = 'time';
-                    } else if (fieldValue.length === 1) {
-                        fieldType = 'char';
-                    } else {
-                        if (/{{\s*([\w\.\?\|\:]+)\s*}}/.test(fieldValue)) {
-                            containsTemplate = true;
-                        }
-                        fieldType = 'string';
-                    }
-                } else if (typeof fieldValue === 'object') {
-                    fieldType = 'JSON';
-                }
+                    { fieldType, containsTemplate } = detectFieldType(fieldValue);
 
                 if (typeof typeDef.fields[field] === 'undefined') {
                     typeDef.fields[field] = {
@@ -117,6 +90,37 @@ module.exports = function blowson(data) {
                     typeDef.fields[field].cnt++;
                     if (containsTemplate) {
                         typeDef.fields[field].containsTemplate = true;
+                    }
+                }
+
+                if (fieldType == 'JSON') {
+                    let objField;
+
+                    for (objField in fieldValue) {
+                        let objFieldValue = fieldValue[objField],
+                            result = detectFieldType(objFieldValue),
+                            objFieldType = result.fieldType,
+                            objContainsTemplate = result.containsTemplate;
+
+                        if (typeof typeDef.fields[field + '.' + objField] === 'undefined') {
+                            typeDef.fields[field + '.' + objField] = {
+                                types: [objFieldType],
+                                entries: [objFieldValue],
+                                allEntries: [objFieldValue],
+                                containsTemplate: objContainsTemplate,
+                                cnt: 1
+                            };
+                        } else {
+                            typeDef.fields[field + '.' + objField].types.push(objFieldType);
+                            typeDef.fields[field + '.' + objField].types = _.uniq(typeDef.fields[field + '.' + objField].types);
+                            typeDef.fields[field + '.' + objField].entries.push(objFieldValue);
+                            typeDef.fields[field + '.' + objField].entries = _.uniq(typeDef.fields[field + '.' + objField].entries);
+                            typeDef.fields[field + '.' + objField].allEntries.push(objFieldValue);
+                            typeDef.fields[field + '.' + objField].cnt++;
+                            if (objContainsTemplate) {
+                                typeDef.fields[field + '.' + objField].objContainsTemplate = true;
+                            }
+                        }
                     }
                 }
             }
@@ -165,32 +169,32 @@ module.exports = function blowson(data) {
                     } else {
 
                         if (field === 'id') value = id;
-                        if (field === 'age' && settings.fields[field].type === 'int') value = chance.age();
-                        if (field === 'firstname' && settings.fields[field].type === 'string') value = chance.first();
-                        if (field === 'lastname' && settings.fields[field].type === 'string') value = chance.last();
-                        if (field === 'company' && settings.fields[field].type === 'string') value = chance.company();
-                        if (field === 'country' && settings.fields[field].type === 'string') value = chance.country();
-                        if (field === 'email' && settings.fields[field].type === 'string') value = faker.internet.exampleEmail();
-                        if (field === 'color' && settings.fields[field].type === 'string') value = chance.color();
-                        if (field === 'ip' && settings.fields[field].type === 'string') value = chance.ip();
-                        if (field === 'profession' && settings.fields[field].type === 'string') value = chance.profession();
-                        if (field === 'url' && settings.fields[field].type === 'string') value = chance.url();
-                        if (field === 'city' && settings.fields[field].type === 'string') value = chance.city();
-                        if (field === 'street' && settings.fields[field].type === 'string') value = chance.street();
-                        if (field === 'zip' && settings.fields[field].type === 'int') value = parseInt(chance.zip());
-                        if (field === 'weekday' && settings.fields[field].type === 'string') value = chance.weekday();
-                        if (field === 'year' && settings.fields[field].type === 'int') value = parseInt(chance.year());
-                        if (field === 'password' && settings.fields[field].type === 'string') value = chance.hash();
-                        if (field === 'guid' && settings.fields[field].type === 'string') value = chance.guid();
-                        if (field === 'product' && settings.fields[field].type === 'string') value = faker.commerce.productName();
-                        if (field === 'material' && settings.fields[field].type === 'string') value = faker.commerce.productMaterial();
-                        if (field === 'iban' && settings.fields[field].type === 'string') value = faker.finance.iban();
-                        if (field === 'bic' && settings.fields[field].type === 'string') value = faker.finance.bic();
-                        if (field === 'avatar' && settings.fields[field].type === 'string') value = faker.image.avatar();
-                        if (field === 'username' && settings.fields[field].type === 'string') value = faker.internet.userName();
-                        if (field === 'homepage' && settings.fields[field].type === 'string') value = faker.internet.url();
-                        if (field === 'job' && settings.fields[field].type === 'string') value = faker.name.jobTitle();
-                        if (field === 'mimetype' && settings.fields[field].type === 'string') value = faker.system.mimeType();
+                        if ((field === 'age' || field.endsWith('.age')) && settings.fields[field].type === 'int') value = chance.age();
+                        if ((field === 'firstname' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.first();
+                        if ((field === 'lastname' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.last();
+                        if ((field === 'company' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.company();
+                        if ((field === 'country' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.country();
+                        if ((field === 'email' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.internet.exampleEmail();
+                        if ((field === 'color' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.color();
+                        if ((field === 'ip' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.ip();
+                        if ((field === 'profession' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.profession();
+                        if ((field === 'url' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.url();
+                        if ((field === 'city' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.city();
+                        if ((field === 'street' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.street();
+                        if ((field === 'zip' || field.endsWith('.age')) && settings.fields[field].type === 'int') value = parseInt(chance.zip());
+                        if ((field === 'weekday' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.weekday();
+                        if ((field === 'year' || field.endsWith('.age')) && settings.fields[field].type === 'int') value = parseInt(chance.year());
+                        if ((field === 'password' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.hash();
+                        if ((field === 'guid' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = chance.guid();
+                        if ((field === 'product' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.commerce.productName();
+                        if ((field === 'material' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.commerce.productMaterial();
+                        if ((field === 'iban' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.finance.iban();
+                        if ((field === 'bic' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.finance.bic();
+                        if ((field === 'avatar' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.image.avatar();
+                        if ((field === 'username' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.internet.userName();
+                        if ((field === 'homepage' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.internet.url();
+                        if ((field === 'job' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.name.jobTitle();
+                        if ((field === 'mimetype' || field.endsWith('.age')) && settings.fields[field].type === 'string') value = faker.system.mimeType();
 
                         if (value === '' && settings.fields[field].type === 'JSON') {
                             value = {};
@@ -276,7 +280,15 @@ module.exports = function blowson(data) {
                     }
 
                     if (settings.fields[field].required || Math.random() >= 0.5) {
-                        row[field] = value;
+                        if (field.indexOf('.') > -1) {
+                            let fieldSplit = field.split('.');
+
+                            if (typeof row[fieldSplit[0]] !== 'undefined') {
+                                row[fieldSplit[0]][fieldSplit[1]] = value;
+                            }
+                        } else {
+                            row[field] = value;
+                        }
                     }
                 }
 
