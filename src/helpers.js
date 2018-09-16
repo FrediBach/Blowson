@@ -337,7 +337,15 @@ export function getFieldByPath(row, path, data) {
                 }
             }
         } else if (typeof currentRow[nextStep] !== 'undefined') {
-            return currentRow[nextStep];
+            if (typeof currentRow[nextStep][path[path.length - 1]] !== 'undefined') {
+                return currentRow[nextStep][path[path.length - 1]];
+            } else {
+                if (typeof currentRow[nextStep] !== 'object') {
+                    return currentRow[nextStep];
+                } else {
+                    return null;
+                }
+            }
         } else {
             return null;
         }
