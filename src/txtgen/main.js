@@ -86,6 +86,18 @@ export const sentence = () => {
   let s = phrase + makeSentenceFromTemplate();
   s = s.charAt(0).toUpperCase() + s.slice(1);
   s += pickLastPunc();
+  if (Math.random() >= 0.9) {
+    let quotationEntries = [
+      'He said',
+      'She said',
+      'In his own words',
+      'In her own words',
+      'Yelling',
+      'Wispering',
+      'Quoting with intend'
+    ];
+    s = `${rand(quotationEntries)}: "${s}"`;
+  }
   return s;
 };
 
