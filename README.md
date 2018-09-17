@@ -12,7 +12,7 @@ Blowson was created to make mocking of API's with realistic sample data easier a
 
 This library was originally called JSON Data Extender and renamed to Blowson: [JSON Data Extender](https://github.com/FrediBach/json-data-extender)
 
-Other related projects and libraries are: [JSON Data Import](https://github.com/hasura/json-data-import) (for Hasura)
+Other related projects and libraries are: [json2graphql](https://github.com/hasura/json2graphql) (for Hasura)
 
 ## Usage
 
@@ -291,7 +291,7 @@ In a context where you use sample data to fill a database, you often will have t
 
 First 50 users are generated with ids from 1 to 50, so the `user_id` relationship field in the comments table should be synced to that range, so we add 1 and 50. As 250 comments will be generated, every user will have an average of five comments.
 
-The random numbers for this relationship ids are normally distributed (bell curve). This way you get more numbers in the middle of the range, creating ids that have more relationships than others. This is quite useful to test the different behavior of different amounts of related items in a project. For example in the case above, users with ids around 25 will have more comments than users closer to 1 and 50.
+The random numbers for relationship ids are normally distributed (bell curve). This way you get more numbers in the middle of the range, creating ids that have more relationships than others. This is quite useful to test the different behavior of different amounts of related items in a project. For example in the case above, users with ids around 25 will have more comments than users closer to 1 and 50.
 
 If you use a JS export as in the examples you can find in the package, it's a good idea to first define constants for all this sizes, so that you only have one place where you need to change them.
 
