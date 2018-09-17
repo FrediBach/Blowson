@@ -315,6 +315,8 @@ module.exports = function blowson(data) {
                             return Math.floor(Math.random() * 10);
                         } else if (parts[0] === 'sentence' && parts.length === 1) {
                             return sentence();
+                        } else if (parts[0] === 'paragraph' && parts.length === 1) {
+                            return paragraph();
                         } else if (parts[0] === 'word' && parts.length === 2) {
                             if (typeof generator[parts[1]] !== 'undefined') {
                                 if (filterParts.length > 1) {
