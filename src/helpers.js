@@ -399,7 +399,11 @@ export function detectFieldType(fieldValue) {
             fieldType = 'string';
         }
     } else if (typeof fieldValue === 'object') {
-        fieldType = 'JSON';
+        if (Array.isArray(fieldValue)) {
+            fieldType = 'array';
+        } else {
+            fieldType = 'JSON';
+        }
     }
 
     return {

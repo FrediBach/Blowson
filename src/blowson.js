@@ -94,7 +94,7 @@ module.exports = function blowson(data) {
                     }
                 }
 
-                if (fieldType == 'JSON') {
+                if (fieldType === 'JSON') {
                     let objField;
 
                     for (objField in fieldValue) {
@@ -199,6 +199,33 @@ module.exports = function blowson(data) {
 
                         if (value === '' && settings.fields[field].type === 'JSON') {
                             value = {};
+                        }
+
+                        if (value === '' && settings.fields[field].type === 'array') {
+                            let min = null, 
+                                max = null, 
+                                maxCount = 0;
+
+                            for (arrEntry of settings.fields[field].entries) {
+                                let arrMin = minNumber(arrEntry),
+                                    arrMax = maxNumber(arrEntry),
+                                    arrCount = arrEntry.length;
+                                
+                                if (arrCount > 0 && (min === null || arrMin < min)) {
+                                    min = arrMin;
+                                }
+                                if (arrCount > 0 && (max === null || arrMax > max)) {
+                                    max = arrMax;
+                                }
+                                if (arrCount > maxCount) {
+                                    maxCount = arrCount;
+                                }
+                            }
+
+                            value = Array.from({ length: Math.floor(Math.random() * maxCount) + 1 }, () => randomIntWithStep(min, max, 1));
+                            value.sort(function (a, b) {
+                                return a - b;
+                            });
                         }
 
                         if (value === '' && settings.fields[field].type === 'string') {
