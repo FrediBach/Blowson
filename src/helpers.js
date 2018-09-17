@@ -2,6 +2,7 @@ import Chance from 'chance';
 import slugify from 'slugify';
 import md5 from 'md5';
 import {format} from 'date-fns';
+import Prob from 'prob.js';
 import {pluralize} from './txtgen/util';
 
 const chance = new Chance();
@@ -158,6 +159,16 @@ export function randomIntWithStep(min, max, step) {
     rand += min;
 
     return rand;
+}
+
+export function normalDistRandomInt(min, max) {
+    let normal = Math.abs((Prob.normal(0, 1)() + 3) / 6),
+        result = Math.floor((normal * (max - min)) + min);
+
+    if (result < min) result = min;
+    if (result > max) result = max;
+
+    return result;
 }
 
 export function minStrLength(strArray) {

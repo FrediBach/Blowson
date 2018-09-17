@@ -41,7 +41,8 @@ import {
     filterValue,
     applyFilters,
     getFieldByPath,
-    detectFieldType
+    detectFieldType,
+    normalDistRandomInt
 } from './helpers';
 
 const chance = new Chance();
@@ -238,7 +239,11 @@ module.exports = function blowson(data) {
                                 maxInt = maxNumber(settings.fields[field].entries),
                                 minGap = minGapOfIntArray(settings.fields[field].entries);
 
-                            value = randomIntWithStep(minInt, maxInt, minGap);
+                            if (field.endsWith('_id')) {
+                                value = normalDistRandomInt(minInt, maxInt);
+                            } else {
+                                value = randomIntWithStep(minInt, maxInt, minGap);
+                            }
                         }
 
                         if (value === '' && settings.fields[field].type === 'float') {
