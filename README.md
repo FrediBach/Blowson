@@ -33,6 +33,18 @@ console.log(extendedData);
 
 Have a look at the index.js for a complete example and check out data.js for an example data file.
 
+You can use Blowson as a CLI script. All you need to do is install the package globally:
+
+```
+npm install -g blowson
+```
+
+And than run it like this:
+
+```
+blowson data.js cli-data-extended.js
+```
+
 ## Extend ID range
 
 For Blowson to work, your types need an `id` field and the entries need to have a gap. So for example if you have ids 1, 2, 3 and 10, it will add fake entries with ids 4,5,6,7,8 and 9. For types without a gap in its ids, nothing will be added. Only one gap is being detected.

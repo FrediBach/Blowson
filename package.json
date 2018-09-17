@@ -22,6 +22,9 @@
     "build": "microbundle",
     "dev": "microbundle watch"
   },
+  "bin": {
+    "blowson": "./cli.js"
+  },
   "dependencies": {
     "chance": "^1.0.16",
     "date-fns": "^1.29.0",
