@@ -329,6 +329,7 @@ The available filters are:
 - upper
 - capitalize
 - md5
+- trim
 - date:dateFormat
 - optional
 

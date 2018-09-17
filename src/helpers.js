@@ -291,6 +291,8 @@ export function filterValue(value, filter) {
         return md5(value);
     } else if (filter === 'capitalize') {
         return capitalize(value);
+    } else if (filter === 'trim') {
+        return value.replace(/\s/g, '');
     } else if (filter === 'optional' && Math.random() >= 0.5) {
         return '';
     } else if (filter.substring(0, 5) === 'date:') {
