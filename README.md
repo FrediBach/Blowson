@@ -42,7 +42,7 @@ npm install -g blowson
 And than run it like this:
 
 ```
-blowson data.js cli-data-extended.js
+blowson data.js data-extended.js
 ```
 
 ## Extend ID range
