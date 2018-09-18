@@ -371,16 +371,72 @@ What makes field variables really powerful is that fields can be referenced from
 ```
 {
     "users": [
-        "id": 1, "firstname": "Mike",
-        "id": 2, "firstname": "Alex",
-        "id": 5, "firstname": "Lucy"
+        { "id": 1, "firstname": "Mike" },
+        { "id": 2, "firstname": "Alex" },
+        { "id": 5, "firstname": "Lucy" }
     ],
     "messages": [
-        "id": 1, "user_id": 1, "text": "Hi {{field.user.firstname}}, well done. Congrats!",
-        "id": 2, "user_id": 2, "text": "Hi {{field.user.firstname}}, well done. Congrats!",
-        "id": 25, "user_id": 5, "text": "Hello {{field.user.firstname}}, don't stop what you're doing!",
+        { "id": 1, "user_id": 1, "text": "Hi {{field.user.firstname}}, well done. Congrats!" },
+        { "id": 2, "user_id": 2, "text": "Hi {{field.user.firstname}}, well done. Congrats!" },
+        { "id": 25, "user_id": 5, "text": "Hello {{field.user.firstname}}, don't stop what you're doing!" }
     ]
 }
 ```
 
 And finally, to enable you to create semi random sentences, you can use `{{word.noun}}`, `{{word.a_noun}}`, `{{word.nouns}}`, `{{word.adjective}}`, `{{word.an_adjective}}` and `{{number}}` to creatively construct them. (You can insert whole sentences and paragraphs if you want: {{sentence}} {{paragraph}})
+
+## Custom field names
+
+Sometimes you want Blowson to detect a field key, but you want a different custom name for that field. Let's say you want your field to be named `surname` but Blowson only detecs `lastname`, so it would only fill in a random string and not a latname. This can be solved with custom filed names like this: `surname__lastname`. This field will be detected as `lastname`, and in the extended data outputed as `surname`. An example:
+
+```
+{
+    "users": [
+        { "id": 1, "firstname": "Mike", "surname__lastname": "Smith" },
+        { "id": 5, "firstname": "Lucy", "surname__lastname": "Johnson" }
+    ],
+}
+```
+
+The result will be something like:
+
+```
+{
+    "users": [
+        { "id": 1, "firstname": "Mike", "surname": "Smith" },
+        { "id": 2, "firstname": "Mike", "surname": "Williams" },
+        { "id": 3, "firstname": "Mike", "surname": "Jones" },
+        { "id": 4, "firstname": "Mike", "surname": "Brown" },
+        { "id": 5, "firstname": "Lucy", "surname": "Johnson" }
+    ],
+}
+```
+
+Be careful if you rename the field. Your field variables will see the detected field and not the final name, so in the example above, the fields internal name will be `lastname`, so your template variable should be `{{field.lastname}}` and not `{{field.surname}}` or even `{{field.surname__lastname}}`.
+
+## Temporary fields
+
+Sometimes you want a field that will not show up in the final result. You can accomplish this by prefixing the fieldname with `__`, for example `__prename`. You can use this for something like this:
+
+```
+{
+    "users": [
+        { "id": 1, "name": "{{field.firstname}} {{field.lastname}}", "__firstname": "Tim", "__lastname": "Jones" },
+        { "id": 5, "name": "{{field.firstname}} {{field.lastname}}", "__firstname": "Mike", "__lastname": "Williams" }
+    ],
+}
+```
+
+Result would be something like:
+
+```
+{
+    "users": [
+        { "id": 1, "name": "Tim Jones" },
+        { "id": 2, "name": "Tom Smith" },
+        { "id": 3, "name": "Susanna Brown" },
+        { "id": 4, "name": "Luke Johnson" },
+        { "id": 5, "name": "Mike Williams" }
+    ],
+}
+```

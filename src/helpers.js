@@ -416,3 +416,16 @@ export function detectFieldType(fieldValue) {
         containsTemplate: containsTemplate
     }
 }
+
+export function renameProperty(obj, oldName, newName) {
+    if (oldName == newName) {
+        return obj;
+    }
+
+    if (obj.hasOwnProperty(oldName)) {
+        obj[newName] = obj[oldName];
+        delete obj[oldName];
+    }
+
+    return obj;
+}

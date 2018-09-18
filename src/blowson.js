@@ -42,7 +42,8 @@ import {
     applyFilters,
     getFieldByPath,
     detectFieldType,
-    normalDistRandomInt
+    normalDistRandomInt,
+    renameProperty
 } from './helpers';
 
 const chance = new Chance();
@@ -56,7 +57,29 @@ module.exports = function blowson(data) {
     let types = [],
         type,
         row,
-        field;
+        field,
+        entry,
+        customKeyNames = {},
+        tempKeys = [];
+
+    for (type in data) {
+        for (entry in data[type]) {
+            for (field in data[type][entry]) {
+                let fieldSplit = field.split('__');
+
+                if (field.substr(0, 2) === '__') {
+                    tempKeys.push(`${type}.${field.substr(2)}`);
+                    renameProperty(data[type][entry], field, field.substr(2));
+                    continue;
+                }
+
+                if (fieldSplit.length > 1) {
+                    customKeyNames[`${type}.${fieldSplit[1]}`] = `${type}.${fieldSplit[0]}`;
+                    renameProperty(data[type][entry], field, fieldSplit[1]);
+                }
+            }
+        }
+    }
 
     for (type in data) {
         let typeDef = {
@@ -65,9 +88,7 @@ module.exports = function blowson(data) {
                 maxID: 1,
                 totalCount: 0,
                 fields: {}
-            },
-            entry,
-            field;
+            };
 
         for (entry in data[type]) {
             for (field in data[type][entry]) {
@@ -386,6 +407,19 @@ module.exports = function blowson(data) {
                     });
 
                     data[type][row][field] = data[type][row][field].replace(/  +/g, ' ');
+                }
+            }
+        }
+    }
+
+    for (type in data) {
+        for (entry in data[type]) {
+            for (field in data[type][entry]) {
+                if (tempKeys.indexOf(`${type}.${field}`) > -1) {
+                    delete (data[type][entry][field]);
+                }
+                if (typeof customKeyNames[`${type}.${field}`] !== 'undefined') {
+                    renameProperty(data[type][entry], field, customKeyNames[`${type}.${field}`].split('.')[1]);
                 }
             }
         }
