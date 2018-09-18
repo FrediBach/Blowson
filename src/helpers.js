@@ -291,6 +291,7 @@ export function getNumberDirection(entries) {
 
 export function filterValue(value, filter) {
     value = String(value);
+    let numValue = Number(value);
 
     if (filter === 'slug') {
         return slugify(value, { lower: true });
@@ -304,6 +305,10 @@ export function filterValue(value, filter) {
         return capitalize(value);
     } else if (filter === 'trim') {
         return value.replace(/\s/g, '');
+    } else if (numValue !== NaN && filter === 'round') {
+        return Math.round(value);
+    } else if (numValue !== NaN && filter === 'floor') {
+        return Math.floor(value);
     } else if (filter === 'optional' && Math.random() >= 0.5) {
         return '';
     } else if (filter.substring(0, 5) === 'date:') {

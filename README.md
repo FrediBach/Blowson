@@ -345,6 +345,8 @@ The available filters are:
 - capitalize
 - md5
 - trim
+- round (for numbers)
+- floor (for numbers)
 - date:dateFormat
 - optional
 
