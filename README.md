@@ -440,3 +440,5 @@ Result would be something like:
     ],
 }
 ```
+
+Another use for temporary fields is removing the id field. As you know, the id field is needed to detect a gap, but if you only want to generate data for non database usecases, you probably don't need an id field, so just declare it as temporary with `__id` and it will be removed in the output. Of course you can't use relationships in this usecase.
