@@ -348,9 +348,12 @@ The available filters are:
 - round (for numbers)
 - floor (for numbers)
 - date:dateFormat
+- num:numberFormat
 - optional
 
 The date filter uses the `date-fns` library to format your dates. For example if you want to only show the year of a date field `created`, do it like this: `{{field.created|date:YYYY}}`
+
+Similar to the date filter, the number filter uses the `Numeral.js` library. An example: {{field.id|num:0o}} would result in something like `1st` (with id = 1).
 
 You can combine multiple filters, so for example you can do something like `{{word.noun|capitalize}} {{word.noun|capitalize|optional}} {{number|optional}}` to generate a product names that is either one word, one word with a number, two words or two words with a number, all words capitalized.
 

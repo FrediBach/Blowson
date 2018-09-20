@@ -2,6 +2,7 @@ import Chance from 'chance';
 import slugify from 'slugify';
 import md5 from 'md5';
 import {format} from 'date-fns';
+import numeral from 'numeral';
 import Prob from 'prob.js';
 import {pluralize} from './txtgen/util';
 
@@ -309,6 +310,9 @@ export function filterValue(value, filter) {
         return Math.round(value);
     } else if (numValue !== NaN && filter === 'floor') {
         return Math.floor(value);
+    } else if (numValue !== NaN && filter.substring(0, 4) === 'num:') {
+        let filterSplit = filter.split(':');
+        return numeral(numValue).format(filterSplit[1]);
     } else if (filter === 'optional' && Math.random() >= 0.5) {
         return '';
     } else if (filter.substring(0, 5) === 'date:') {
