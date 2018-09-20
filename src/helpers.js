@@ -3,6 +3,7 @@ import slugify from 'slugify';
 import md5 from 'md5';
 import {format} from 'date-fns';
 import numeral from 'numeral';
+import marked from 'marked';
 import Prob from 'prob.js';
 import {pluralize} from './txtgen/util';
 
@@ -306,6 +307,8 @@ export function filterValue(value, filter) {
         return capitalize(value);
     } else if (filter === 'trim') {
         return value.replace(/\s/g, '');
+    } else if (filter === 'md') {
+        return marked(value);
     } else if (numValue !== NaN && filter === 'round') {
         return Math.round(value);
     } else if (numValue !== NaN && filter === 'floor') {
