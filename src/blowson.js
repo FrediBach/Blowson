@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import Chance from 'chance';
 import faker from 'faker';
+import stringify from 'json-stringify-pretty-compact';
 
 import {
     sentence,
@@ -53,14 +54,23 @@ addTemplates([
     'incomprehensibilities of a {{adjective}} {{noun}} and {{a_noun}} made {{a_noun}} {{adjective}}'
 ]);
 
-module.exports = function blowson(data) {
-    let types = [],
+module.exports = function blowson(inputData) {
+    let dataIsJSON = false,
+        data = {},
+        types = [],
         type,
         row,
         field,
         entry,
         customKeyNames = {},
         tempKeys = [];
+
+    if (typeof data === 'string') {
+        data = JSON.parse(inputData);
+        dataIsJSON = true;
+    } else {
+        data = inputData;
+    }
 
     for (type in data) {
         for (entry in data[type]) {
@@ -425,5 +435,9 @@ module.exports = function blowson(data) {
         }
     }
 
+    if (dataIsJSON) {
+        return stringify(data);
+    }
+    
     return data;
 }

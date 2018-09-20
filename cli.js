@@ -18,7 +18,13 @@ const dest = './' + args[1];
 const data = require(src);
 
 try {
-    writeFile.sync(dest, `module.exports = ${stringify(blowson(data))};`);
+    let parsedData = blowson(data);
+
+    if (typeof parsedData === 'string') {
+        writeFile.sync(dest, parsedData);
+    } else {
+        writeFile.sync(dest, `module.exports = ${stringify(blowson(parsedData))};`);
+    }
     console.log('Sample data successfully extended!');
 } catch (error) {
     console.error(error);

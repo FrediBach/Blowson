@@ -31,6 +31,8 @@ const extendedData = blowson(data);
 console.log(extendedData);
 ```
 
+The `blowson` function accepts either a JSON string or a JSON like JavaScript object. In case of a JSON string, a nicelly formatted string is being returned. This however involves some extra parsing on the side of Blowson, so we recommend using a JSON like JS object.
+
 Have a look at the index.js for a complete example and check out data.js for an example data file.
 
 You can use Blowson as a CLI script. All you need to do is install the package globally:
@@ -43,6 +45,12 @@ And than run it like this:
 
 ```
 blowson data.js data-extended.js
+```
+
+Or:
+
+```
+blowson data.json data-extended.json
 ```
 
 ## Extend ID range
