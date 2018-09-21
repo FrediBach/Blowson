@@ -526,3 +526,15 @@ export function rulesAreValid(value, rules, row, type) {
 
     return true;
 }
+
+export function ruleBasedValue(rules, row, key) {
+    let field;
+
+    for (field in row) {
+        if (rules.indexOf(`${key}=${field}`) > -1) {
+            return row[field];
+        }
+    }
+
+    return null;
+}

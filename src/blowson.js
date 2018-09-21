@@ -47,7 +47,8 @@ import {
     renameProperty,
     getFieldRules,
     removeIncompatibleRules,
-    rulesAreValid
+    rulesAreValid,
+    ruleBasedValue
 } from './helpers';
 
 const chance = new Chance();
@@ -325,14 +326,19 @@ module.exports = function blowson(inputData) {
                             let minInt = minNumber(settings.fields[field].entries),
                                 maxInt = maxNumber(settings.fields[field].entries),
                                 minGap = minGapOfIntArray(settings.fields[field].entries),
-                                cnt = 0;
-
+                                cnt = 0,
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
+                            
                             if (field.endsWith('_id')) {
                                 value = normalDistRandomInt(minInt, maxInt);
                             } else {
-                                while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
-                                    value = randomIntWithStep(minInt, maxInt, minGap);
-                                    cnt++;
+                                if (ruleValue === null) {
+                                    while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                        value = randomIntWithStep(minInt, maxInt, minGap);
+                                        cnt++;
+                                    }
+                                } else {
+                                    value = ruleValue;
                                 }
                             }
                         }
@@ -341,11 +347,16 @@ module.exports = function blowson(inputData) {
                             let minFloat = minNumber(settings.fields[field].entries),
                                 maxFloat = maxNumber(settings.fields[field].entries),
                                 maxPrecision = getMaxPrecision(settings.fields[field].entries),
-                                cnt = 0;
+                                cnt = 0,
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
 
-                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
-                                value = Number(chance.floating({ min: minFloat, max: maxFloat }).toFixed(maxPrecision));
-                                cnt++;
+                            if (ruleValue === null) {
+                                while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                    value = Number(chance.floating({ min: minFloat, max: maxFloat }).toFixed(maxPrecision));
+                                    cnt++;
+                                }
+                            } else {
+                                value = ruleValue;
                             }
                         }
 
@@ -362,24 +373,33 @@ module.exports = function blowson(inputData) {
                         if (value === '' && settings.fields[field].type === 'date') {
                             let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
                                 maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
-                                cnt = 0;
+                                cnt = 0,
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
 
-                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
-                                value = randomDate(minDateDate, maxDateDate);
-                                cnt++;
+                            if (ruleValue === null) {
+                                while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                    value = randomDate(minDateDate, maxDateDate);
+                                    cnt++;
+                                }
+                            } else {
+                                value = ruleValue;
                             }
                         }
 
                         if (value === '' && settings.fields[field].type === 'datetime') {
                             let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
                                 maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
-                                cnt = 0;
+                                cnt = 0,
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
 
-                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
-                                value = randomDatetime(minDateDate, maxDateDate);
-                                cnt++;
+                            if (ruleValue === null) {
+                                while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                    value = randomDatetime(minDateDate, maxDateDate);
+                                    cnt++;
+                                }
+                            } else {
+                                value = ruleValue;
                             }
-
                         }
 
                         if (value === '' && settings.fields[field].type === 'time') {
