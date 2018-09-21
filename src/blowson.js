@@ -44,7 +44,10 @@ import {
     getFieldByPath,
     detectFieldType,
     normalDistRandomInt,
-    renameProperty
+    renameProperty,
+    getFieldRules,
+    removeIncompatibleRules,
+    rulesAreValid
 } from './helpers';
 
 const chance = new Chance();
@@ -101,6 +104,8 @@ module.exports = function blowson(inputData) {
             };
 
         for (entry in data[type]) {
+            let prevFields = [];
+
             for (field in data[type][entry]) {
                 let fieldValue = data[type][entry][field],
                     { fieldType, containsTemplate } = detectFieldType(fieldValue);
@@ -111,6 +116,7 @@ module.exports = function blowson(inputData) {
                         entries: [fieldValue],
                         allEntries: [fieldValue],
                         containsTemplate: containsTemplate,
+                        rules: [],
                         cnt: 1
                     };
                 } else {
@@ -155,6 +161,22 @@ module.exports = function blowson(inputData) {
                         }
                     }
                 }
+
+                if (prevFields.length > 0 && field !== 'id' && !field.endsWith('_id') && !field.endsWith('_ids')) {
+                    let rules = getFieldRules(field, fieldValue, fieldType, prevFields);
+                    
+                    if (rules.length > 0) {
+                        typeDef.fields[field].rules = typeDef.fields[field].rules.concat(rules);
+                    }
+                }
+
+                if (field !== 'id' && !field.endsWith('_id') && !field.endsWith('_ids')) {
+                    prevFields.push({
+                        key: field,
+                        value: fieldValue,
+                        type: fieldType
+                    });
+                }
             }
         }
 
@@ -164,6 +186,12 @@ module.exports = function blowson(inputData) {
             }
             if (typeDef.fields[field].types.length === 1) {
                 typeDef.fields[field].type = typeDef.fields[field].types[0];
+            } else {
+                if (typeDef.fields[field].types.length == 2 && typeDef.fields[field].types.indexOf('int') > -1 && typeDef.fields[field].types.indexOf('float') > -1) {
+                    typeDef.fields[field].type = 'float';
+                } else {
+                    typeDef.fields[field].type = 'string';
+                }
             }
             if (typeDef.fields[field].entries.length < typeDef.fields[field].cnt || typeDef.fields[field].containsTemplate) {
                 typeDef.fields[field].repeatEntries = true;
@@ -176,6 +204,7 @@ module.exports = function blowson(inputData) {
             } else {
                 typeDef.fields[field].required = true;
             }
+            typeDef.fields[field].rules = removeIncompatibleRules(_.uniq(typeDef.fields[field].rules));       
         }
 
         typeDef.gap = findGap(typeDef.fields['id'].entries);
@@ -295,21 +324,29 @@ module.exports = function blowson(inputData) {
                         if (value === '' && settings.fields[field].type === 'int') {
                             let minInt = minNumber(settings.fields[field].entries),
                                 maxInt = maxNumber(settings.fields[field].entries),
-                                minGap = minGapOfIntArray(settings.fields[field].entries);
+                                minGap = minGapOfIntArray(settings.fields[field].entries),
+                                cnt = 0;
 
                             if (field.endsWith('_id')) {
                                 value = normalDistRandomInt(minInt, maxInt);
                             } else {
-                                value = randomIntWithStep(minInt, maxInt, minGap);
+                                while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row) && cnt < 100)) {
+                                    value = randomIntWithStep(minInt, maxInt, minGap);
+                                    cnt++;
+                                }
                             }
                         }
 
                         if (value === '' && settings.fields[field].type === 'float') {
                             let minFloat = minNumber(settings.fields[field].entries),
                                 maxFloat = maxNumber(settings.fields[field].entries),
-                                maxPrecision = getMaxPrecision(settings.fields[field].entries);
+                                maxPrecision = getMaxPrecision(settings.fields[field].entries),
+                                cnt = 0;
 
-                            value = Number((Math.random() * maxFloat + minFloat).toFixed(maxPrecision));
+                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row) && cnt < 100)) {
+                                value = Number(chance.floating({ min: minFloat, max: maxFloat }).toFixed(maxPrecision));
+                                cnt++;
+                            }
                         }
 
                         if (value === '' && settings.fields[field].type === 'char') {
@@ -438,6 +475,6 @@ module.exports = function blowson(inputData) {
     if (dataIsJSON) {
         return stringify(data);
     }
-    
+
     return data;
 }

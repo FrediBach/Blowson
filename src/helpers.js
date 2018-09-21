@@ -436,3 +436,67 @@ export function renameProperty(obj, oldName, newName) {
 
     return obj;
 }
+
+export function getFieldRules(key, value, type, prevFields) {
+    let rules = [];
+
+    for (prevField of prevFields) {
+        if ((type === 'int' || type === 'float') && (prevField.type === 'int' || prevField.type === 'float')) {
+            if (value > prevField.value) {
+                rules.push(`${key}>${prevField.key}`);
+            } else if (value < prevField.value) {
+                rules.push(`${key}<${prevField.key}`);
+            } else {
+                rules.push(`${key}=${prevField.key}`);
+            }
+        }
+    }
+
+    return rules;
+}
+
+export function removeIncompatibleRules(rules) {
+    let filteredRules = [],
+        rule;
+
+    for (rule of rules) {
+        let ruleSplit = rule.split(/>|<|=/);
+        
+        if (rule.indexOf('<') > -1 && rules.indexOf(`${ruleSplit[0]}>${ruleSplit[1]}`) === -1 && rules.indexOf(`${ruleSplit[0]}=${ruleSplit[1]}`) === -1) {
+            filteredRules.push(rule);
+        }
+        if (rule.indexOf('>') > -1 && rules.indexOf(`${ruleSplit[0]}<${ruleSplit[1]}`) === -1 && rules.indexOf(`${ruleSplit[0]}=${ruleSplit[1]}`) === -1) {
+            filteredRules.push(rule);
+        }
+        if (rule.indexOf('=') > -1 && rules.indexOf(`${ruleSplit[0]}>${ruleSplit[1]}`) === -1 && rules.indexOf(`${ruleSplit[0]}<${ruleSplit[1]}`) === -1) {
+            filteredRules.push(rule);
+        }
+    }
+
+    return filteredRules;
+}
+
+export function rulesAreValid(value, rules, row) {
+    if (rules.length === 0) return true;
+    if (value === '') return false;
+
+    let rule;
+
+    for (rule of rules) {
+        let ruleSplit = rule.split(/>|<|=/);
+
+        if (typeof row[ruleSplit[1]] !== 'undefined' && row[ruleSplit[1]] !== '') {
+            if (rule.indexOf('<') > -1 && value >= row[ruleSplit[1]]) {
+                return false;
+            }
+            if (rule.indexOf('>') > -1 && value <= row[ruleSplit[1]]) {
+                return false;
+            }
+            if (rule.indexOf('=') > -1 && value !== row[ruleSplit[1]]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}

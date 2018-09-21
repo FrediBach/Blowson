@@ -54,7 +54,7 @@ module.exports = {
         { id: 1, league_id: 1, type_id: 1, lat: 3.789, lng: 41.987, radius: 400, points: 100, minAltitude: 3500, name: 'Oberalp Pass', description: 'From Andermatt to Disentis', file_id: 3 },
         { id: 2, league_id: 1, type_id: 2, lat: 3.589, lng: 41.787, radius: 400, points: 100, minAltitude: 3500, name: 'Furka Pass', description: 'From the Goms to Andermatt', file_id: 3 },
         { id: 3, league_id: 1, type_id: 4, lat: 3.889, lng: 40.787, radius: 200, points: 10, name: 'Fiesch' },
-        { id: 4, league_id: 2, type_id: 5, lat: 2.589, lng: 51.787, radius: 400, points: 10, minAltitude: 2500, name: 'Hotel Alpenblick', description: 'Where you would love to bomb out ... maybe.', file_id: 3 },
+        { id: 4, league_id: 2, type_id: 5, lat: 2.689, lng: 51.687, radius: 400, points: 10, minAltitude: 2500, name: 'Hotel Alpenblick', description: 'Where you would love to bomb out ... maybe.', file_id: 3 },
         { id: 250, league_id: 2, type_id: 5, lat: 2.589, lng: 51.787, radius: 200, points: 10, minAltitude: 2500, name: 'Walensee Seeblick', description: 'Die beste Aussicht zum Walensee!', file_id: 3 },
     ],
     waypointNotes: [

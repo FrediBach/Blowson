@@ -231,6 +231,48 @@ Ranges can be used in creative ways. For example if you want to restrict coordin
 
 This would roughly limit the randomly generated waypoints to be inside of Switzerland.
 
+## Inter field rule detection
+
+Blowson tries to detect the rules between each non id field in a row. For example if you have a field `from` and a field `to` and to is always bigger than from, than all the generated numbers will follow that rule. Currently only `int` and `float` values have detectedions for `>`, `<` and `=`, but in a later release, dates will follow those inter field rules, as well. An example:
+
+```
+{
+    "ranges": [
+        "id": 1, "from": 1, "to": 2,
+        "id": 2, "from": 6.9, "to": 34.87,
+        "id": 5, "from": 99, "to": 100
+    ]
+}
+```
+
+As `from` is always smaller than `to`, the result will look like this:
+
+```
+{
+    "ranges": [
+        "id": 1, "from": 1, "to": 2,
+        "id": 2, "from": 6.9, "to": 34.87,
+        "id": 3, "from": 65.3, "to": 77.32,
+        "id": 4, "from": 42.1, "to": 43.65,
+        "id": 5, "from": 99, "to": 100
+    ]
+}
+```
+
+If you don't want such rules to be followed, all you have to do is define sample data without such rules:
+
+```
+{
+    "ranges": [
+        "id": 1, "from": 1, "to": 1,
+        "id": 2, "from": 34, "to": 67,
+        "id": 5, "from": 100, "to": 100
+    ]
+}
+```
+
+Row with `id` 1 and 5 have equal numbers and the row with `id` 2 has `to` bigger than `from`. So no rule will be detected.
+
 ## Weighted randomness
 
 Another feature of the above used sample data is that the score `500` is twice in the sample data and `250` only once. This will be detected and the score 500 will have a higher chance of occuring in the generated data (twice as likely to be exact).
