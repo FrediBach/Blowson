@@ -330,7 +330,7 @@ module.exports = function blowson(inputData) {
                             if (field.endsWith('_id')) {
                                 value = normalDistRandomInt(minInt, maxInt);
                             } else {
-                                while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row) && cnt < 100)) {
+                                while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
                                     value = randomIntWithStep(minInt, maxInt, minGap);
                                     cnt++;
                                 }
@@ -343,7 +343,7 @@ module.exports = function blowson(inputData) {
                                 maxPrecision = getMaxPrecision(settings.fields[field].entries),
                                 cnt = 0;
 
-                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row) && cnt < 100)) {
+                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
                                 value = Number(chance.floating({ min: minFloat, max: maxFloat }).toFixed(maxPrecision));
                                 cnt++;
                             }
@@ -361,16 +361,25 @@ module.exports = function blowson(inputData) {
 
                         if (value === '' && settings.fields[field].type === 'date') {
                             let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
-                                maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries));
+                                maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
+                                cnt = 0;
 
-                            value = randomDate(minDateDate, maxDateDate);
+                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                value = randomDate(minDateDate, maxDateDate);
+                                cnt++;
+                            }
                         }
 
                         if (value === '' && settings.fields[field].type === 'datetime') {
                             let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
-                                maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries));
+                                maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
+                                cnt = 0;
 
-                            value = randomDatetime(minDateDate, maxDateDate);
+                            while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                value = randomDatetime(minDateDate, maxDateDate);
+                                cnt++;
+                            }
+
                         }
 
                         if (value === '' && settings.fields[field].type === 'time') {

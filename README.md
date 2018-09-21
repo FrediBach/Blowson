@@ -233,7 +233,7 @@ This would roughly limit the randomly generated waypoints to be inside of Switze
 
 ## Inter field rule detection
 
-Blowson tries to detect the rules between each non id field in a row. For example if you have a field `from` and a field `to` and to is always bigger than from, than all the generated numbers will follow that rule. Currently only `int` and `float` values have detectedions for `>`, `<` and `=`, but in a later release, dates will follow those inter field rules, as well. An example:
+Blowson tries to detect the rules between each non id field in a row. For example if you have a field `from` and a field `to` and to is always bigger than from, than all the generated numbers will follow that rule. Currently `int`, `float`, `date` and `datetime` values have detectedions for `>`, `<` and `=`. An example:
 
 ```
 {

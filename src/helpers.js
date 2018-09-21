@@ -449,6 +449,17 @@ export function getFieldRules(key, value, type, prevFields) {
             } else {
                 rules.push(`${key}=${prevField.key}`);
             }
+        } else if ((type === 'date' && prevField.type === 'date') || (type === 'datetime' && prevField.type === 'datetime')) {
+            let valueDate = new Date(value),
+                prevValueDate = new Date(prevField.value);
+
+            if (valueDate > prevValueDate) {
+                rules.push(`${key}>${prevField.key}`);
+            } else if (valueDate < prevValueDate) {
+                rules.push(`${key}<${prevField.key}`);
+            } else {
+                rules.push(`${key}=${prevField.key}`);
+            }
         }
     }
 
@@ -476,7 +487,7 @@ export function removeIncompatibleRules(rules) {
     return filteredRules;
 }
 
-export function rulesAreValid(value, rules, row) {
+export function rulesAreValid(value, rules, row, type) {
     if (rules.length === 0) return true;
     if (value === '') return false;
 
@@ -486,14 +497,29 @@ export function rulesAreValid(value, rules, row) {
         let ruleSplit = rule.split(/>|<|=/);
 
         if (typeof row[ruleSplit[1]] !== 'undefined' && row[ruleSplit[1]] !== '') {
-            if (rule.indexOf('<') > -1 && value >= row[ruleSplit[1]]) {
-                return false;
-            }
-            if (rule.indexOf('>') > -1 && value <= row[ruleSplit[1]]) {
-                return false;
-            }
-            if (rule.indexOf('=') > -1 && value !== row[ruleSplit[1]]) {
-                return false;
+            if (type === 'int' || type === 'float') {
+                if (rule.indexOf('<') > -1 && value >= row[ruleSplit[1]]) {
+                    return false;
+                }
+                if (rule.indexOf('>') > -1 && value <= row[ruleSplit[1]]) {
+                    return false;
+                }
+                if (rule.indexOf('=') > -1 && value !== row[ruleSplit[1]]) {
+                    return false;
+                }
+            } else if (type === 'date' || type === 'datetime') {
+                let valueDate = new Date(value),
+                    rowValueDate = new Date(row[ruleSplit[1]]);
+
+                if (rule.indexOf('<') > -1 && valueDate >= rowValueDate) {
+                    return false;
+                }
+                if (rule.indexOf('>') > -1 && valueDate <= rowValueDate) {
+                    return false;
+                }
+                if (rule.indexOf('=') > -1 && valueDate !== rowValueDate) {
+                    return false;
+                }
             }
         }
     }
