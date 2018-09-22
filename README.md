@@ -231,6 +231,48 @@ Ranges can be used in creative ways. For example if you want to restrict coordin
 
 This would roughly limit the randomly generated waypoints to be inside of Switzerland.
 
+## Direction detection
+
+The direction of numbers is being detected. So for example is this sample:
+
+```
+{
+    "waypoints": [
+        "id": 1, "score": 100,
+        "id": 2, "score": 150,
+        "id": 5, "score": 1000
+    ]
+}
+```
+
+The result would be something like:
+
+```
+{
+    "waypoints": [
+        "id": 1, "score": 100,
+        "id": 2, "score": 150,
+        "id": 3, "score": 450,
+        "id": 4, "score": 700,
+        "id": 5, "score": 1000
+    ]
+}
+```
+
+To prevent this behaviour, simply add one value that breaks the direction:
+
+```
+{
+    "waypoints": [
+        "id": 1, "score": 150,
+        "id": 2, "score": 100,
+        "id": 5, "score": 1000
+    ]
+}
+```
+
+Direction detection works for `int`s and `float`s.
+
 ## Inter field rule detection
 
 Blowson tries to detect the rules between each non id field in a row. For example if you have a field `from` and a field `to` and to is always bigger than from, than all the generated numbers will follow that rule. Currently `int`, `float`, `date` and `datetime` values have detectedions for `>`, `<` and `=`. An example:

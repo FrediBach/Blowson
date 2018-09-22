@@ -185,6 +185,7 @@ module.exports = function blowson(inputData) {
             if (field === 'id') {
                 typeDef.totalCount = typeDef.fields[field].cnt;
             }
+
             if (typeDef.fields[field].types.length === 1) {
                 typeDef.fields[field].type = typeDef.fields[field].types[0];
             } else {
@@ -194,18 +195,27 @@ module.exports = function blowson(inputData) {
                     typeDef.fields[field].type = 'string';
                 }
             }
+
             if (typeDef.fields[field].entries.length < typeDef.fields[field].cnt || typeDef.fields[field].containsTemplate) {
                 typeDef.fields[field].repeatEntries = true;
                 typeDef.fields[field].weights = getWeights(typeDef.fields[field].allEntries, typeDef.fields[field].entries);
             } else {
                 typeDef.fields[field].repeatEntries = false;
             }
+
             if (typeDef.fields[field].cnt < typeDef.totalCount) {
                 typeDef.fields[field].required = false;
             } else {
                 typeDef.fields[field].required = true;
             }
-            typeDef.fields[field].rules = removeIncompatibleRules(_.uniq(typeDef.fields[field].rules));       
+
+            typeDef.fields[field].rules = removeIncompatibleRules(_.uniq(typeDef.fields[field].rules));
+            
+            typeDef.fields[field].dir = false;
+
+            if (typeDef.fields[field].type === 'int' || typeDef.fields[field].type === 'float') {
+                typeDef.fields[field].dir = getNumberDirection(typeDef.fields[field].entries);
+            }
         }
 
         typeDef.gap = findGap(typeDef.fields['id'].entries);
@@ -327,7 +337,17 @@ module.exports = function blowson(inputData) {
                                 maxInt = maxNumber(settings.fields[field].entries),
                                 minGap = minGapOfIntArray(settings.fields[field].entries),
                                 cnt = 0,
-                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                dirSteps = settings.gap.end - settings.gap.start + 1,
+                                averageStepGap = (maxInt - minInt) / dirSteps;
+
+                            if (settings.fields[field].dir === 'asc') {
+                                maxInt = Math.ceil(minInt + ((id - settings.gap.start + 1) * averageStepGap) - 1);
+                                minInt = Math.floor(minInt + ((id - settings.gap.start) * averageStepGap) + 1);
+                            } else if (settings.fields[field].dir === 'desc') {
+                                minInt = Math.ceil(maxInt - ((id - settings.gap.start + 1) * averageStepGap) + 1);
+                                maxInt = Math.floor(maxInt - ((id - settings.gap.start) * averageStepGap) - 1);
+                            }
                             
                             if (field.endsWith('_id')) {
                                 value = normalDistRandomInt(minInt, maxInt);
@@ -348,7 +368,17 @@ module.exports = function blowson(inputData) {
                                 maxFloat = maxNumber(settings.fields[field].entries),
                                 maxPrecision = getMaxPrecision(settings.fields[field].entries),
                                 cnt = 0,
-                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                dirSteps = settings.gap.end - settings.gap.start + 1,
+                                averageStepGap = (maxFloat - minFloat - 1) / dirSteps;
+
+                            if (settings.fields[field].dir === 'asc') {
+                                maxFloat = minFloat + ((id - settings.gap.start + 1) * averageStepGap) + 1;
+                                minFloat = minFloat + ((id - settings.gap.start) * averageStepGap) + 1;
+                            } else if (settings.fields[field].dir === 'desc') {
+                                minFloat = maxFloat - ((id - settings.gap.start + 1) * averageStepGap) - 1;
+                                maxFloat = maxFloat - ((id - settings.gap.start) * averageStepGap) - 1;
+                            }
 
                             if (ruleValue === null) {
                                 while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
