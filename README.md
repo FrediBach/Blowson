@@ -271,7 +271,7 @@ To prevent this behaviour, simply add one value that breaks the direction:
 }
 ```
 
-Direction detection works for `int`s and `float`s.
+Direction detection works for `int`, `float`, `date` and `datetime`.
 
 ## Inter field rule detection
 

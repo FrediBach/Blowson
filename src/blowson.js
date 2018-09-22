@@ -39,6 +39,7 @@ import {
     isTimeString,
     getWeights,
     getNumberDirection,
+    getDateDirection,
     filterValue,
     applyFilters,
     getFieldByPath,
@@ -215,6 +216,9 @@ module.exports = function blowson(inputData) {
 
             if (typeDef.fields[field].type === 'int' || typeDef.fields[field].type === 'float') {
                 typeDef.fields[field].dir = getNumberDirection(typeDef.fields[field].entries);
+            }
+            if (typeDef.fields[field].type === 'date' || typeDef.fields[field].type === 'datetime') {
+                typeDef.fields[field].dir = getDateDirection(typeDef.fields[field].entries);
             }
         }
 
@@ -404,7 +408,17 @@ module.exports = function blowson(inputData) {
                             let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
                                 maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
                                 cnt = 0,
-                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                dirSteps = settings.gap.end - settings.gap.start + 1,
+                                averageStepGap = (maxDateDate.getTime() - minDateDate.getTime() - 1) / dirSteps;
+
+                            if (settings.fields[field].dir === 'asc') {
+                                maxDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start + 1) * averageStepGap) + 1);
+                                minDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start) * averageStepGap) + 1);
+                            } else if (settings.fields[field].dir === 'desc') {
+                                minDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start + 1) * averageStepGap) - 1);
+                                maxDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start) * averageStepGap) - 1);
+                            }
 
                             if (ruleValue === null) {
                                 while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
@@ -420,7 +434,17 @@ module.exports = function blowson(inputData) {
                             let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
                                 maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
                                 cnt = 0,
-                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field);
+                                ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                dirSteps = settings.gap.end - settings.gap.start + 1,
+                                averageStepGap = (maxDateDate.getTime() - minDateDate.getTime() - 1) / dirSteps;
+
+                            if (settings.fields[field].dir === 'asc') {
+                                maxDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start + 1) * averageStepGap) + 1);
+                                minDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start) * averageStepGap) + 1);
+                            } else if (settings.fields[field].dir === 'desc') {
+                                minDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start + 1) * averageStepGap) - 1);
+                                maxDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start) * averageStepGap) - 1);
+                            }
 
                             if (ruleValue === null) {
                                 while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {

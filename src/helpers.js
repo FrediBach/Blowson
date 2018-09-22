@@ -291,6 +291,39 @@ export function getNumberDirection(entries) {
     }
 }
 
+export function getDateDirection(entries) {
+    let direction = null,
+        lastValue = null,
+        noDirection = false,
+        value;
+
+    for (value of entries) {
+        let dateValue = new Date(value);
+
+        if (lastValue !== null && dateValue > lastValue) {
+            if (direction === 'desc') {
+                noDirection = true;
+                break;
+            }
+            direction = 'asc';
+        }
+        if (lastValue !== null && dateValue < lastValue) {
+            if (direction === 'asc') {
+                noDirection = true;
+                break;
+            }
+            direction = 'desc';
+        }
+        lastValue = dateValue;
+    }
+
+    if (noDirection || direction === null) {
+        return false;
+    } else {
+        return direction;
+    }
+}
+
 export function filterValue(value, filter) {
     value = String(value);
     let numValue = Number(value);
