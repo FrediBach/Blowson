@@ -16,7 +16,11 @@ Key features: Blowson has field type detection by key and content, detection of 
 
 This library was originally called JSON Data Extender and renamed to Blowson: [JSON Data Extender](https://github.com/FrediBach/json-data-extender)
 
-Other related projects and libraries are: [json2graphql](https://github.com/hasura/json2graphql) (for Hasura)
+Other related projects and libraries are:
+
+- [json2graphql](https://github.com/hasura/json2graphql) (for Hasura)
+- [JSON Server](https://github.com/typicode/json-server)
+- [JSON GraphQL Server](https://github.com/marmelab/json-graphql-server)
 
 ## Usage
 
