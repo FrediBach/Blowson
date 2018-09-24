@@ -132,7 +132,7 @@ As you could see in the example above, Blowson correctly guessed that `firstname
 - weekday
 - year
 - password
-- GUID
+- guid
 - product
 - material
 - iban
