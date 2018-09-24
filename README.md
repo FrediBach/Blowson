@@ -202,7 +202,7 @@ If you repeat a value, it is handled like enumerations, so only available values
 }
 ```
 
-Because the score `500` is repeated twice, all generated values will use either score `250` or score `500`. The fields `user_id` and `game_id`have no repeated values, so everything generated will be random. Here's a possible result:
+Because the score `500` is repeated twice, all generated values will use either score `250` or score `500`. The fields `user_id` and `game_id` have no repeated values, so everything generated will be random. Here's a possible result:
 
 ```
 {
@@ -244,7 +244,7 @@ The range detected will be 1922-03-01 to 1988-11-21 and the generated data could
 }
 ```
 
-Ranges can be used in creative ways. For example if you want to restrict coordinates to all be in a specific rectanle, all you have to do is put two coordinates in your sample to the edges of that rectangle, something liek this:
+Ranges can be used in creative ways. For example if you want to restrict coordinates to all be in a specific rectangle, all you have to do is put two coordinates in your sample to the edges of that rectangle, something like this:
 
 ```
 {
