@@ -172,7 +172,7 @@ Sentence, paragraph and article will be generated in English and the script will
 }
 ```
 
-The script will guess that you want tiitle sentences with at least three words and a maximum of 6 words. Something like:
+The script will guess that you want title sentences with at least three words and a maximum of 6 words. Something like:
 
 ```
 {
