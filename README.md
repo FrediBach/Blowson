@@ -156,9 +156,9 @@ If a field type can't be detected by its key, Blowson will try to guess the type
 - Integer
 - Float
 - Boolean
-- Date
-- Datetime
-- Time
+- Date (in the format: 1976-05-23)
+- Datetime (in the format: 1976-05-23T15:48:45+01:00)
+- Time (in the format: 23:56)
 - Array of numbers (for multiple relationship fields)
 
 Sentence, paragraph and article will be generated in English and the script will try to guess a correct range of amounts. So for example if your sample looks like this:
