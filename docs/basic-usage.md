@@ -2,7 +2,7 @@
 
 ## Installation:
 
-`npm i blowson --save`
+`$ npm i blowson --save`
 
 ## Sample Data
 
@@ -46,17 +46,17 @@ Have a look at the index.js for a complete example and check out data.js for an 
 You can use Blowson as a CLI script. All you need to do is install the package globally:
 
 ```
-npm install -g blowson
+$ npm install -g blowson
 ```
 
 And than run it like this:
 
 ```
-blowson data.js data-extended.js
+$ blowson data.js data-extended.js
 ```
 
 Or:
 
 ```
-blowson data.json data-extended.json
+$ blowson data.json data-extended.json
 ```
