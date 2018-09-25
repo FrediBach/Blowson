@@ -2,11 +2,11 @@
 
 Blowson can either be used as a parsing function in your Node script or as a CLI tool.
 
-## Add package to your Node project
+## Add package to Node project
 
 `$ npm i blowson --save`
 
-## Create a smaple data file "data.js"
+## Create a sample file "data.js"
 
 Your sample data file:
 
@@ -26,7 +26,7 @@ module.exports = {
 };
 ```
 
-## Include Blowson and the sample data file in your Node script
+## Parse sample data in Node script
 
 And than in your script:
 
