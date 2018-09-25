@@ -1,10 +1,12 @@
 # Basic Usage
 
-## Installation:
+Blowson can either be used as a parsing function in your Node script or as a CLI tool.
+
+## Add package to your Node project
 
 `$ npm i blowson --save`
 
-## Sample Data
+## Create a smaple data file "data.js"
 
 Your sample data file:
 
@@ -24,7 +26,7 @@ module.exports = {
 };
 ```
 
-## Node Script
+## Include Blowson and the sample data file in your Node script
 
 And than in your script:
 

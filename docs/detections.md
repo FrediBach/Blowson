@@ -1,8 +1,10 @@
 # Detections
 
+Blowson analyses your field names, field content and relationships between fields to guess the correct rules to create new entries. There is a whole range of detection concepts explained below. By following this concepts, you can create huge amounts of realistic sample data.
+
 ## Keys
 
-As you could see in the example above, Blowson correctly guessed that `firstname` is a field for ... well, firstnames. Here are all the currently detected field keys:
+The most basic detection is by the exact name of a fields key. Here are all the currently detected field keys:
 
 - id
 - age

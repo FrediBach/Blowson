@@ -1,8 +1,10 @@
 # Basic Concepts
 
+Blowson is detection based. You need to follow some very basic rules on how to construct your sample data files for Blowson to work correctly.
+
 ## Extend ID range
 
-For Blowson to work, your types need an `id` field and the entries need to have a gap. So for example if you have ids 1, 2, 3 and 10, it will add fake entries with ids 4,5,6,7,8 and 9. For types without a gap in its ids, nothing will be added. Only one gap is being detected.
+The most basic concept you need to follow is the concept of a gap in your ID range. Your types need an `id` field and the entries need to have a gap. So for example if you have ids 1, 2, 3 and 10, it will add fake entries with ids 4,5,6,7,8 and 9. For types without a gap in its ids, nothing will be added. Only one gap is being detected.
 
 Here's an example data file to better illustrate how this works:
 
