@@ -6,7 +6,7 @@ For Blowson to work, your types need an `id` field and the entries need to have 
 
 Here's an example data file to better illustrate how this works:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "age": 12,
@@ -18,7 +18,7 @@ Here's an example data file to better illustrate how this works:
 
 Because there's a gap between 2 and 5, new entries with ids 3 und 4 will be generated. Something like this:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "age": 12,
@@ -36,7 +36,7 @@ The gap can theoretically be as big as you like, but I'm sure at some point node
 
 Sometimes you want Blowson to detect a field key, but you want a different custom name for that field. Let's say you want your field to be named `surname` but Blowson only detecs `lastname`, so it would only fill in a random string and not a latname. This can be solved with custom filed names like this: `surname__lastname`. This field will be detected as `lastname`, and in the extended data outputed as `surname`. An example:
 
-```
+```json
 {
     "users": [
         { "id": 1, "firstname": "Mike", "surname__lastname": "Smith" },
@@ -47,7 +47,7 @@ Sometimes you want Blowson to detect a field key, but you want a different custo
 
 The result will be something like:
 
-```
+```json
 {
     "users": [
         { "id": 1, "firstname": "Mike", "surname": "Smith" },
@@ -65,7 +65,7 @@ Be careful if you rename the field. Your field variables will see the detected f
 
 Sometimes you want a field that will not show up in the final result. You can accomplish this by prefixing the fieldname with `__`, for example `__prename`. You can use this for something like this:
 
-```
+```json
 {
     "users": [
         { "id": 1, "name": "{{field.firstname}} {{field.lastname}}", "__firstname": "Tim", "__lastname": "Jones" },
@@ -76,7 +76,7 @@ Sometimes you want a field that will not show up in the final result. You can ac
 
 Result would be something like:
 
-```
+```json
 {
     "users": [
         { "id": 1, "name": "Tim Jones" },

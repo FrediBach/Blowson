@@ -52,7 +52,7 @@ If a field type can't be detected by its key, Blowson will try to guess the type
 
 Sentence, paragraph and article will be generated in English and the script will try to guess a correct range of amounts. So for example if your sample looks like this:
 
-```
+```json
 {
     "headlines": [
         "id": 1, "title": "What a beautiful day this is!",
@@ -63,7 +63,7 @@ Sentence, paragraph and article will be generated in English and the script will
 
 The script will guess that you want title sentences with at least three words and a maximum of 6 words. Something like:
 
-```
+```json
 {
     "headlines": [
         "id": 1, "title": "What a beautiful day this is!",
@@ -81,7 +81,7 @@ Additionally, long words will appear once in a while to make it possible to test
 
 If you repeat a value, it is handled like enumerations, so only available values will be used. Here's an example:
 
-```
+```json
 {
     "scores": [
         "id": 1, "user_id": 1, "game_id": 12, "score": 250,
@@ -93,7 +93,7 @@ If you repeat a value, it is handled like enumerations, so only available values
 
 Because the score `500` is repeated twice, all generated values will use either score `250` or score `500`. The fields `user_id` and `game_id` have no repeated values, so everything generated will be random. Here's a possible result:
 
-```
+```json
 {
     "scores": [
         "id": 1, "user_id": 1, "game_id": 12, "score": 250,
@@ -109,7 +109,7 @@ Because the score `500` is repeated twice, all generated values will use either 
 
 The range of your sample values is being respected. For example in the example above, `user_id` has samples between 1 and 72, so only values between 1 and 72 will be generated. Not only integers and floats can have ranges, date and datetime can have ranges, as well. So for example if you have a birthday field like in this sample data:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "birthday": "1975-09-03",
@@ -121,7 +121,7 @@ The range of your sample values is being respected. For example in the example a
 
 The range detected will be 1922-03-01 to 1988-11-21 and the generated data could look like this:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "birthday": "1975-09-03",
@@ -135,7 +135,7 @@ The range detected will be 1922-03-01 to 1988-11-21 and the generated data could
 
 Ranges can be used in creative ways. For example if you want to restrict coordinates to all be in a specific rectangle, all you have to do is put two coordinates in your sample to the edges of that rectangle, something like this:
 
-```
+```json
 {
     "waypoints": [
         "id": 1, "lat": 46.204, "lng": 6.1432,
@@ -150,7 +150,7 @@ This would roughly limit the randomly generated waypoints to be inside of Switze
 
 The direction of numbers is being detected. So for example is this sample:
 
-```
+```json
 {
     "waypoints": [
         "id": 1, "score": 100,
@@ -162,7 +162,7 @@ The direction of numbers is being detected. So for example is this sample:
 
 The result would be something like:
 
-```
+```json
 {
     "waypoints": [
         "id": 1, "score": 100,
@@ -176,7 +176,7 @@ The result would be something like:
 
 To prevent this behaviour, simply add one value that breaks the direction:
 
-```
+```json
 {
     "waypoints": [
         "id": 1, "score": 150,
@@ -192,7 +192,7 @@ Direction detection works for `int`, `float`, `date` and `datetime`.
 
 Blowson tries to detect the rules between each non id field in a row. For example if you have a field `from` and a field `to` and to is always bigger than from, than all the generated numbers will follow that rule. Currently `int`, `float`, `date` and `datetime` values have detectedions for `>`, `<` and `=`. An example:
 
-```
+```json
 {
     "ranges": [
         "id": 1, "from": 1, "to": 2,
@@ -204,7 +204,7 @@ Blowson tries to detect the rules between each non id field in a row. For exampl
 
 As `from` is always smaller than `to`, the result will look like this:
 
-```
+```json
 {
     "ranges": [
         "id": 1, "from": 1, "to": 2,
@@ -218,7 +218,7 @@ As `from` is always smaller than `to`, the result will look like this:
 
 If you don't want such rules to be followed, all you have to do is define sample data without such rules:
 
-```
+```json
 {
     "ranges": [
         "id": 1, "from": 1, "to": 1,
@@ -238,7 +238,7 @@ Another feature of the above used sample data is that the score `500` is twice i
 
 Key value pairs that don't show up in every single entry are handled as optional and randomly added to new entries. For example with this sample data:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "admin": true,
@@ -250,7 +250,7 @@ Key value pairs that don't show up in every single entry are handled as optional
 
 Only one entry has the field `admin`, so that field will be an optional one. Here's a generated dataset:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "admin": true,
@@ -266,7 +266,7 @@ Only one entry has the field `admin`, so that field will be an optional one. Her
 
 Let's say you have the numbers 25, 50 and 100 in your sample data. In this case we assume, that only 25, 50, 75 and 100 is a possible random number. Blowson respects the steps between values by detecting the minimal gap between numbers. If you don't want a minimum gap, just add a minimal gap of one to your sample data like this:
 
-```
+```json
 {
     "scores": [
         "id": 1, "user_id": 1, "game_id": 12, "score": 1,
@@ -278,7 +278,7 @@ Let's say you have the numbers 25, 50 and 100 in your sample data. In this case 
 
 In the above case, the score would be a random number between 1 and 1000. If you want a step of 50, you could define the sample data like this:
 
-```
+```json
 {
     "scores": [
         "id": 1, "user_id": 1, "game_id": 12, "score": 50,
@@ -296,7 +296,7 @@ If you have floating point numbers in your data, the script will respect the pre
 
 In a context where you use sample data to fill a database, you often will have to define relationship fields like `user_id`. Now to have realistic values in those fields, you need to follow one simple rule, always define your field value range to the size of the table you're connecting to. Here's an example:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "age": 12,

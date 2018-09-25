@@ -4,7 +4,7 @@
 
 You can include other fields from the same entry into a string with template variables. Here's an example:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "slogan": "Hi, I'm {{field.firstname}}. How can I help you?",
@@ -17,7 +17,7 @@ As soon as Blowson detects template variables in a string, it will repeat those 
 
 The result will be something like this:
 
-```
+```json
 {
     "users": [
         "id": 1, "firstname": "Mike", "slogan": "Hi, I'm Mike. How can I help you?",
@@ -33,7 +33,7 @@ The result will be something like this:
 
 What makes field variables really powerful is that fields can be referenced from a relationship. So for example if you have a type user and a type message (anonymous message to the user), than you can use a field from the user in the message to create messages that fit the context. Something like:
 
-```
+```json
 {
     "users": [
         { "id": 1, "firstname": "Mike" },
@@ -75,12 +75,12 @@ You can combine multiple filters, so for example you can do something like `{{wo
 
 Additionally you can use the `?` option to define a default value, in case the field you're referencing is optional. This could look like this:
 
-```
+```json
 {
     "files": [
-        { id: 1, width: 250, height: 100, url: 'https://imgplaceholder.com/{{field.width?250}}x{{field.height?100}}' },
-        { id: 2, width: 500, height: 250, url: 'https://imgplaceholder.com/{{field.width?500}}x{{field.height?250}}' },
-        { id: 5, url: 'https://imgplaceholder.com/{{field.width?400}}x{{field.height?200}}' }
+        { "id": 1, "width": 250, "height": 100, "url": "https://imgplaceholder.com/{{field.width?250}}x{{field.height?100}}" },
+        { "id": 2, "width": 500, "height": 250, "url": "https://imgplaceholder.com/{{field.width?500}}x{{field.height?250}}" },
+        { "id": 5, "url": "https://imgplaceholder.com/{{field.width?400}}x{{field.height?200}}" }
     ]
 }
 ```

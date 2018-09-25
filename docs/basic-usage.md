@@ -8,7 +8,7 @@
 
 Your sample data file:
 
-```
+```javascript
 const userCount = 50;
 const commentCount = 250;
 
@@ -28,7 +28,7 @@ module.exports = {
 
 And than in your script:
 
-```
+```javascript
 const blowson = require('blowson');
 const data = require('./data.js');
 
