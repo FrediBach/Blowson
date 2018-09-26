@@ -352,15 +352,31 @@ export function filterValue(value, filter) {
             return Math.round(value);
         } else if (numValue !== NaN && filter === 'floor') {
             return Math.floor(value);
-        } else if (numValue !== NaN && filter.substring(0, 4) === 'plus') {
-            let plusNum = Number(filter.substring(4));
-            return (numValue + plusNum);
-        } else if (numValue !== NaN && filter.substring(0, 5) === 'minus') {
-            let minusNum = Number(filter.substring(5));
-            return (numValue - minusNum);
-        } else if (numValue !== NaN && filter.substring(0, 5) === 'times') {
-            let timesNum = Number(filter.substring(5));
-            return (numValue * timesNum);
+        } else if (numValue !== NaN && filter.substring(0, 5) === 'plus:') {
+            let filterSplit = filter.split(':');
+            return (numValue + Number(filterSplit[1]));
+        } else if (numValue !== NaN && filter.substring(0, 6) === 'minus:') {
+            let filterSplit = filter.split(':');
+            return (numValue - Number(filterSplit[1]));
+        } else if (numValue !== NaN && filter.substring(0, 6) === 'times:') {
+            let filterSplit = filter.split(':');
+            return (numValue * Number(filterSplit[1]));
+        } else if (numValue !== NaN && filter.substring(0, 4) === 'max:') {
+            let filterSplit = filter.split(':'),
+                limit = Number(filterSplit[1]);
+            if (numValue > limit) {
+                return limit;
+            } else {
+                return numValue;
+            }
+        } else if (numValue !== NaN && filter.substring(0, 4) === 'min:') {
+            let filterSplit = filter.split(':'),
+                limit = Number(filterSplit[1]);
+            if (numValue < limit) {
+                return limit;
+            } else {
+                return numValue;
+            }
         } else if (numValue !== NaN && filter.substring(0, 4) === 'num:') {
             let filterSplit = filter.split(':');
             return numeral(numValue).format(filterSplit[1]);

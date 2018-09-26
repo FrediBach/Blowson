@@ -86,9 +86,11 @@ The available filters are:
 - md (Markdown to HTML)
 - round (for numbers)
 - floor (for numbers)
-- plusX (for numbers, plus100 adds 100 to original number)
-- minusX (for numbers, minus100 subtracts 100 from original number)
-- timesX (for numbers, times100 multiplies original number by 100)
+- plus:X (for numbers, plus:100 adds 100 to original number)
+- minus:X (for numbers, minus:100 subtracts 100 from original number)
+- times:X (for numbers, times:100 multiplies original number by 100)
+- max:X (for numbers, max:10 limits numbers to a maximum of 10)
+- min:X (for numbers, min:10 limits numbers to a minimum of 10)
 - date:dateFormat
 - num:numberFormat
 - optional
