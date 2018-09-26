@@ -79,6 +79,8 @@ The available filters are:
 - lower
 - upper
 - capitalize
+- plural
+- singular
 - md5
 - trim
 - md (Markdown to HTML)

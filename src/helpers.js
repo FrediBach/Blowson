@@ -6,7 +6,7 @@ import {format} from 'date-fns';
 import numeral from 'numeral';
 import marked from 'marked';
 import Prob from 'prob.js';
-import {pluralize} from './txtgen/util';
+import pluralize from 'pluralize';
 
 const chance = new Chance();
 
@@ -340,6 +340,10 @@ export function filterValue(value, filter) {
             return md5(value);
         } else if (filter === 'capitalize') {
             return capitalize(value);
+        } else if (filter === 'plural') {
+            return pluralize.plural(value);
+        } else if (filter === 'singular') {
+            return pluralize.singular(value);
         } else if (filter === 'trim') {
             return value.replace(/\s/g, '');
         } else if (filter === 'md') {
@@ -425,7 +429,7 @@ export function getFieldByPath(row, path, data) {
 
         if (typeof currentRow[nextStep + '_id'] !== 'undefined') {
             let item,
-                pluralNextStep = pluralize(nextStep);
+                pluralNextStep = pluralize.plural(nextStep);
 
             if (typeof data[pluralNextStep] !== 'undefined') {
                 for (item in data[pluralNextStep]) {
