@@ -2,6 +2,7 @@ import _ from 'lodash';
 import Chance from 'chance';
 import faker from 'faker';
 import stringify from 'json-stringify-pretty-compact';
+import pluralize from 'pluralize';
 
 import {
     sentence,
@@ -534,7 +535,7 @@ module.exports = function blowson(inputData) {
                             }
                         } else if (parts[0] === 'connected' && parts.length > 1) {
                             let path = parts.slice(1),
-                                values = getValuesByPath(path, type.slice(0, -1), id, data);
+                                values = getValuesByPath(path, pluralize.singular(type), id, data);
 
                             if (values.length > 0) {
                                 if (filterParts.length > 1) {
