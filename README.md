@@ -470,6 +470,9 @@ The available filters are:
 - md (Markdown to HTML)
 - round (for numbers)
 - floor (for numbers)
+- plusX (for numbers, plus100 adds 100 to original number)
+- minusX (for numbers, minus100 subtracts 100 from original number)
+- timesX (for numbers, times100 multiplies original number by 100)
 - date:dateFormat
 - num:numberFormat
 - optional
@@ -478,6 +481,7 @@ The available filters are:
 - min (for arrays)
 - sum (for arrays)
 - avg (for arrays)
+- rand (for arrays)
 
 The date filter uses the `date-fns` library to format your dates. For example if you want to only show the year of a date field `created`, do it like this: `{{field.created|date:YYYY}}`
 

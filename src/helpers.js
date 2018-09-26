@@ -352,6 +352,15 @@ export function filterValue(value, filter) {
             return Math.round(value);
         } else if (numValue !== NaN && filter === 'floor') {
             return Math.floor(value);
+        } else if (numValue !== NaN && filter.substring(0, 4) === 'plus') {
+            let plusNum = Number(filter.substring(4));
+            return (numValue + plusNum);
+        } else if (numValue !== NaN && filter.substring(0, 5) === 'minus') {
+            let minusNum = Number(filter.substring(5));
+            return (numValue - minusNum);
+        } else if (numValue !== NaN && filter.substring(0, 5) === 'times') {
+            let timesNum = Number(filter.substring(5));
+            return (numValue * timesNum);
         } else if (numValue !== NaN && filter.substring(0, 4) === 'num:') {
             let filterSplit = filter.split(':');
             return numeral(numValue).format(filterSplit[1]);
@@ -374,6 +383,8 @@ export function filterValue(value, filter) {
             return _.sum(value);
         } else if (filter === 'avg') {
             return _.mean(value);
+        } else if (filter === 'rand') {
+            return _.sample(value);
         } else {
             return value;
         }
