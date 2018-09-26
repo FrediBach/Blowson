@@ -14,6 +14,8 @@ Blowson analyses your sample data to detect the rules it than uses to extend it.
 
 Key features: Blowson has field type detection by key and content, detection of repeating values, detection of the range of values, the direction of values, the rules between keys, of optional values, of value steps, floating point precision and the relationships between types. Additionally template variables and filters make it possible to construct content exactly as you want based on other related content.
 
+Full documentation can be found here: [www.blowson.com](https://www.blowson.com/docs/)
+
 This library was originally called JSON Data Extender and renamed to Blowson: [JSON Data Extender](https://github.com/FrediBach/json-data-extender)
 
 Other related projects and libraries are:
