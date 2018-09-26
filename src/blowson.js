@@ -541,7 +541,11 @@ module.exports = function blowson(inputData) {
                                 if (filterParts.length > 1) {
                                     return applyFilters(values, filterParts);
                                 } else {
-                                    return values.join(', ');
+                                    if (values.length > 1) {
+                                        return [values.slice(0, -1).join(', '), values.slice(-1)[0]].join(values.length < 2 ? '' : ' and ');
+                                    } else {
+                                        return values.join(',');
+                                    }
                                 }
                             }
                         } else if (defaultParts.length > 1) {
