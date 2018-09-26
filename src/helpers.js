@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Chance from 'chance';
 import slugify from 'slugify';
 import md5 from 'md5';
@@ -325,37 +326,53 @@ export function getDateDirection(entries) {
 }
 
 export function filterValue(value, filter) {
-    value = String(value);
-    let numValue = Number(value);
+    if (value.constructor !== Array) {
+        value = String(value);
+        let numValue = Number(value);
 
-    if (filter === 'slug') {
-        return slugify(value, { lower: true });
-    } else if (filter === 'lower') {
-        return value.toLowerCase();
-    } else if (filter === 'uppper') {
-        return value.toLowerCase();
-    } else if (filter === 'md5') {
-        return md5(value);
-    } else if (filter === 'capitalize') {
-        return capitalize(value);
-    } else if (filter === 'trim') {
-        return value.replace(/\s/g, '');
-    } else if (filter === 'md') {
-        return marked(value);
-    } else if (numValue !== NaN && filter === 'round') {
-        return Math.round(value);
-    } else if (numValue !== NaN && filter === 'floor') {
-        return Math.floor(value);
-    } else if (numValue !== NaN && filter.substring(0, 4) === 'num:') {
-        let filterSplit = filter.split(':');
-        return numeral(numValue).format(filterSplit[1]);
-    } else if (filter === 'optional' && Math.random() >= 0.5) {
-        return '';
-    } else if (filter.substring(0, 5) === 'date:') {
-        let filterSplit = filter.split(':');
-        return format(new Date(value), filterSplit[1]);
+        if (filter === 'slug') {
+            return slugify(value, { lower: true });
+        } else if (filter === 'lower') {
+            return value.toLowerCase();
+        } else if (filter === 'uppper') {
+            return value.toLowerCase();
+        } else if (filter === 'md5') {
+            return md5(value);
+        } else if (filter === 'capitalize') {
+            return capitalize(value);
+        } else if (filter === 'trim') {
+            return value.replace(/\s/g, '');
+        } else if (filter === 'md') {
+            return marked(value);
+        } else if (numValue !== NaN && filter === 'round') {
+            return Math.round(value);
+        } else if (numValue !== NaN && filter === 'floor') {
+            return Math.floor(value);
+        } else if (numValue !== NaN && filter.substring(0, 4) === 'num:') {
+            let filterSplit = filter.split(':');
+            return numeral(numValue).format(filterSplit[1]);
+        } else if (filter === 'optional' && Math.random() >= 0.5) {
+            return '';
+        } else if (filter.substring(0, 5) === 'date:') {
+            let filterSplit = filter.split(':');
+            return format(new Date(value), filterSplit[1]);
+        } else {
+            return value;
+        }
     } else {
-        return value;
+        if (filter === 'count') {
+            return value.length;
+        } else if (filter === 'max') {
+            return maxNumber(value);
+        } else if (filter === 'min') {
+            return minNumber(value);
+        } else if (filter === 'sum') {
+            return _.sum(value);
+        } else if (filter === 'avg') {
+            return _.mean(value);
+        } else {
+            return value;
+        }
     }
 }
 
@@ -369,6 +386,29 @@ export function applyFilters(value, filters) {
     }
 
     return filtered;
+}
+
+export function getValuesByPath(path, reftype, id, data) {
+    let type = path[0];
+
+    if (typeof data[type] !== 'undefined') {
+        let row, values = [];
+
+        for (row of data[type]) {
+            if (row[`${reftype}_id`] === id) {
+                if (path.length > 1) {
+                    values.push(row[path[1]]);
+                } else {
+                    values.push(row.id);
+                }
+            }
+        }
+
+        // Just return the ids
+        return values;
+    } else {
+        return [];
+    }
 }
 
 export function getFieldByPath(row, path, data) {
@@ -570,4 +610,8 @@ export function ruleBasedValue(rules, row, key) {
     }
 
     return null;
+}
+
+export function isNumeric(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
 }

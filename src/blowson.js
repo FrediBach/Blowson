@@ -43,13 +43,15 @@ import {
     filterValue,
     applyFilters,
     getFieldByPath,
+    getValuesByPath,
     detectFieldType,
     normalDistRandomInt,
     renameProperty,
     getFieldRules,
     removeIncompatibleRules,
     rulesAreValid,
-    ruleBasedValue
+    ruleBasedValue,
+    isNumeric
 } from './helpers';
 
 const chance = new Chance();
@@ -486,7 +488,8 @@ module.exports = function blowson(inputData) {
     for (type in data) {
         for (row in data[type]) {
             for (field in data[type][row]) {
-                let value = data[type][row][field];
+                let value = data[type][row][field],
+                    id = data[type][row].id;
 
                 if (typeof value === 'string') {
                     data[type][row][field] = value.replace(/{{\s*([\w\.\?\|\:]+)\s*}}/g, function (match, capture) {
@@ -529,6 +532,17 @@ module.exports = function blowson(inputData) {
                             if (defaultParts.length > 1) {
                                 return defaultParts[1];
                             }
+                        } else if (parts[0] === 'connected' && parts.length > 1) {
+                            let path = parts.slice(1),
+                                values = getValuesByPath(path, type.slice(0, -1), id, data);
+
+                            if (values.length > 0) {
+                                if (filterParts.length > 1) {
+                                    return applyFilters(values, filterParts);
+                                } else {
+                                    return values.join(', ');
+                                }
+                            }
                         } else if (defaultParts.length > 1) {
                             return defaultParts[1];
                         }
@@ -537,6 +551,9 @@ module.exports = function blowson(inputData) {
                     });
 
                     data[type][row][field] = data[type][row][field].replace(/  +/g, ' ');
+                    if (isNumeric(data[type][row][field])) {
+                        data[type][row][field] = Number(data[type][row][field]);
+                    }
                 }
             }
         }

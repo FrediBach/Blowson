@@ -95,8 +95,8 @@ module.exports = {
     ],
     flights: [
         { id: 1, user_id: 1, league_id: 1, wing_id: 1, date: '2018-07-02T12:00:00+01:00', score: 200, file_id: 4, comment: 'Bockig!' },
-        { id: 2, user_id: 2, league_id: 2, wing_id: 2, date: '2018-07-03T12:00:00+01:00', score: 100, file_id: 5 },
-        { id: 100, user_id: 30, league_id: 3, wing_id: 50, date: '2018-01-02T12:00:00+01:00', score: 50, file_id: 25, comment: 'Was für ein Erlebniss! Immer wieder gerne.' }
+        { id: 2, user_id: 2, league_id: 2, wing_id: 2, date: '2018-07-03T12:00:00+01:00', score: 50, file_id: 5 },
+        { id: 100, user_id: 30, league_id: 3, wing_id: 50, date: '2018-01-02T12:00:00+01:00', score: 100, file_id: 25, comment: 'Was für ein Erlebniss! Immer wieder gerne.' }
     ],
     favoriteFlights: [
         { id: 1, user_id: 1, flight_id: 1, datetime: '2018-07-02T12:00:00+01:00' },

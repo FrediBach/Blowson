@@ -50,6 +50,27 @@ What makes field variables really powerful is that fields can be referenced from
 }
 ```
 
+## Connected Entries
+
+Another way to use relationships to your advantage, is to use the `connected` variable type. So for example if you have a comments type and a posts type and comments point to posts, you can get the count of comments on each post like this:
+
+```json
+{
+    "posts": [
+        { "id": 1, "text": "Bla ...", "commentCount": "{{connected.comments|count}}" },
+        { "id": 2, "text": "Bla ...", "commentCount": "{{connected.comments|count}}" },
+        { "id": 50, "text": "Bla ...", "commentCount": "{{connected.comments|count}}" }
+    ],
+    "comments": [
+        { "id": 1, "post_id": 1, "text": "Some text ..." },
+        { "id": 2, "post_id": 2, "text": "Some text ..." },
+        { "id": 200, "post_id": 50, "text": "Some text ..." }
+    ]
+}
+```
+
+By using `connected`, you always get an array back. If you don't use a filter, the array entries will be joined with a separating `,`. You can use all the array filters to collapse the array to a single value, for example: `{{connected.flights.score|max}}`
+
 ## Filters
 
 The available filters are:
@@ -66,6 +87,11 @@ The available filters are:
 - date:dateFormat
 - num:numberFormat
 - optional
+- count (for arrays)
+- max (for arrays)
+- min (for arrays)
+- sum (for arrays)
+- avg (for arrays)
 
 The date filter uses the `date-fns` library to format your dates. For example if you want to only show the year of a date field `created`, do it like this: `{{field.created|date:YYYY}}`
 
