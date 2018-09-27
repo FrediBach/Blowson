@@ -40,19 +40,21 @@ The most basic detection is by the exact name of a fields key. Here are all the 
 
 If a field type can't be detected by its key, Blowson will try to guess the type by it's content. The following detections currently exists:
 
-- Word
-- Sentence
-- Paragraph
-- Article
-- String
-- Char
-- Integer
-- Float
-- Boolean
-- Date (in the format: 1976-05-23)
-- Datetime (in the format: 1976-05-23T15:48:45+01:00)
-- Time (in the format: 23:56)
-- Array of numbers (for multiple relationship fields)
+| Content       | Example Input              | Example Output                |
+|---------------|----------------------------|-------------------------------|
+| Word          | House                      | Animal                        |
+| Sentence      | He made coffee.            | The animal was born!          |
+| Paragraph     | Text...                    | Random paragraph ...          |
+| Article       | Article text ...           | Multiple random paragraphs ...  |
+| String        | rraghjgkfdsf               | tuigdjfkakjbdfsajk            |
+| Char          | A                          | T                             |
+| Integer       | 23                         | 57                            |
+| Float         | 3.14                       | 12.98                         |
+| Boolean       | true                       | false                         |
+| Date          | 1976-05-23                 | 1999-01-17                    |
+| Datetime      | 1976-05-23T15:48:45+01:00  | 2014-11-19-T07:18:11+04:00    |
+| Time          | 14:36                      | 22:18                         |
+| Array         | [1, 5, 7, 8]               | [2, 3, 6, 8, 9]               |
 
 Sentence, paragraph and article will be generated in English and the script will try to guess a correct range of amounts. So for example if your sample looks like this:
 
