@@ -6,33 +6,35 @@ Blowson analyses your field names, field content and relationships between field
 
 The most basic detection is by the exact name of a fields key. Here are all the currently detected field keys:
 
-- id
-- age
-- firstname
-- lastname
-- company
-- country
-- email
-- color
-- ip
-- profession
-- url
-- city
-- street
-- zip
-- weekday
-- year
-- password
-- guid
-- product
-- material
-- iban
-- bic
-- avatar
-- username
-- homepage
-- job
-- mimetype
+| Field Key     | Example Value           |
+|---------------|-------------------------|
+| id            | 1                       |
+| age           | 38                      |
+| firstname     | Mike                    |
+| lastname      | Smith                   |
+| company       | Google                  |
+| country       | CH                      |
+| email         | Kody48@example.org      |
+| color         | #45ffdc                 |
+| ip            | 11.47.204.208           |
+| profession    | Analyst                 |
+| url           | https://www.example.org/  |
+| city          | Flatleybury             |
+| street        | 082 Sanford Park        |
+| zip           | 55130                   |
+| weekday       | Saturday                |
+| year          | 2007                    |
+| password      | ofbgqSIvbaWGvAa         |
+| guid          | 63230c6c-8621-4eb0-aad0-2a7af12fb843      |
+| product       | Hat                     |
+| material      | Rubber                  |
+| iban          | EE917001009726211084    |
+| bic           | IKYUMUS1490             |
+| avatar        | https://s3.amazonaws.com/uifaces/faces/twitter/edkf/128.jpg    |
+| username      | Heidi4                  |
+| homepage      | http://alvena.name      |
+| job           | Accountant              |
+| mimetype      | application/x-silverlight-app       |
 
 ## Content
 
