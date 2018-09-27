@@ -352,6 +352,8 @@ export function filterValue(value, filter) {
             return Math.round(value);
         } else if (numValue !== NaN && filter === 'floor') {
             return Math.floor(value);
+        } else if (numValue !== NaN && filter === 'ceil') {
+            return Math.ceil(value);
         } else if (numValue !== NaN && filter.substring(0, 5) === 'plus:') {
             let filterSplit = filter.split(':');
             return (numValue + Number(filterSplit[1]));

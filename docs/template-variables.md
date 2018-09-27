@@ -75,31 +75,37 @@ By using `connected`, you always get an array back. If you don't use a filter, t
 
 The available filters are:
 
-- slug
-- lower
-- upper
-- capitalize
-- plural
-- singular
-- md5
-- trim
-- md (Markdown to HTML)
-- round (for numbers)
-- floor (for numbers)
-- plus:X (for numbers, plus:100 adds 100 to original number)
-- minus:X (for numbers, minus:100 subtracts 100 from original number)
-- times:X (for numbers, times:100 multiplies original number by 100)
-- max:X (for numbers, max:10 limits numbers to a maximum of 10)
-- min:X (for numbers, min:10 limits numbers to a minimum of 10)
-- date:dateFormat
-- num:numberFormat
-- optional
-- count (for arrays)
-- max (for arrays)
-- min (for arrays)
-- sum (for arrays)
-- avg (for arrays)
-- rand (for arrays)
+| Filter        | Value Type     | Original       | Filtered      |
+|---------------|----------------|----------------|---------------|
+| slug          | String         | Test String    | test-string   |
+| lower         | String         | Test String    | test string   |
+| upper         | String         | Test String    | TEST STRING   |
+| capitalize    | String         | test string    | Test String   |
+| plural        | String         | Dog            | Dogs          |
+| singular      | String         | Cats           | Cat           |
+| md5           | String         | MyPassword123  | 973D98AC221D7E433FD7C417AA41027A   |
+| slug          | String         |  Test  String  | Test String   |
+| md            | String         | # Markdown     | `<h1>Markdown</h1>`   |
+| round         | Number         | 3.14           | 3             |
+| floor         | Number         | 3.14           | 3             |
+| ceil          | Number         | 3.14           | 4             |
+| plus:1        | Number         | 3              | 4             |
+| plus:10       | Number         | 3              | 13            |
+| minus:1       | Number         | 20             | 19            |
+| minus:10      | Number         | 20             | 10            |
+| times:2       | Number         | 3              | 6             |
+| times:4       | Number         | 3              | 12            |
+| max:10        | Number         | 11             | 10            |
+| min:10        | Number         | 3              | 10            |
+| date:YYYY     | Date           | 2018-03-24     | 2018          |
+| num:0o        | Number         | 2              | 2nd           |
+| optional      | Any            | Test           |               |
+| count         | Array          | [1, 2, 5, 7]   | 4             |
+| max           | Array          | [1, 2, 5, 7]   | 7             |
+| min           | Array          | [1, 2, 5, 7]   | 1             |
+| sum           | Array          | [1, 2, 5, 7]   | 15            |
+| avg           | Array          | [1, 2, 5, 7]   | 3.75          |
+| rand          | Array          | [1, 2, 5, 7]   | 5             |
 
 The date filter uses the `date-fns` library to format your dates. For example if you want to only show the year of a date field `created`, do it like this: `{{field.created|date:YYYY}}`
 
