@@ -545,15 +545,13 @@ module.exports = function blowson(inputData) {
                             let path = parts.slice(1),
                                 values = getValuesByPath(path, pluralize.singular(type), id, data);
 
-                            if (values.length > 0) {
-                                if (filterParts.length > 1) {
-                                    return applyFilters(values, filterParts);
+                            if (filterParts.length > 1) {
+                                return applyFilters(values, filterParts);
+                            } else {
+                                if (values.length > 1) {
+                                    return [values.slice(0, -1).join(', '), values.slice(-1)[0]].join(values.length < 2 ? '' : ' and ');
                                 } else {
-                                    if (values.length > 1) {
-                                        return [values.slice(0, -1).join(', '), values.slice(-1)[0]].join(values.length < 2 ? '' : ' and ');
-                                    } else {
-                                        return values.join(',');
-                                    }
+                                    return values.join(',');
                                 }
                             }
                         } else if (defaultParts.length > 1) {
