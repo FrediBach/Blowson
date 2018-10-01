@@ -3,8 +3,8 @@ const stringify = require('json-stringify-pretty-compact');
 
 const blowson = require('./src/blowson');
 
-const dataPath = process.env.DATA_PATH || './data.js';
-const savePath = process.env.SAVE_PATH || './data-extended.js';
+const dataPath = process.env.DATA_PATH || './examples/poi-comp.js';
+const savePath = process.env.SAVE_PATH || './examples/poi-comp-extended.js';
 
 const data = require(dataPath);
 
