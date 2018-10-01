@@ -350,8 +350,8 @@ export function filterValue(value, filter) {
             return slugify(value, { lower: true });
         } else if (filter === 'lower') {
             return value.toLowerCase();
-        } else if (filter === 'uppper') {
-            return value.toLowerCase();
+        } else if (filter === 'upper') {
+            return value.toUpperCase();
         } else if (filter === 'md5') {
             return md5(value);
         } else if (filter === 'capitalize') {
