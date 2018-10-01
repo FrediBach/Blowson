@@ -191,14 +191,14 @@ module.exports = {
         },
         {
             id: 2,
-            step100: 200,
-            step250: 750,
+            step100: 1000,
+            step250: 0,
             step1: 6
         },
         {
             id: 25,
-            step100: 1000,
-            step250: 0,
+            step100: 200,
+            step250: 750,
             step1: 5
         }
     ],
