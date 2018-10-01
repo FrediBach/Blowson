@@ -463,6 +463,14 @@ module.exports = function blowson(inputData) {
                             value = randomTime();
                         }
 
+                        if (value === '' && settings.fields[field].type === 'boolean') {
+                            if (Math.random() >= 0.5) {
+                                value = true;
+                            } else {
+                                value = false;
+                            }
+                        }
+
                     }
 
                     if (settings.fields[field].required || Math.random() >= 0.5) {
