@@ -321,7 +321,7 @@ module.exports = function blowson(inputData) {
                             } else if (maxSentences > 1) {
                                 value = paragraph(Math.floor(Math.random() * maxSentences) + minSentences);
                             } else if (maxWords > 1) {
-                                value = chance.sentence({ words: Math.floor(Math.random() * maxWords) + minWords }).slice(0, -1);
+                                value = sentence();
                             } else {
                                 if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
                                     value = chance.capitalize(chance.word({ length: Math.floor(Math.random() * minLength) + maxLength }));

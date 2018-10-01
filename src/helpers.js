@@ -191,19 +191,31 @@ export function maxWordCount(strArray) {
 }
 
 export function minSentenceCount(strArray) {
-    return Math.min.apply(Math, strArray.map(function (str) { return str.split(/[\.\!\?]+/).length; }));
+    return Math.min.apply(Math, strArray.map(function (str) {
+        let parts = _.compact(str.split(/[\.\!\?]+/));
+        return parts.length; 
+    }));
 }
 
 export function maxSentenceCount(strArray) {
-    return Math.max.apply(Math, strArray.map(function (str) { return str.split(/[\.\!\?]+/).length; }));
+    return Math.max.apply(Math, strArray.map(function (str) {
+        let parts = _.compact(str.split(/[\.\!\?]+/));
+        return parts.length; 
+    }));
 }
 
 export function minParagraphCount(strArray) {
-    return Math.min.apply(Math, strArray.map(function (str) { return str.replace(/\n$/gm, '').split(/\n/).length; }));
+    return Math.min.apply(Math, strArray.map(function (str) {
+        let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+        return parts.length;
+    }));
 }
 
 export function maxParagraphCount(strArray) {
-    return Math.max.apply(Math, strArray.map(function (str) { return str.replace(/\n$/gm, '').split(/\n/).length; }));
+    return Math.max.apply(Math, strArray.map(function (str) {
+        let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+        return parts.length;
+    }));
 }
 
 export function minDate(dateArray) {
