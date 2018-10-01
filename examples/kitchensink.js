@@ -250,9 +250,9 @@ module.exports = {
         { "id": 5, "firstname": "Lucy", age: 23 }
     ],
     relationShipTargets: [
-        { "id": 1, "user_id": 1, "text": "Hi {{field.relationshipSource.firstname}} (age {{field.relationshipSource.age}}), well done. Congrats!" },
-        { "id": 2, "user_id": 2, "text": "Hi {{field.relationshipSource.firstname}} (age {{field.relationshipSource.age}}), well done. Congrats!" },
-        { "id": 25, "user_id": 5, "text": "Hello {{field.relationshipSource.firstname}} (id: {{field.user_id}}), don't stop what you're doing!" }
+        { "id": 1, "relationshipSource_id": 1, "text": "Hi {{field.relationshipSource.firstname}} (age {{field.relationshipSource.age}}), well done. Congrats!" },
+        { "id": 2, "relationshipSource_id": 2, "text": "Hi {{field.relationshipSource.firstname}} (age {{field.relationshipSource.age}}), well done. Congrats!" },
+        { "id": 25, "relationshipSource_id": 5, "text": "Hello {{field.relationshipSource.firstname}} (id: {{field.relationshipSource_id}}), don't stop what you're doing!" }
     ],
     posts: [
         { "id": 1, "text": "Bla ...", "commentCount": "{{connected.comments|count}}" },
