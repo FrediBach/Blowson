@@ -15,11 +15,15 @@ export function randomTime() {
         minutes = String(chance.minute()),
         seconds = String(chance.second());
 
-    if (hours.length === 1) '0' + hours;
-    if (minutes.length === 1) '0' + minutes;
-    if (seconds.length === 1) '0' + seconds;
+    if (hours.length === 1) hours = '0' + hours;
+    if (minutes.length === 1) minutes = '0' + minutes;
+    if (seconds.length === 1) seconds = '0' + seconds;
 
-    return [hours, minutes, seconds].join(':');
+    if (Math.random() >= 0.5) {
+        return [hours, minutes, seconds].join(':');
+    } else {
+        return [hours, minutes].join(':');
+    }
 }
 
 export function randomDate(start, end) {
@@ -250,7 +254,7 @@ export function isDatetimeString(str) {
 }
 
 export function isTimeString(str) {
-    return /^[0-9]{2}:[0-9]{2}:[0-9]{2}$/.test(str);
+    return /^[0-9]{2}:[0-9]{2}:[0-9]{2}$|^[0-9]{2}:[0-9]{2}$/.test(str);
 }
 
 export function getWeights(allEntries, uniqueEntries) {
