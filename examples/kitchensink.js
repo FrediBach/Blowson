@@ -216,6 +216,26 @@ module.exports = {
             precision4: 42.3784
         }
     ],
+    dates: [
+        {
+            id: 1,
+            fromDate: '1901-01-01',
+            toDate: '2099-12-31',
+            fromTimestamp: '1901-01-01T00:00:00+01:00',
+            toTimestamp: '2099-12-31T23:59:59+01:00',
+            fromTime: '00:00',
+            toTime: '23:59'
+        },
+        {
+            id: 25,
+            fromDate: '2000-01-02',
+            toDate: '2001-12-30',
+            fromTimestamp: '2000-01-02T00:00:00+01:00',
+            toTimestamp: '2001-12-30T23:59:59+01:00',
+            fromTime: '11:59',
+            toTime: '12:00'
+        }
+    ],
     customFieldNames: [
         { "id": 1, "firstname": "Mike", "surname__lastname": "Smith" },
         { "id": 5, "firstname": "Lucy", "surname__lastname": "Johnson" }
