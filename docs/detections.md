@@ -63,8 +63,8 @@ Sentence, paragraph and article will be generated in English and the script will
 ```json
 {
     "headlines": [
-        "id": 1, "title": "What a beautiful day this is!",
-        "id": 3, "title": "Just another day."
+        { "id": 1, "title": "What a beautiful day this is!" },
+        { "id": 3, "title": "Just another day." }
     ]
 }
 ```
@@ -74,9 +74,9 @@ The script will guess that you want title sentences with at least three words an
 ```json
 {
     "headlines": [
-        "id": 1, "title": "What a beautiful day this is!",
-        "id": 2, "title": "Worst day of my life.",
-        "id": 3, "title": "Just another day."
+        { "id": 1, "title": "What a beautiful day this is!" },
+        { "id": 2, "title": "Worst day of my life." },
+        { "id": 3, "title": "Just another day." }
     ]
 }
 ```
@@ -85,16 +85,31 @@ Well, it will just generate a random sentence, so probably contextually complete
 
 Additionally, long words will appear once in a while to make it possible to test UI problems.
 
-## Repeated values
+## String Pattern
+
+As listed above, Blowson can detect patterns in strings. For this to work, all strings of a specific field need to have the same length and follow the same patterns. Here's an example:
+
+```json
+{
+    "contacts": [
+        { "id": 1, "phone": "++41 (76) 654 58 21" <},
+        { "id": 5, "phone": "++49 (21) 547 34 23" }
+    ]
+}
+```
+
+As all chracters match, nicely random phone numbers will be generated. This however only works for numbers of the same length, you can't generate diffferent lengths as than no pattern will be detected. 
+
+## Repeated Values
 
 If you repeat a value, it is handled like enumerations, so only available values will be used. Here's an example:
 
 ```json
 {
     "scores": [
-        "id": 1, "user_id": 1, "game_id": 12, "score": 250,
-        "id": 2, "user_id": 5, "game_id": 3, "score": 500,
-        "id": 5, "user_id": 72, "game_id": 11, "score": 500
+        { "id": 1, "user_id": 1, "game_id": 12, "score": 250 },
+        { "id": 2, "user_id": 5, "game_id": 3, "score": 500 },
+        { "id": 5, "user_id": 72, "game_id": 11, "score": 500 }
     ]
 }
 ```
@@ -104,11 +119,11 @@ Because the score `500` is repeated twice, all generated values will use either 
 ```json
 {
     "scores": [
-        "id": 1, "user_id": 1, "game_id": 12, "score": 250,
-        "id": 2, "user_id": 5, "game_id": 3, "score": 500,
-        "id": 3, "user_id": 45, "game_id": 5, "score": 500,
-        "id": 4, "user_id": 39, "game_id": 4, "score": 250,
-        "id": 5, "user_id": 72, "game_id": 11, "score": 500
+        { "id": 1, "user_id": 1, "game_id": 12, "score": 250 },
+        { "id": 2, "user_id": 5, "game_id": 3, "score": 500 },
+        { "id": 3, "user_id": 45, "game_id": 5, "score": 500 },
+        { "id": 4, "user_id": 39, "game_id": 4, "score": 250 },
+        { "id": 5, "user_id": 72, "game_id": 11, "score": 500 }
     ]
 }
 ```
@@ -120,9 +135,9 @@ The range of your sample values is being respected. For example in the example a
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "birthday": "1975-09-03",
-        "id": 2, "firstname": "Alex", "birthday": "1922-03-01",
-        "id": 5, "firstname": "Lucy", "birthday": "1988-11-21"
+        { "id": 1, "firstname": "Mike", "birthday": "1975-09-03" },
+        { "id": 2, "firstname": "Alex", "birthday": "1922-03-01" },
+        { "id": 5, "firstname": "Lucy", "birthday": "1988-11-21" }
     ]
 }
 ```
@@ -132,11 +147,11 @@ The range detected will be 1922-03-01 to 1988-11-21 and the generated data could
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "birthday": "1975-09-03",
-        "id": 2, "firstname": "Alex", "birthday": "1922-03-01",
-        "id": 3, "firstname": "Kevin", "birthday": "1966-12-18",
-        "id": 4, "firstname": "Tom", "birthday": "1933-02-08",
-        "id": 5, "firstname": "Lucy", "birthday": "1988-11-21"
+        { "id": 1, "firstname": "Mike", "birthday": "1975-09-03" },
+        { "id": 2, "firstname": "Alex", "birthday": "1922-03-01" },
+        { "id": 3, "firstname": "Kevin", "birthday": "1966-12-18" },
+        { "id": 4, "firstname": "Tom", "birthday": "1933-02-08" },
+        { "id": 5, "firstname": "Lucy", "birthday": "1988-11-21" }
     ]
 }
 ```
@@ -146,8 +161,8 @@ Ranges can be used in creative ways. For example if you want to restrict coordin
 ```json
 {
     "waypoints": [
-        "id": 1, "lat": 46.204, "lng": 6.1432,
-        "id": 10, "lat": 47.678, "lng": 9.173
+        { "id": 1, "lat": 46.204, "lng": 6.1432 },
+        { "id": 10, "lat": 47.678, "lng": 9.173 }
     ]
 }
 ```
@@ -161,9 +176,9 @@ The direction of numbers is being detected. So for example is this sample:
 ```json
 {
     "waypoints": [
-        "id": 1, "score": 100,
-        "id": 2, "score": 150,
-        "id": 5, "score": 1000
+        { "id": 1, "score": 100 },
+        { "id": 2, "score": 150 },
+        { "id": 5, "score": 1000 }
     ]
 }
 ```
@@ -173,11 +188,11 @@ The result would be something like:
 ```json
 {
     "waypoints": [
-        "id": 1, "score": 100,
-        "id": 2, "score": 150,
-        "id": 3, "score": 450,
-        "id": 4, "score": 700,
-        "id": 5, "score": 1000
+        { "id": 1, "score": 100 },
+        { "id": 2, "score": 150 },
+        { "id": 3, "score": 450 },
+        { "id": 4, "score": 700 },
+        { "id": 5, "score": 1000 }
     ]
 }
 ```
@@ -187,9 +202,9 @@ To prevent this behaviour, simply add one value that breaks the direction:
 ```json
 {
     "waypoints": [
-        "id": 1, "score": 150,
-        "id": 2, "score": 100,
-        "id": 5, "score": 1000
+        { "id": 1, "score": 150 },
+        { "id": 2, "score": 100 },
+        { "id": 5, "score": 1000 }
     ]
 }
 ```
@@ -203,9 +218,9 @@ Blowson tries to detect the rules between each non id field in a row. For exampl
 ```json
 {
     "ranges": [
-        "id": 1, "from": 1, "to": 2,
-        "id": 2, "from": 6.9, "to": 34.87,
-        "id": 5, "from": 99, "to": 100
+        { "id": 1, "from": 1, "to": 2 },
+        { "id": 2, "from": 6.9, "to": 34.87 },
+        { "id": 5, "from": 99, "to": 100 }
     ]
 }
 ```
@@ -215,11 +230,11 @@ As `from` is always smaller than `to`, the result will look like this:
 ```json
 {
     "ranges": [
-        "id": 1, "from": 1, "to": 2,
-        "id": 2, "from": 6.9, "to": 34.87,
-        "id": 3, "from": 65.3, "to": 77.32,
-        "id": 4, "from": 42.1, "to": 43.65,
-        "id": 5, "from": 99, "to": 100
+        { "id": 1, "from": 1, "to": 2 },
+        { "id": 2, "from": 6.9, "to": 34.87 },
+        { "id": 3, "from": 65.3, "to": 77.32 },
+        { "id": 4, "from": 42.1, "to": 43.65 },
+        { "id": 5, "from": 99, "to": 100 }
     ]
 }
 ```
@@ -229,9 +244,9 @@ If you don't want such rules to be followed, all you have to do is define sample
 ```json
 {
     "ranges": [
-        "id": 1, "from": 1, "to": 1,
-        "id": 2, "from": 34, "to": 67,
-        "id": 5, "from": 100, "to": 100
+        { "id": 1, "from": 1, "to": 1 },
+        { "id": 2, "from": 34, "to": 67 },
+        { "id": 5, "from": 100, "to": 100 }
     ]
 }
 ```
@@ -249,9 +264,9 @@ Key value pairs that don't show up in every single entry are handled as optional
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "admin": true,
-        "id": 2, "firstname": "Alex",
-        "id": 5, "firstname": "Lucy"
+        { "id": 1, "firstname": "Mike", "admin": true },
+        { "id": 2, "firstname": "Alex" },
+        { "id": 5, "firstname": "Lucy" }
     ]
 }
 ```
@@ -261,11 +276,11 @@ Only one entry has the field `admin`, so that field will be an optional one. Her
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "admin": true,
-        "id": 2, "firstname": "Alex",
-        "id": 3, "firstname": "Tom",
-        "id": 4, "firstname": "Kevin", "admin": true,
-        "id": 5, "firstname": "Lucy"
+        { "id": 1, "firstname": "Mike", "admin": true },
+        { "id": 2, "firstname": "Alex" },
+        { "id": 3, "firstname": "Tom" },
+        { "id": 4, "firstname": "Kevin", "admin": true },
+        { "id": 5, "firstname": "Lucy" }
     ]
 }
 ```
@@ -277,9 +292,9 @@ Let's say you have the numbers 25, 50 and 100 in your sample data. In this case 
 ```json
 {
     "scores": [
-        "id": 1, "user_id": 1, "game_id": 12, "score": 1,
-        "id": 2, "user_id": 5, "game_id": 3, "score": 2,
-        "id": 5, "user_id": 72, "game_id": 11, "score": 1000
+        { "id": 1, "user_id": 1, "game_id": 12, "score": 1 },
+        { "id": 2, "user_id": 5, "game_id": 3, "score": 2 },
+        { "id": 5, "user_id": 72, "game_id": 11, "score": 1000 }
     ]
 }
 ```
@@ -289,9 +304,9 @@ In the above case, the score would be a random number between 1 and 1000. If you
 ```json
 {
     "scores": [
-        "id": 1, "user_id": 1, "game_id": 12, "score": 50,
-        "id": 2, "user_id": 5, "game_id": 3, "score": 100,
-        "id": 5, "user_id": 72, "game_id": 11, "score": 1000
+        { "id": 1, "user_id": 1, "game_id": 12, "score": 50 },
+        { "id": 2, "user_id": 5, "game_id": 3, "score": 100 },
+        { "id": 5, "user_id": 72, "game_id": 11, "score": 1000 }
     ]
 }
 ```
@@ -307,12 +322,12 @@ In a context where you use sample data to fill a database, you often will have t
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "age": 12,
-        "id": 50, "firstname": "Lucy", "age": 31
+        { "id": 1, "firstname": "Mike", "age": 12 },
+        { "id": 50, "firstname": "Lucy", "age": 31 }
     ],
     "comments": [
-        "id": 1, "user_id": 1, "text": "Some text",
-        "id": 250, "user_id": 50, "text": "Some more text"
+        { "id": 1, "user_id": 1, "text": "Some text" },
+        { "id": 250, "user_id": 50, "text": "Some more text" }
     ]
 }
 ```

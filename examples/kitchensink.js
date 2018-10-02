@@ -76,7 +76,8 @@ module.exports = {
             datetime: '1976-05-23T15:48:45+01:00',
             time: '14:36',
             array: [1, 5, 7, 8],
-            pattern: '34:TGDE:12-z'
+            pattern: '34:TGDE:12-z',
+            phone: '++41 (76) 654 58 21'
         },
         {
             id: 25,
@@ -94,7 +95,8 @@ module.exports = {
             datetime: '2014-12-23T07:48:45+01:00',
             time: '08:11',
             array: [2, 3, 6, 8, 25],
-            pattern: '53:HGFZ:89-p'
+            pattern: '53:HGFZ:89-p',
+            phone: '++49 (21) 547 34 23'
         }
     ],
     numberDetections: [

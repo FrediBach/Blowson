@@ -188,11 +188,17 @@ export function maxStrLength(strArray) {
 }
 
 export function minWordCount(strArray) {
-    return Math.min.apply(Math, strArray.map(function (str) { return str.split(' ').length; }));
+    return Math.min.apply(Math, strArray.map(function (str) {
+        let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+        return parts.length; 
+    }));
 }
 
 export function maxWordCount(strArray) {
-    return Math.max.apply(Math, strArray.map(function (str) { return str.split(' ').length; }));
+    return Math.max.apply(Math, strArray.map(function (str) {
+        let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+        return parts.length; 
+    }));
 }
 
 export function minSentenceCount(strArray) {
