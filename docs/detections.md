@@ -85,14 +85,14 @@ Well, it will just generate a random sentence, so probably contextually complete
 
 Additionally, long words will appear once in a while to make it possible to test UI problems.
 
-## String Pattern
+## String Patterns
 
 As listed above, Blowson can detect patterns in strings. For this to work, all strings of a specific field need to have the same length and follow the same patterns. Here's an example:
 
 ```json
 {
     "contacts": [
-        { "id": 1, "phone": "++41 (76) 654 58 21" <},
+        { "id": 1, "phone": "++41 (76) 654 58 21" },
         { "id": 5, "phone": "++49 (21) 547 34 23" }
     ]
 }
