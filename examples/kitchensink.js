@@ -376,5 +376,53 @@ module.exports = {
             sentence: '{{sentence}}',
             paragraph: '{{paragraph}}'
         }
+    ],
+    markdown: [
+        {
+            id: 1,
+            original: `
+{{sentence}}
+============
+
+{{paragraph}}
+
+![Blowson Logo](https://unpkg.com/blowson@0.9.0/src/blowson-logo-icon.svg "Blowson")
+
+> {{sentence}}
+
+- {{sentence}}
+- {{sentence}}
+- {{sentence}}
+- {{sentence}}
+
+{{paragraph}}
+`,
+            rendered: '{{field.original|md}}'
+        },
+        {
+            id: 10,
+            original: `
+{{sentence}}
+============
+
+{{paragraph}}
+
+> {{sentence}}
+
+{{sentence}}
+------------
+
+{{paragraph}}
+
+{{sentence}}
+------------
+
+{{paragraph}}
+{{paragraph}}
+
+[Blowson](https://www.blowson.com)
+`,
+            rendered: '{{field.original|md}}'
+        }
     ]
 }
