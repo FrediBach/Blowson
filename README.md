@@ -151,6 +151,7 @@ If a field type can't be detected by its key, Blowson will try to guess the type
 
 - Word
 - Sentence
+- Headline
 - Paragraph
 - Article
 - String

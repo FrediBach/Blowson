@@ -44,6 +44,7 @@ If a field type can't be detected by its key, Blowson will try to guess the type
 |---------------|----------------------------|-------------------------------|
 | Word          | House                      | Animal                        |
 | Sentence      | He made coffee.            | The animal was born!          |
+| Headline      | He made coffee             | The animal was born           |
 | Paragraph     | Text...                    | Random paragraph ...          |
 | Article       | Article text ...           | Multiple random paragraphs ...  |
 | String        | rraghjgkfdsf               | tuigdjfkakjbdfsajk            |
