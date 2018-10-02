@@ -11,9 +11,9 @@ Here's an example data file to better illustrate how this works:
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "age": 12,
-        "id": 2, "firstname": "Alex", "age": 18,
-        "id": 5, "firstname": "Lucy", "age": 31
+        { "id": 1, "firstname": "Mike", "age": 12 },
+        { "id": 2, "firstname": "Alex", "age": 18 },
+        { "id": 5, "firstname": "Lucy", "age": 31 }
     ]
 }
 ```
@@ -23,11 +23,11 @@ Because there's a gap between 2 and 5, new entries with ids 3 und 4 will be gene
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "age": 12,
-        "id": 2, "firstname": "Alex", "age": 18,
-        "id": 3, "firstname": "Tom", "age": 14,
-        "id": 4, "firstname": "Kevin", "age": 27,
-        "id": 5, "firstname": "Lucy", "age": 31
+        { "id": 1, "firstname": "Mike", "age": 12 },
+        { "id": 2, "firstname": "Alex", "age": 18 },
+        { "id": 3, "firstname": "Tom", "age": 14 },
+        { "id": 4, "firstname": "Kevin", "age": 27 },
+        { "id": 5, "firstname": "Lucy", "age": 31 }
     ]
 }
 ```

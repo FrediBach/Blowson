@@ -9,8 +9,8 @@ You can include other fields from the same entry into a string with template var
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "slogan": "Hi, I'm {{field.firstname}}. How can I help you?",
-        "id": 5, "firstname": "Lucy", "slogan": "Visit my homepage: www.{{field.firstname|lower}}.com"
+        { "id": 1, "firstname": "Mike", "slogan": "Hi, I'm {{field.firstname}}. How can I help you?" },
+        { "id": 5, "firstname": "Lucy", "slogan": "Visit my homepage: www.{{field.firstname|lower}}.com" }
     ]
 }
 ```
@@ -22,11 +22,11 @@ The result will be something like this:
 ```json
 {
     "users": [
-        "id": 1, "firstname": "Mike", "slogan": "Hi, I'm Mike. How can I help you?",
-        "id": 2, "firstname": "Tom", "slogan": "Hi, I'm Tom. How can I help you?",
-        "id": 3, "firstname": "Jeff", "slogan": "Visit my homepage: www.jeff.com",
-        "id": 4, "firstname": "Kim", "slogan": "Hi, I'm Kim. How can I help you?",
-        "id": 5, "firstname": "Lucy", "slogan": "Visit my homepage: www.lucy.com"
+        { "id": 1, "firstname": "Mike", "slogan": "Hi, I'm Mike. How can I help you?" },
+        { "id": 2, "firstname": "Tom", "slogan": "Hi, I'm Tom. How can I help you?" },
+        { "id": 3, "firstname": "Jeff", "slogan": "Visit my homepage: www.jeff.com" },
+        { "id": 4, "firstname": "Kim", "slogan": "Hi, I'm Kim. How can I help you?" },
+        { "id": 5, "firstname": "Lucy", "slogan": "Visit my homepage: www.lucy.com" }
     ]
 }
 ```
