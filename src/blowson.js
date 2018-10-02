@@ -52,7 +52,9 @@ import {
     removeIncompatibleRules,
     rulesAreValid,
     ruleBasedValue,
-    isNumeric
+    isNumeric,
+    detectStringpattern,
+    stringFromPattern
 } from './helpers';
 
 const chance = new Chance();
@@ -200,6 +202,12 @@ module.exports = function blowson(inputData) {
                 }
             }
 
+            if (typeDef.fields[field].type === 'string' && !typeDef.fields[field].containsTemplate) {
+                typeDef.fields[field].pattern = detectStringpattern(typeDef.fields[field].entries);
+            } else {
+                typeDef.fields[field].pattern = false;
+            }
+
             if (typeDef.fields[field].entries.length < typeDef.fields[field].cnt || typeDef.fields[field].containsTemplate) {
                 typeDef.fields[field].repeatEntries = true;
                 typeDef.fields[field].weights = getWeights(typeDef.fields[field].allEntries, typeDef.fields[field].entries);
@@ -326,10 +334,14 @@ module.exports = function blowson(inputData) {
                                     value = value.slice(0, -1);
                                 }
                             } else {
-                                if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
-                                    value = chance.capitalize(chance.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
+                                if (settings.fields[field].pattern) {
+                                    value = stringFromPattern(settings.fields[field].pattern);
                                 } else {
-                                    value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
+                                    if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
+                                        value = chance.capitalize(chance.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
+                                    } else {
+                                        value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
+                                    }
                                 }
                             }
 

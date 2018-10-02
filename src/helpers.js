@@ -7,6 +7,7 @@ import numeral from 'numeral';
 import marked from 'marked';
 import Prob from 'prob.js';
 import pluralize from 'pluralize';
+import v from 'voca';
 
 const chance = new Chance();
 
@@ -663,4 +664,71 @@ export function ruleBasedValue(rules, row, key) {
 
 export function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+export function detectStringpattern(strings) {
+    let stringLength = null,
+        pattern = '',
+        str;
+
+    for (str of strings) {
+        let newPattern = '';
+
+        if (str.length < 2) return false;
+
+        if (stringLength === null) {
+            stringLength = str.length;
+        } else {
+            if (str.length !== stringLength) {
+                return false;
+            }
+        }
+
+        for (char of str) {
+            if (v.isAlpha(char)) {
+                if (v.isLowerCase(char)) {
+                    newPattern += 'a';
+                } else {
+                    newPattern += 'A';
+                }
+            } else if (v.isDigit(char)) {
+                newPattern += 'D';
+            } else if (v.isBlank(char)) {
+                newPattern += 'B';
+            } else {
+                newPattern += char;
+            }
+        }
+
+        if (pattern === '') {
+            pattern = newPattern;
+        } else {
+            if (pattern !== newPattern) {
+                return false;
+            }
+        }
+    }
+
+    return pattern;
+}
+
+export function stringFromPattern(pattern) {
+    let output = ''
+        char;
+
+    for (char of pattern) {
+        if (char === 'A') {
+            output += _.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        } else if (char === 'a') {
+            output += _.sample('abcdefghijklmnopqrstuvwxyz');
+        } else if (char === 'D') {
+            output += Math.floor(Math.random() * 10);
+        } else if (char === 'B') {
+            output += ' ';
+        } else {
+            output += char;
+        }
+    }
+
+    return output;
 }

@@ -48,6 +48,7 @@ If a field type can't be detected by its key, Blowson will try to guess the type
 | Paragraph     | Text...                    | Random paragraph ...          |
 | Article       | Article text ...           | Multiple random paragraphs ...  |
 | String        | rraghjgkfdsf               | tuigdjfkakjbdfsajk            |
+| String Pattern| 34:TGDE:12-z               | 06:RNQN:00-z                  |
 | Char          | A                          | T                             |
 | Integer       | 23                         | 57                            |
 | Float         | 3.14                       | 12.98                         |
