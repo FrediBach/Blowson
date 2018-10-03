@@ -535,6 +535,14 @@ module.exports = function blowson(inputData) {
                                     return generator[parts[1]]();
                                 }
                             }
+                        } else if (parts[0] === 'fake' && parts.length === 3) {
+                            if (typeof faker[parts[1]][parts[2]] === 'function') {
+                                if (filterParts.length > 1) {
+                                    return applyFilters(faker[parts[1]][parts[2]](), filterParts);
+                                } else {
+                                    return faker[parts[1]][parts[2]]();
+                                }
+                            }
                         } else if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
                             if (filterParts.length > 1) {
                                 return applyFilters(data[type][row][parts[1]], filterParts);

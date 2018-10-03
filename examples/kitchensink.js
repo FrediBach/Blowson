@@ -377,6 +377,16 @@ module.exports = {
             paragraph: '{{paragraph}}'
         }
     ],
+    faker: [
+        {
+            id: 1,
+            text: '{{fake.lorem.sentence}} - {{fake.system.fileName}} - {{fake.finance.transactionType}}'
+        },
+        {
+            id: 10,
+            text: '{{fake.lorem.sentence}} - {{fake.system.fileName}} - {{fake.finance.transactionType}}'
+        }
+    ],
     markdown: [
         {
             id: 1,

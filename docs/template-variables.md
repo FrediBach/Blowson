@@ -127,6 +127,10 @@ Additionally you can use the `?` option to define a default value, in case the f
 }
 ```
 
+## Faker.js API Methods
+
+Additionally to al of the above features, you have access to all Faker.js API methods with the `fake` key. Just a few examples: `{{fake.lorem.sentence}}`, `{{fake.system.fileName}}`, `{{fake.finance.transactionType}}`
+
 ## Sentence Construction
 
 And finally, to enable you to create semi random sentences, you can use `{{word.noun}}`, `{{word.a_noun}}`, `{{word.nouns}}`, `{{word.adjective}}`, `{{word.an_adjective}}` and `{{number}}` to creatively construct them. (You can insert whole sentences and paragraphs if you want: {{sentence}} {{paragraph}})

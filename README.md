@@ -541,6 +541,8 @@ Another way to use relationships to your advantage, is to use the `connected` va
 
 By using `connected`, you always get an array back. If you don't use a filter, the array entries will be joined like this: `val1, val2 and val3`. You can use all the array filters to collapse the array to a single value, for example: `{{connected.flights.score|max}}`
 
+Additionally, you have access to all Faker.js API methods with the `fake` key. Just a few examples: `{{fake.lorem.sentence}}`, `{{fake.system.fileName}}`, `{{fake.finance.transactionType}}`
+
 And finally, to enable you to create semi random sentences, you can use `{{word.noun}}`, `{{word.a_noun}}`, `{{word.nouns}}`, `{{word.adjective}}`, `{{word.an_adjective}}` and `{{number}}` to creatively construct them. (You can insert whole sentences and paragraphs if you want: {{sentence}} {{paragraph}})
 
 ## Custom field names
