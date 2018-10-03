@@ -127,6 +127,10 @@ Additionally you can use the `?` option to define a default value, in case the f
 }
 ```
 
+## Random Variable
+
+Sometimes you need to be able to choose a random variable. You can do this with the or operator: `||`. Here's an example from the kitchensink: `{{field.var3||field.var4|upper||field.var10|avg}}`. This will randomly choose either field `var3`, field `var4` in all uppercase or the average of all field `var10`s.
+
 ## Faker.js API Methods
 
 Additionally to all of the above features, you have access to all Faker.js (three parts) and Chance.js (two parts) methods with the `fake` key. Just a few examples: `{{fake.lorem.sentence}}`, `{{fake.system.fileName}}`, `{{fake.finance.transactionType}}`, `{{fake.dollar}}`, `{{fake.month}}`

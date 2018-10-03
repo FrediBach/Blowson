@@ -505,6 +505,8 @@ Additionally you can use the `?` option to define a default value, in case the f
 }
 ```
 
+Sometimes you need to be able to choose a random variable. You can do this with the or operator: `||`. Here's an example from the kitchensink: `{{field.var3||field.var4|upper||field.var10|avg}}`. This will randomly choose either field `var3`, field `var4` in all uppercase or the average of all field `var10`s.
+
 What makes field variables really powerful is that fields can be referenced from a relationship. So for example if you have a type user and a type message (anonymous message to the user), than you can use a field from the user in the message to create messages that fit the context. Something like:
 
 ```

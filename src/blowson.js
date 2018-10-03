@@ -517,7 +517,8 @@ module.exports = function blowson(inputData) {
 
                 if (typeof value === 'string') {
                     data[type][row][field] = value.replace(/{{\s*([\w\.\?\|\:]+)\s*}}/g, function (match, capture) {
-                        let defaultParts = capture.split('?'),
+                        let randomPart = _.sample(capture.split('||')),
+                            defaultParts = randomPart.split('?'),
                             filterParts = defaultParts[0].split('|'),
                             parts = filterParts[0].split('.');
 
