@@ -380,11 +380,11 @@ module.exports = {
     faker: [
         {
             id: 1,
-            text: '{{fake.lorem.sentence}} - {{fake.system.fileName}} - {{fake.finance.transactionType}}'
+            text: '{{fake.lorem.sentence}} - {{fake.system.fileName}} - {{fake.finance.transactionType}} - {{fake.dollar}} - {{fake.month}}'
         },
         {
             id: 10,
-            text: '{{fake.lorem.sentence}} - {{fake.system.fileName}} - {{fake.finance.transactionType}}'
+            text: '{{fake.lorem.sentence}} - {{fake.system.fileName}} - {{fake.finance.transactionType}} - {{fake.dollar}} - {{fake.month}}'
         }
     ],
     markdown: [

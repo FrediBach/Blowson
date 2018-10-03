@@ -129,7 +129,7 @@ Additionally you can use the `?` option to define a default value, in case the f
 
 ## Faker.js API Methods
 
-Additionally to al of the above features, you have access to all Faker.js API methods with the `fake` key. Just a few examples: `{{fake.lorem.sentence}}`, `{{fake.system.fileName}}`, `{{fake.finance.transactionType}}`
+Additionally to all of the above features, you have access to all Faker.js (three parts) and Chance.js (two parts) methods with the `fake` key. Just a few examples: `{{fake.lorem.sentence}}`, `{{fake.system.fileName}}`, `{{fake.finance.transactionType}}`, `{{fake.dollar}}`, `{{fake.month}}`
 
 ## Sentence Construction
 

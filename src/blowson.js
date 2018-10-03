@@ -535,6 +535,14 @@ module.exports = function blowson(inputData) {
                                     return generator[parts[1]]();
                                 }
                             }
+                        } else if (parts[0] === 'fake' && parts.length === 2) {
+                            if (typeof chance[parts[1]] === 'function') {
+                                if (filterParts.length > 1) {
+                                    return applyFilters(chance[parts[1]](), filterParts);
+                                } else {
+                                    return chance[parts[1]]();
+                                }
+                            }
                         } else if (parts[0] === 'fake' && parts.length === 3) {
                             if (typeof faker[parts[1]][parts[2]] === 'function') {
                                 if (filterParts.length > 1) {
