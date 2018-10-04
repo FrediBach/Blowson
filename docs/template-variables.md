@@ -135,6 +135,10 @@ Sometimes you need to be able to choose a random variable. You can do this with 
 
 Additionally to all of the above features, you have access to all Faker.js (three parts) and Chance.js (two parts) methods with the `fake` key. Just a few examples: `{{fake.lorem.sentence}}`, `{{fake.system.fileName}}`, `{{fake.finance.transactionType}}`, `{{fake.dollar}}`, `{{fake.month}}`
 
+## Regex Patterns
+
+A currently experimental feature is the support for Regex based patterns to generate content. Blowson uses the amazing RandExp library to generate content based on Regex patterns. Here's an example: `{{/(sun|mon|tue|wednes|thurs|fri|satur)day/}}`. As closing curly braces can't be used inside the template curly braces, we are using a special bold unicode closing curly brace inside the Regexes, an example: `{{/Lo{2,10❵l/||/Fe{2,10❵t/}}`. This will probably change in a future release however, as it's quite a hack!
+
 ## Sentence Construction
 
 And finally, to enable you to create semi random sentences, you can use `{{word.noun}}`, `{{word.a_noun}}`, `{{word.nouns}}`, `{{word.adjective}}`, `{{word.an_adjective}}` and `{{number}}` to creatively construct them. (You can insert whole sentences and paragraphs if you want: {{sentence}} {{paragraph}})

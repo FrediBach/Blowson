@@ -3,6 +3,7 @@ import Chance from 'chance';
 import faker from 'faker';
 import stringify from 'json-stringify-pretty-compact';
 import pluralize from 'pluralize';
+import RandExp from 'randexp';
 
 import {
     sentence,
@@ -516,13 +517,15 @@ module.exports = function blowson(inputData) {
                     id = data[type][row].id;
 
                 if (typeof value === 'string') {
-                    data[type][row][field] = value.replace(/{{\s*([\w\.\?\|\:]+)\s*}}/g, function (match, capture) {
+                    data[type][row][field] = value.replace(/{{\s*([^\}]+)\s*}}/g, function (match, capture) {
                         let randomPart = _.sample(capture.split('||')),
                             defaultParts = randomPart.split('?'),
                             filterParts = defaultParts[0].split('|'),
                             parts = filterParts[0].split('.');
 
-                        if (parts[0] === 'number' && parts.length === 1) {
+                        if (randomPart[0] === '/' && randomPart.endsWith('/')) {
+                            return RandExp.randexp(randomPart.slice(1, -1).replace(/❵/g, '}'));
+                        } else if (parts[0] === 'number' && parts.length === 1) {
                             return Math.floor(Math.random() * 10);
                         } else if (parts[0] === 'sentence' && parts.length === 1) {
                             return sentence();

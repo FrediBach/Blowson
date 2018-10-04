@@ -77,7 +77,9 @@ module.exports = {
             time: '14:36',
             array: [1, 5, 7, 8],
             pattern: '34:TGDE:12-z',
-            phone: '++41 (76) 654 58 21'
+            phone: '++41 (76) 654 58 21',
+            regex1: '{{/(sun|mon|tue|wednes|thurs|fri|satur)day/}}',
+            regex2: '{{/Lo{2,10❵l/||/Fe{2,10❵t/}}'
         },
         {
             id: 25,
@@ -96,7 +98,9 @@ module.exports = {
             time: '08:11',
             array: [2, 3, 6, 8, 25],
             pattern: '53:HGFZ:89-p',
-            phone: '++49 (21) 547 34 23'
+            phone: '++49 (21) 547 34 23',
+            regex1: '{{/(sun|mon|tue|wednes|thurs|fri|satur)day/}}',
+            regex2: '{{/Lo{2,10❵l/||/Fe{2,10❵t/}}'
         }
     ],
     numberDetections: [
