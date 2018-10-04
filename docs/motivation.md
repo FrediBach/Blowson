@@ -1,0 +1,9 @@
+# Motivation
+
+At the beginning of most projects, we're facing the same problem again and again, we need data to work with. We can't let users fill in that content, as we need content to first build and test the thing that users would use to create that data. A nice chicken and egg problem. To overcome this issue, we normally take some time to write some basic sample data first.
+
+The problem with that is that we seldom have the time or patience to actually create enough and realistic sample data to test a project realistically and with problems early. A good example is pagination. To test it, we need hundreds if not thousands of entries.  Nobody will ever create that by hand. To overcome that, we started to write simple scripts to generate that many entries. Problem is, that these scripts create mostly unrealistic data or start to consume a lot of our time we would better invest in writing the actual application.
+
+In other cases, mostly when working with strongly typed schemas, like in GraphQL, we can use the schema as input information to generate data. But this kind of data is normally even more unrealistic, so only a help very early in a project when this is better than nothing. In GraphQL projects, this can be improved with directives, but that only improves the situation marginally and pollutes our clean schemas, so not a very good idea to begin with.
+
+Blowson takes a different approach. We think that a simple data file can be a much better source to generate data than directives or other configuration based attempts like Datafiller. By using detection rules, a surprising amount of information can be read out of such sample data files and with the addition of templates, the possibilities are endless. This even makes it possible to generate such realistic data, that UI problems can be detected early, without opening the project to beta testers.
