@@ -1,6 +1,6 @@
-# Template Variables
+# Templates
 
-Often you don't just want random text in a field. For example in a blog type, the text field should be a mix of different templates that include different sizes and types of posts. Template variables let you construct these text templates creatively and even context based by using field variables.
+Often you don't just want random text in a field. For example in a blog type, the text field should be a mix of different templates that include different sizes and types of posts. Templates and template variables let you construct these text templates creatively and even context based by using field variables.
 
 ## Field Variables
 
