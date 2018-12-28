@@ -192,7 +192,9 @@ module.exports = function blowson(inputData) {
             if (field === 'id') {
                 typeDef.totalCount = typeDef.fields[field].cnt;
             }
+        }
 
+        for (field in typeDef.fields) {
             if (typeDef.fields[field].types.length === 1) {
                 typeDef.fields[field].type = typeDef.fields[field].types[0];
             } else {
