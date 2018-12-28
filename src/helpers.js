@@ -534,7 +534,7 @@ export function detectFieldType(fieldValue) {
         } else if (fieldValue.length === 1) {
             fieldType = 'char';
         } else {
-            if (/{{\s*([\w\.\?\|\:]+)\s*}}/.test(fieldValue)) {
+            if (/{{\s*([\w\.\?\|\:\, ]+)\s*}}/.test(fieldValue)) {
                 containsTemplate = true;
             }
             fieldType = 'string';
