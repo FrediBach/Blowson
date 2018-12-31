@@ -2,15 +2,12 @@ import _ from 'lodash';
 import Chance from 'chance';
 import faker from 'faker';
 import stringify from 'json-stringify-pretty-compact';
-import pluralize from 'pluralize';
-import RandExp from 'randexp';
 
 import {
     sentence,
     paragraph,
     article,
     addTemplates,
-    generator
 } from './txtgen/main'; // Extended version of the Txtgen library. Original at: https://github.com/ndaidong/txtgen
 
 import {
@@ -36,16 +33,9 @@ import {
     maxDate,
     convertStringDateArray,
     capitalize,
-    isDateString,
-    isDatetimeString,
-    isTimeString,
     getWeights,
     getNumberDirection,
     getDateDirection,
-    filterValue,
-    applyFilters,
-    getFieldByPath,
-    getValuesByPath,
     detectFieldType,
     normalDistRandomInt,
     renameProperty,
@@ -53,9 +43,9 @@ import {
     removeIncompatibleRules,
     rulesAreValid,
     ruleBasedValue,
-    isNumeric,
     detectStringpattern,
-    stringFromPattern
+    stringFromPattern,
+    parseTemplateVariables
 } from './helpers';
 
 const chance = new Chance();
@@ -511,101 +501,10 @@ module.exports = function blowson(inputData) {
 
     }
 
-    // Replace template variables:
-    for (type in data) {
-        for (row in data[type]) {
-            for (field in data[type][row]) {
-                let value = data[type][row][field],
-                    id = data[type][row].id;
+    parseTemplateVariables(data);
 
-                if (typeof value === 'string') {
-                    data[type][row][field] = value.replace(/{{\s*([^\}]+)\s*}}/g, function (match, capture) {
-                        let randomPart = _.sample(capture.split('||')),
-                            defaultParts = randomPart.split('?'),
-                            filterParts = defaultParts[0].split('|'),
-                            parts = filterParts[0].split('.');
-
-                        if (randomPart[0] === '/' && randomPart.endsWith('/')) {
-                            return RandExp.randexp(randomPart.slice(1, -1).replace(/❵/g, '}'));
-                        } else if (parts[0] === 'number' && parts.length === 1) {
-                            return Math.floor(Math.random() * 10);
-                        } else if (parts[0] === 'sentence' && parts.length === 1) {
-                            return sentence();
-                        } else if (parts[0] === 'paragraph' && parts.length === 1) {
-                            return paragraph();
-                        } else if (parts[0] === 'word' && parts.length === 2) {
-                            if (typeof generator[parts[1]] !== 'undefined') {
-                                if (filterParts.length > 1) {
-                                    return applyFilters(generator[parts[1]](), filterParts);
-                                } else {
-                                    return generator[parts[1]]();
-                                }
-                            }
-                        } else if (parts[0] === 'fake' && parts.length === 2) {
-                            if (typeof chance[parts[1]] === 'function') {
-                                if (filterParts.length > 1) {
-                                    return applyFilters(chance[parts[1]](), filterParts);
-                                } else {
-                                    return chance[parts[1]]();
-                                }
-                            }
-                        } else if (parts[0] === 'fake' && parts.length === 3) {
-                            if (typeof faker[parts[1]][parts[2]] === 'function') {
-                                if (filterParts.length > 1) {
-                                    return applyFilters(faker[parts[1]][parts[2]](), filterParts);
-                                } else {
-                                    return faker[parts[1]][parts[2]]();
-                                }
-                            }
-                        } else if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
-                            if (filterParts.length > 1) {
-                                return applyFilters(data[type][row][parts[1]], filterParts);
-                            } else {
-                                return data[type][row][parts[1]];
-                            }
-                        } else if (parts[0] === 'field' && parts.length > 2) {
-                            let path = parts.slice(1),
-                                value = getFieldByPath(data[type][row], path, data);
-
-                            if (value !== null) {
-                                if (filterParts.length > 1) {
-                                    return applyFilters(value, filterParts);
-                                } else {
-                                    return value;
-                                }
-                            }
-
-                            if (defaultParts.length > 1) {
-                                return defaultParts[1];
-                            }
-                        } else if (parts[0] === 'connected' && parts.length > 1) {
-                            let path = parts.slice(1),
-                                values = getValuesByPath(path, pluralize.singular(type), id, data);
-
-                            if (filterParts.length > 1) {
-                                return applyFilters(values, filterParts);
-                            } else {
-                                if (values.length > 1) {
-                                    return [values.slice(0, -1).join(', '), values.slice(-1)[0]].join(values.length < 2 ? '' : ' and ');
-                                } else {
-                                    return values.join(',');
-                                }
-                            }
-                        } else if (defaultParts.length > 1) {
-                            return defaultParts[1];
-                        }
-
-                        return match;
-                    });
-
-                    data[type][row][field] = data[type][row][field].replace(/  +/g, ' ');
-                    if (isNumeric(data[type][row][field])) {
-                        data[type][row][field] = Number(data[type][row][field]);
-                    }
-                }
-            }
-        }
-    }
+    // Repeat template variable parsing, so we can at least once reference a field that contains template variables:
+    parseTemplateVariables(data);
 
     for (type in data) {
         for (entry in data[type]) {
