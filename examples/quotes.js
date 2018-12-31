@@ -5,7 +5,7 @@ module.exports = {
             "__firstname": "Isaac",
             "__lastname": "Newton",
             "__date1": "1901-01-01",
-            "__date2": "2018-12-25",
+            "__date2": "2001-12-31",
             "__honorific": "{{/Dr (PhD|MD)?|Professor/}}",
             "__preposition": "{{/van der|von|le|du|del/}}",
             "title": "{{field.firstname}} {{fake.name.firstName|optional}} {{field.lastname}}",
