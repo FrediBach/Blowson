@@ -377,7 +377,7 @@ export function filterValue(value, filter) {
         } else if (filter === 'singular') {
             return pluralize.singular(value);
         } else if (filter === 'trim') {
-            return value.replace(/\s/g, '');
+            return _.trim(value);
         } else if (filter === 'md') {
             return marked(value);
         } else if (numValue !== NaN && filter === 'round') {
@@ -835,7 +835,8 @@ export function parseTemplateVariables(data) {
                         return match;
                     });
 
-                    data[type][row][field] = data[type][row][field].replace(/  +/g, ' ');
+                    data[type][row][field] = _.trim(data[type][row][field].replace(/  +/g, ' '));
+
                     if (isNumeric(data[type][row][field])) {
                         data[type][row][field] = Number(data[type][row][field]);
                     }

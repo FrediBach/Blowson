@@ -1,220 +1,215 @@
 module.exports = {
   "quotes": [
     {
-      "title": "Isaac Preston Newton",
+      "title": "Isaac Eddie Newton",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=1",
       "birthday": "January 1, 1901",
       "deathday": "December 31, 2001",
-      "text": "In modern times some posit the humorous ant to be less than relieved. Some posit the decisive camel to be less than comfortable.",
+      "text": "Before puppies, dolphins were only watermelons. Before bees, giraffes were only melons.",
       "linkText": "www.isaac-newton.bio.com",
       "linkURL": "http://www.isaac-newton.bio.com/"
     },
     {
-      "title": "Professor Subrahmanyan del Csikszentmihalyi",
+      "title": "Subrahmanyan Csikszentmihalyi",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=25",
       "birthday": "September 29, 1934",
-      "text": "Wispering: \"A crocodile is a rat's blackberry.\"",
+      "text": "The ambitious cow comes from a self-disciplined kangaroo.",
       "linkText": "www.subrahmanyan-csikszentmihalyi.bio.com",
       "linkURL": "http://www.subrahmanyan-csikszentmihalyi.bio.com/"
     },
     {
-      "title": " Zachary van der Merlini",
+      "title": "Emma Lyric Gough",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=2",
-      "birthday": "February 21, 1901",
-      "deathday": "June 8, 2002",
-      "text": "He said: \"Congratulations to the cow that won the creative kumquat with a cheetah!\"",
-      "linkText": "www.zachary-merlini.bio.com",
-      "linkURL": "http://www.zachary-merlini.bio.com/"
+      "birthday": "May 26, 1901",
+      "deathday": "March 21, 2002",
+      "text": "The frogs could be said to resemble amusing limes. The prune of a turtle becomes a broad-minded deer.",
+      "linkText": "www.emma-gough.bio.com",
+      "linkURL": "http://www.emma-gough.bio.com/"
     },
     {
-      "title": "Adele William Fibbi",
+      "title": "Derek Jamir Degl'Innocenti",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=3",
-      "birthday": "October 13, 1903",
-      "deathday": "April 10, 2003",
-      "text": "Unfortunately, that is wrong; on the contrary, the cat is a banana.",
-      "linkText": "www.adele-fibbi.bio.com",
-      "linkURL": "http://www.adele-fibbi.bio.com/"
+      "birthday": "August 6, 1902",
+      "text": "Frogs are sincere grapefruits.",
+      "linkText": "www.derek-degl'innocenti.bio.com",
+      "linkURL": "http://www.derek-degl'innocenti.bio.com/"
     },
     {
-      "title": "Professor Cecelia du Vargas",
+      "title": "Jeff Candice Cole",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=4",
-      "birthday": "November 11, 1904",
-      "text": "Polite chimpanzees show us how bears can be hippopotamus.",
-      "linkText": "www.cecelia-vargas.bio.com",
-      "linkURL": "http://www.cecelia-vargas.bio.com/"
+      "birthday": "April 18, 1904",
+      "deathday": "September 14, 2003",
+      "text": "Wonderful bears show us how melons can be sheeps?",
+      "linkText": "www.jeff-cole.bio.com",
+      "linkURL": "http://www.jeff-cole.bio.com/"
     },
     {
-      "title": "Alan Rylee van der Laan",
+      "title": "Francis Thaddeus Diop",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=5",
-      "birthday": "June 12, 1906",
-      "deathday": "August 8, 2004",
-      "text": "He said: \"Washing and polishing the car,a spider is a plum's snail!\"",
-      "linkText": "www.alan-van-der-laan.bio.com",
-      "linkURL": "http://www.alan-van-der-laan.bio.com/"
+      "birthday": "January 9, 1906",
+      "text": "An eagle is an intelligent raspberry! As far as we can estimate, a shark sees a fish as a gregarious cranberry?",
+      "linkText": "www.francis-diop.bio.com",
+      "linkURL": "http://www.francis-diop.bio.com/"
     },
     {
-      "title": "Dr Hilda Ernie von Giuntini",
+      "title": "Alan Onishi",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=6",
-      "birthday": "November 29, 1907",
-      "text": "She said: \"They were lost without the resourceful crocodile that composed their raspberry.\"",
-      "linkText": "www.hilda-giuntini.bio.com",
-      "linkURL": "http://www.hilda-giuntini.bio.com/"
+      "birthday": "October 28, 1907",
+      "text": "A banana is a helpful sheep! Few can name a convivial shark that isn't a philosophical deer?",
+      "linkText": "www.alan-onishi.bio.com",
+      "linkURL": "http://www.alan-onishi.bio.com/"
     },
     {
-      "title": "Essie Adkins",
+      "title": "Cornelia Boretti",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=7",
-      "birthday": "March 21, 1909",
-      "text": "In ancient times we can assume that any instance of a chicken can be construed as an industrious fig.",
-      "linkText": "www.essie-adkins.bio.com",
-      "linkURL": "http://www.essie-adkins.bio.com/"
+      "birthday": "February 7, 1909",
+      "text": "A perfect persimmon's scorpion comes with it the thought that the proud bee is a kiwi.",
+      "linkText": "www.cornelia-boretti.bio.com",
+      "linkURL": "http://www.cornelia-boretti.bio.com/"
     },
     {
-      "title": "Isabel Jabari Capecchi",
+      "title": "Jonathan Josue del Ancillotti",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=8",
-      "birthday": "July 11, 1910",
-      "deathday": "January 20, 2007",
-      "text": "Some posit the painstaking lemon to be less than vivacious? Draped neatly on a hanger, they were lost without the fearless apricot that composed their watermelon.",
-      "linkText": "www.isabel-capecchi.bio.com",
-      "linkURL": "http://www.isabel-capecchi.bio.com/"
+      "birthday": "March 8, 1911",
+      "text": "Congratulations to the giraffe that won the faithful kiwi with a monkey?",
+      "linkText": "www.jonathan-ancillotti.bio.com",
+      "linkURL": "http://www.jonathan-ancillotti.bio.com/"
     },
     {
-      "title": "Dr Thomas van der Novelli",
+      "title": "Nelle Mazzi",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=9",
-      "birthday": "July 11, 1911",
-      "deathday": "November 3, 2007",
-      "text": "Shouting with happiness, a pomegranate of the deer is assumed to be an impartial camel.",
-      "linkText": "www.thomas-novelli.bio.com",
-      "linkURL": "http://www.thomas-novelli.bio.com/"
+      "birthday": "August 18, 1912",
+      "text": "Unfortunately, that is wrong; on the contrary, before cows, cats were only nectarines? In modern times a decorous kangaroo's grapes comes with it the thought that the generous crocodile is a nectarine.",
+      "linkText": "www.nelle-mazzi.bio.com",
+      "linkURL": "http://www.nelle-mazzi.bio.com/"
     },
     {
-      "title": "Fred Ethelyn Peters",
+      "title": "Rosa du Greer",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=10",
-      "birthday": "January 29, 1913",
-      "deathday": "December 15, 2007",
-      "text": "The first discreet lion is, in its own way, a hamster.",
-      "linkText": "www.fred-peters.bio.com",
-      "linkURL": "http://www.fred-peters.bio.com/"
+      "birthday": "November 9, 1912",
+      "text": "A spider sees a monkey as a resourceful turtle.",
+      "linkText": "www.rosa-greer.bio.com",
+      "linkURL": "http://www.rosa-greer.bio.com/"
     },
     {
-      "title": "Rebecca Harold Richter",
+      "title": "Lester del Fujii",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=11",
-      "birthday": "July 22, 1914",
-      "deathday": "November 29, 2008",
-      "text": "A cat is a fox's puppy. A wolf sees a monkey as a hilarious pear.",
-      "linkText": "www.rebecca-richter.bio.com",
-      "linkURL": "http://www.rebecca-richter.bio.com/"
+      "birthday": "March 23, 1915",
+      "text": "Authors often misinterpret the lemon as a smiling snake, when in actuality it feels more like a courteous cherry? A snail is the turtle of an eagle!",
+      "linkText": "www.lester-fujii.bio.com",
+      "linkURL": "http://www.lester-fujii.bio.com/"
     },
     {
-      "title": "Stephen Andrews",
+      "title": "Eliza Kelvin Fleming",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=12",
-      "birthday": "January 15, 1917",
-      "deathday": "September 3, 2009",
-      "text": "If this was somewhat unclear, the sharks could be said to resemble plucky spiders. Yelling: \"A powerful cranberry is a banana of the mind.\"",
-      "linkText": "www.stephen-andrews.bio.com",
-      "linkURL": "http://www.stephen-andrews.bio.com/"
+      "birthday": "June 21, 1916",
+      "text": "Extending this logic, a fig of the bee is assumed to be a helpful goldfish. Of course, their fish was, in this moment, a friendly dolphin!",
+      "linkText": "www.eliza-fleming.bio.com",
+      "linkURL": "http://www.eliza-fleming.bio.com/"
     },
     {
-      "title": " Bertie Merritt Tamburini",
+      "title": "Jack Cortney Pozzi",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=13",
-      "birthday": "October 29, 1917",
-      "text": "He said: \"The literature would have us believe that an impartial goat is not but a bird.\"",
-      "linkText": "www.bertie-tamburini.bio.com",
-      "linkURL": "http://www.bertie-tamburini.bio.com/"
+      "birthday": "April 5, 1918",
+      "text": "He said: \"Incomprehensibilities of a kind pineapple and a scorpion made a snail fabulous.\" The first self-disciplined horse is, in its own way, an elephant?",
+      "linkText": "www.jack-pozzi.bio.com",
+      "linkURL": "http://www.jack-pozzi.bio.com/"
     },
     {
-      "title": "Dr MD Gilbert van der Howard",
+      "title": "Professor Jeffery Michale van der Pickering",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=14",
-      "birthday": "June 6, 1919",
-      "deathday": "January 29, 2011",
-      "text": "An alluring octopus is an elephant of the mind.",
-      "linkText": "www.gilbert-howard.bio.com",
-      "linkURL": "http://www.gilbert-howard.bio.com/"
+      "birthday": "August 16, 1918",
+      "text": "This is not to discredit the idea that a grapes can hardly be considered an affable snake without also being a fox.",
+      "linkText": "www.jeffery-pickering.bio.com",
+      "linkURL": "http://www.jeffery-pickering.bio.com/"
     },
     {
-      "title": " Erik Alexandrine du Braun",
+      "title": "Edna Loma Wade",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=15",
-      "birthday": "June 6, 1921",
-      "deathday": "December 23, 2011",
-      "text": "The literature would have us believe that an energetic lemon is not but a banana.",
-      "linkText": "www.erik-braun.bio.com",
-      "linkURL": "http://www.erik-braun.bio.com/"
+      "birthday": "April 15, 1920",
+      "deathday": "November 30, 2011",
+      "text": "A fish is a cat's hamster. One cannot separate kumquats from joyous bees.",
+      "linkText": "www.edna-wade.bio.com",
+      "linkURL": "http://www.edna-wade.bio.com/"
     },
     {
-      "title": " Shawn Austen Carroll",
+      "title": "Chester Raoul Köhler",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=16",
-      "birthday": "November 4, 1922",
-      "deathday": "August 28, 2012",
-      "text": "Persistent snails show us how peaches can be bananas. A bee can hardly be considered an intellectual monkey without also being a prune!",
-      "linkText": "www.shawn-carroll.bio.com",
-      "linkURL": "http://www.shawn-carroll.bio.com/"
+      "birthday": "March 26, 1922",
+      "deathday": "July 6, 2012",
+      "text": "In recent years, the first shrewd dolphin is, in its own way, a snake.",
+      "linkText": "www.chester-kohler.bio.com",
+      "linkURL": "http://www.chester-kohler.bio.com/"
     },
     {
-      "title": "Willie Clovis Howell",
+      "title": "Johnny Elbert du Pruneti",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=17",
-      "birthday": "April 27, 1924",
-      "text": "Before crocodiles, hippopotamus were only bears. The fearless snake comes from a quiet duck.",
-      "linkText": "www.willie-howell.bio.com",
-      "linkURL": "http://www.willie-howell.bio.com/"
+      "birthday": "November 3, 1923",
+      "deathday": "June 17, 2013",
+      "text": "The first decorous fig is, in its own way, a deer.",
+      "linkText": "www.johnny-pruneti.bio.com",
+      "linkURL": "http://www.johnny-pruneti.bio.com/"
     },
     {
-      "title": "Birdie Hardy",
+      "title": "Charlotte Yates",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=18",
-      "birthday": "October 9, 1925",
-      "text": "In his own words: \"A lion can hardly be considered an ambitious zebra without also being a chicken.\" Congratulations to the camel that won the charming blueberry with an apple!",
-      "linkText": "www.birdie-hardy.bio.com",
-      "linkURL": "http://www.birdie-hardy.bio.com/"
+      "birthday": "August 20, 1925",
+      "deathday": "March 18, 2014",
+      "text": "A bird is an elated lime! Far from the truth, some succinct flies are thought of simply as hippopotamus;",
+      "linkText": "www.charlotte-yates.bio.com",
+      "linkURL": "http://www.charlotte-yates.bio.com/"
     },
     {
-      "title": " Owen Betsy Burrows",
+      "title": "Ora Sabatini",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=19",
-      "birthday": "April 13, 1927",
-      "deathday": "September 7, 2014",
-      "text": "However, a puppy is a nectarine's wolf. The lively wolf reveals itself as a quiet rabbit to those who look?",
-      "linkText": "www.owen-burrows.bio.com",
-      "linkURL": "http://www.owen-burrows.bio.com/"
+      "birthday": "April 24, 1926",
+      "deathday": "September 13, 2014",
+      "text": "Forceful watermelons show us how puppies can be ants.",
+      "linkText": "www.ora-sabatini.bio.com",
+      "linkURL": "http://www.ora-sabatini.bio.com/"
     },
     {
-      "title": " Jeanette Fabbrini",
+      "title": "Lena Nayeli Mannelli",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=20",
-      "birthday": "January 17, 1928",
-      "text": "As far as he is concerned, a peach is the apricot of a squirrel. One cannot separate bears from modest wolfs.",
-      "linkText": "www.jeanette-fabbrini.bio.com",
-      "linkURL": "http://www.jeanette-fabbrini.bio.com/"
+      "birthday": "April 11, 1928",
+      "text": "The lion is a prune. Cats are helpful frogs.",
+      "linkText": "www.lena-mannelli.bio.com",
+      "linkURL": "http://www.lena-mannelli.bio.com/"
     },
     {
-      "title": "Amelia Takeda",
+      "title": "Rhoda Wilton Cresci",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=21",
-      "birthday": "April 14, 1929",
-      "deathday": "August 19, 2016",
-      "text": "Incomprehensibilities of a trustworthy spider and an owl made a fish rhetorical.",
-      "linkText": "www.amelia-takeda.bio.com",
-      "linkURL": "http://www.amelia-takeda.bio.com/"
+      "birthday": "January 22, 1929",
+      "deathday": "July 24, 2016",
+      "text": "In recent years, a kind grape without kittens is truly a hamster of protective turtles.",
+      "linkText": "www.rhoda-cresci.bio.com",
+      "linkURL": "http://www.rhoda-cresci.bio.com/"
     },
     {
-      "title": "Lester Tanini",
+      "title": "Eula Schneider",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=22",
-      "birthday": "October 8, 1931",
-      "deathday": "December 2, 2016",
-      "text": "The literature would have us believe that a boundless bee is not but a bear.",
-      "linkText": "www.lester-tanini.bio.com",
-      "linkURL": "http://www.lester-tanini.bio.com/"
+      "birthday": "August 16, 1930",
+      "deathday": "December 29, 2016",
+      "text": "Congratulations to the kitten that won the hard-working chicken with a bear?",
+      "linkText": "www.eula-schneider.bio.com",
+      "linkURL": "http://www.eula-schneider.bio.com/"
     },
     {
-      "title": "Katherine Kuijpers",
+      "title": "Johnny Bobbie Fanetti",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=23",
-      "birthday": "October 18, 1932",
-      "text": "A lemon can hardly be considered a calm cheetah without also being a peach. It's an undeniable fact, really; one cannot separate tangerines from amicable chickens.",
-      "linkText": "www.katherine-kuijpers.bio.com",
-      "linkURL": "http://www.katherine-kuijpers.bio.com/"
+      "birthday": "October 29, 1931",
+      "deathday": "December 13, 2017",
+      "text": "The pigs could be said to resemble decisive lemons. As far as we can estimate, a practical tangerine is a seal of the mind?",
+      "linkText": "www.johnny-fanetti.bio.com",
+      "linkURL": "http://www.johnny-fanetti.bio.com/"
     },
     {
-      "title": "Ricky Slater",
+      "title": "Eddie Carlee Wilkins",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=24",
-      "birthday": "May 15, 1933",
-      "deathday": "June 30, 2018",
-      "text": "The elated hippopotamus reveals itself as an affectionate owl to those who look! Seals are gregarious tangerines.",
-      "linkText": "www.ricky-slater.bio.com",
-      "linkURL": "http://www.ricky-slater.bio.com/"
+      "birthday": "February 18, 1934",
+      "text": "Their owl was, in this moment, an entertaining apple? Though we assume the latter, the good grapefruit comes from a decisive monkey?",
+      "linkText": "www.eddie-wilkins.bio.com",
+      "linkURL": "http://www.eddie-wilkins.bio.com/"
     }
   ]
 };
