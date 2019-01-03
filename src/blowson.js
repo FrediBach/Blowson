@@ -497,6 +497,11 @@ module.exports = function blowson(inputData) {
                 data[settings.key].push(row);
             }
 
+            // Sort by id:
+            data[settings.key] = data[settings.key].sort(function (a, b) {
+                return a.id - b.id;
+            });
+
         }
 
     }
