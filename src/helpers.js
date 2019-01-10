@@ -576,7 +576,8 @@ export function renameProperty(obj, oldName, newName) {
 }
 
 export function getFieldRules(key, value, type, prevFields) {
-    let rules = [];
+    let rules = [],
+        prevField;
 
     for (prevField of prevFields) {
         if ((type === 'int' || type === 'float') && (prevField.type === 'int' || prevField.type === 'float')) {
@@ -687,7 +688,8 @@ export function detectStringpattern(strings) {
         str;
 
     for (str of strings) {
-        let newPattern = '';
+        let newPattern = '',
+            char;
 
         if (str.length < 2) return false;
 
@@ -728,7 +730,7 @@ export function detectStringpattern(strings) {
 }
 
 export function stringFromPattern(pattern) {
-    let output = ''
+    let output = '',
         char;
 
     for (char of pattern) {
@@ -749,6 +751,8 @@ export function stringFromPattern(pattern) {
 }
 
 export function parseTemplateVariables(data) {
+    let type, row, field;
+    
     for (type in data) {
         for (row in data[type]) {
             for (field in data[type][row]) {

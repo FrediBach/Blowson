@@ -283,7 +283,8 @@ module.exports = function blowson(inputData) {
                         if (value === '' && settings.fields[field].type === 'array') {
                             let min = null, 
                                 max = null, 
-                                maxCount = 0;
+                                maxCount = 0,
+                                arrEntry;
 
                             for (arrEntry of settings.fields[field].entries) {
                                 let arrMin = minNumber(arrEntry),

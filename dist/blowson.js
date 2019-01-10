@@ -1,2 +1,1577 @@
-function e(e){return e&&"object"==typeof e&&"default"in e?e.default:e}var t=e(require("lodash")),n=e(require("chance")),i=e(require("slugify")),r=e(require("md5")),a=require("date-fns"),s=e(require("numeral")),l=e(require("marked")),o=e(require("prob.js")),u=e(require("pluralize")),f=e(require("voca")),d=e(require("randexp")),p=e(require("faker")),h=e(require("json-stringify-pretty-compact")),c=function(e,t){var n=e,i=t-e+1;return Math.floor(Math.random()*i)+n},g=function(e){for(var t;!t;)t=e[c(0,e.length-1)];return t},m=function(e){var t="a";return e.match(/^(a|e|i|o)/)&&(t="an"),t+" "+e},v=["alligator","ant","bear","bee","bird","camel","cat","cheetah","chicken","chimpanzee","cow","crocodile","deer","dog","dolphin","duck","eagle","elephant","fish","fly","fox","frog","giraffe","goat","goldfish","hamster","hippopotamus","horse","kangaroo","kitten","lion","lobster","monkey","octopus","owl","panda","pig","puppy","rabbit","rat","scorpion","seal","shark","sheep","snail","snake","spider","squirrel","tiger","turtle","wolf","zebra","apple","apricot","banana","blackberry","blueberry","cherry","cranberry","currant","fig","grape","grapefruit","grapes","kiwi","kumquat","lemon","lime","melon","nectarine","orange","peach","pear","persimmon","pineapple","plum","pomegranate","prune","raspberry","strawberry","tangerine","watermelon"],y=["adaptable","adventurous","affable","affectionate","agreeable","alert","alluring","ambitious","ambitious","amiable","amicable","amused","amusing","boundless","brave","brave","bright","bright","broad-minded","calm","calm","capable","careful","charming","charming","cheerful","coherent","comfortable","communicative","compassionate","confident","conscientious","considerate","convivial","cooperative","courageous","courageous","courteous","creative","credible","cultured","dashing","dazzling","debonair","decisive","decisive","decorous","delightful","detailed","determined","determined","diligent","diligent","diplomatic","discreet","discreet","dynamic","dynamic","eager","easygoing","efficient","elated","eminent","emotional","enchanting","encouraging","endurable","energetic","energetic","entertaining","enthusiastic","enthusiastic","excellent","excited","exclusive","exuberant","exuberant","fabulous","fair","fair-minded","faithful","faithful","fantastic","fearless","fearless","fine","forceful","frank","frank","friendly","friendly","funny","funny","generous","generous","gentle","gentle","glorious","good","good","gregarious","happy","hard-working","harmonious","helpful","helpful","hilarious","honest","honorable","humorous","imaginative","impartial","impartial","independent","industrious","instinctive","intellectual","intelligent","intuitive","inventive","jolly","joyous","kind","kind","kind-hearted","knowledgeable","level","likeable","lively","lovely","loving","loving","loyal","lucky","mature","modern","modest","neat","nice","nice","obedient","optimistic","painstaking","passionate","patient","peaceful","perfect","persistent","philosophical","pioneering","placid","placid","plausible","pleasant","plucky","plucky","polite","powerful","practical","pro-active","productive","protective","proud","punctual","quick-witted","quiet","quiet","rational","receptive","reflective","reliable","relieved","reserved","resolute","resourceful","responsible","rhetorical","righteous","romantic","romantic","sedate","seemly","selective","self-assured","self-confident","self-disciplined","sensible","sensitive","sensitive","shrewd","shy","silly","sincere","sincere","skillful","smiling","sociable","splendid","steadfast","stimulating","straightforward","successful","succinct","sympathetic","talented","thoughtful","thoughtful","thrifty","tidy","tough","tough","trustworthy","unassuming","unbiased","understanding","unusual","upbeat","versatile","vigorous","vivacious","warm","warmhearted","willing","willing","wise","witty","witty","wonderful"],w=["a","e","i","o","u","y"],b=["the {{noun}} is {{a_noun}}","{{a_noun}} is {{an_adjective}} {{noun}}","the first {{adjective}} {{noun}} is, in its own way, {{a_noun}}","their {{noun}} was, in this moment, {{an_adjective}} {{noun}}","{{a_noun}} is {{a_noun}} from the right perspective","the literature would have us believe that {{an_adjective}} {{noun}} is not but {{a_noun}}","{{an_adjective}} {{noun}} is {{a_noun}} of the mind","the {{adjective}} {{noun}} reveals itself as {{an_adjective}} {{noun}} to those who look","authors often misinterpret the {{noun}} as {{an_adjective}} {{noun}}, when in actuality it feels more like {{an_adjective}} {{noun}}","we can assume that any instance of {{a_noun}} can be construed as {{an_adjective}} {{noun}}","they were lost without the {{adjective}} {{noun}} that composed their {{noun}}","the {{adjective}} {{noun}} comes from {{an_adjective}} {{noun}}","{{a_noun}} can hardly be considered {{an_adjective}} {{noun}} without also being {{a_noun}}","few can name {{an_adjective}} {{noun}} that isn't {{an_adjective}} {{noun}}","some posit the {{adjective}} {{noun}} to be less than {{adjective}}","{{a_noun}} of the {{noun}} is assumed to be {{an_adjective}} {{noun}}","{{a_noun}} sees {{a_noun}} as {{an_adjective}} {{noun}}","the {{noun}} of {{a_noun}} becomes {{an_adjective}} {{noun}}","{{a_noun}} is {{a_noun}}'s {{noun}}","{{a_noun}} is the {{noun}} of {{a_noun}}","{{an_adjective}} {{noun}}'s {{noun}} comes with it the thought that the {{adjective}} {{noun}} is {{a_noun}}","{{nouns}} are {{adjective}} {{nouns}}","{{adjective}} {{nouns}} show us how {{nouns}} can be {{nouns}}","before {{nouns}}, {{nouns}} were only {{nouns}}","those {{nouns}} are nothing more than {{nouns}}","some {{adjective}} {{nouns}} are thought of simply as {{nouns}}","one cannot separate {{nouns}} from {{adjective}} {{nouns}}","the {{nouns}} could be said to resemble {{adjective}} {{nouns}}","{{an_adjective}} {{noun}} without {{nouns}} is truly a {{noun}} of {{adjective}} {{nouns}}"],M=["to be more specific, ","in recent years, ","however, ","by the way","of course, ","some assert that ","if this was somewhat unclear, ","unfortunately, that is wrong; on the contrary, ","it's very tricky, if not impossible, ","this could be, or perhaps ","this is not to discredit the idea that ","we know that ","it's an undeniable fact, really; ","framed in a different way, ","what we don't know for sure is whether or not ","as far as we can estimate, ","as far as he is concerned, ","the zeitgeist contends that ","though we assume the latter, ","far from the truth, ","extending this logic, ","nowhere is it disputed that ","in modern times ","in ancient times ","recent controversy aside, ","washing and polishing the car,","having been a gymnast, ","after a long day at school and work, ","waking to the buzz of the alarm clock, ","draped neatly on a hanger, ","shouting with happiness, "],j=["noun","a_noun","nouns","adjective","an_adjective"],k={noun:function(){return g(v)},a_noun:function(){return m(g(v))},nouns:function(){return(e=g(v)).endsWith("s")?e:(e.match(/(ss|ish|ch|x|us)$/)?e+="e":e.endsWith("y")&&!w.includes(e.charAt(e.length-2))&&(e=e.slice(0,e.length-1),e+="ie"),e+"s");var e},adjective:function(){return g(y)},an_adjective:function(){return m(g(y))}},_=function(){return function(e){var t=e,n=e.match(/\{\{(.+?)\}\}/g);if(n&&n.length)for(var i=0;i<n.length;i++){var r=n[i].replace("{{","").replace("}}","").replace(/^[\s\xa0]+|[\s\xa0]+$/g,"").replace(/\r?\n|\r/g," ").replace(/\s\s+|\r/g," "),a=void 0;j.includes(r)&&(a=k[r]()),t=t.replace(n[i],a)}return t}(g(b))},x=function(){var e,t=(Math.random()<.33?g(M):"")+_();if(t=t.charAt(0).toUpperCase()+t.slice(1),t+=(e=".......!?!?;...".split(""),g(e)),Math.random()>=.9){t=g(["He said","She said","In his own words","In her own words","Yelling","Wispering","Quoting with intend"])+': "'+t+'"'}return t},W=function(e){void 0===e&&(e=0),e||(e=c(3,10));for(var t=Math.min(e,15),n=[];n.length<t;){var i=x();n.push(i)}return n.join(" ")},T=function(e){void 0===e&&(e=0),e||(e=c(3,10));for(var t=Math.min(e,15),n=[];n.length<t;){var i=W();n.push(i)}return n.join("\n\n")},N=new n;function O(e,t){var n=new Date(e.getTime()+Math.random()*(t.getTime()-e.getTime())),i=""+(n.getMonth()+1),r=""+n.getDate(),a=n.getFullYear(),s=""+n.getHours(),l=""+n.getMinutes(),o=""+n.getSeconds();return i.length<2&&(i="0"+i),r.length<2&&(r="0"+r),s.length<2&&(s="0"+s),l.length<2&&(l="0"+l),o.length<2&&(o="0"+o),[a,i,r].join("-")+"T"+[s,l,o].join(":")+"+01:00"}function D(e){var t,n=Math.min.apply(Math,e),i=Math.max.apply(Math,e),r=[];for(t=n;t<=i;t++)-1==e.indexOf(t)&&r.push(t);return r.length>0&&{start:Math.min.apply(Math,r),end:Math.max.apply(Math,r)}}function q(e){if(!isFinite(e))return 0;for(var t=1,n=0;Math.round(e*t)/t!==e;)t*=10,n++;return n}function F(e){for(var t=0,n=0,i=e;n<i.length;n+=1){var r=q(i[n]);r>t&&(t=r)}return t}function C(e){for(var t,n=!0,i=0,r=e;i<r.length;i+=1)if(G(t=r[i])!==t){n=!1;break}return n}function z(e){return Math.min.apply(Math,e)}function E(e){return Math.max.apply(Math,e)}function A(e){for(var t,n,i=999999999,r=0,a=e;r<a.length;r+=1){t=a[r];for(var s=0,l=e;s<l.length;s+=1)t!==(n=l[s])&&Math.abs(t-n)<i&&(i=Math.abs(t-n))}return i}function S(e,t,n){var i,r;return arguments.length<2&&(t=e,e=0),n||(n=1),i=(t-e)/n,r=Math.random(),r*=i,r=Math.floor(r),r*=n,r+=e}function U(e,t){var n=Math.abs((o.normal(0,1)()+3)/6),i=Math.floor(n*(t-e)+e);return i<e&&(i=e),i>t&&(i=t),i}function $(e){return Math.max.apply(Math,e.map(function(e){return e.length}))}function I(e){return Math.min.apply(Math,e.map(function(e){return t.compact(e.replace(/[^\sA-Za-z]/g,"").split(" ")).length}))}function L(e){return Math.max.apply(Math,e.map(function(e){return t.compact(e.replace(/[^\sA-Za-z]/g,"").split(" ")).length}))}function J(e){return Math.min.apply(Math,e.map(function(e){return t.compact(e.split(/[\.\!\?]+/)).length}))}function B(e){return Math.max.apply(Math,e.map(function(e){return t.compact(e.split(/[\.\!\?]+/)).length}))}function Y(e){return Math.min.apply(Math,e.map(function(e){return t.compact(e.replace(/\n$/gm,"").split(/\n/)).length}))}function H(e){return Math.max.apply(Math,e.map(function(e){return t.compact(e.replace(/\n$/gm,"").split(/\n/)).length}))}function Z(e){return new Date(Math.min.apply(null,e))}function P(e){return new Date(Math.max.apply(null,e))}function Q(e){for(var t=[],n=0,i=e;n<i.length;n+=1)t.push(new Date(i[n]));return t}function G(e){return e.replace(/(?:^|\s)\S/g,function(e){return e.toUpperCase()})}function K(e,t){for(var n,i={},r=[],a=0,s=e;a<s.length;a+=1)void 0===i[n=s[a]]?i[n]=1:i[n]++;for(var l=0,o=t;l<o.length;l+=1)r.push(i[n=o[l]]);return r}function R(e){for(var t,n=null,i=null,r=!1,a=0,s=e;a<s.length;a+=1){if(t=s[a],null!==i&&t>i){if("desc"===n){r=!0;break}n="asc"}if(null!==i&&t<i){if("asc"===n){r=!0;break}n="desc"}i=t}return!r&&null!==n&&n}function V(e){for(var t=null,n=null,i=!1,r=0,a=e;r<a.length;r+=1){var s=new Date(a[r]);if(null!==n&&s>n){if("desc"===t){i=!0;break}t="asc"}if(null!==n&&s<n){if("asc"===t){i=!0;break}t="desc"}n=s}return!i&&null!==t&&t}function X(e,n){if(e.constructor!==Array){e=String(e);var o=Number(e);if("slug"===n)return i(e,{lower:!0});if("lower"===n)return e.toLowerCase();if("upper"===n)return e.toUpperCase();if("md5"===n)return r(e);if("capitalize"===n)return G(e);if("plural"===n)return u.plural(e);if("singular"===n)return u.singular(e);if("trim"===n)return t.trim(e);if("md"===n)return l(e);if(NaN!==o&&"round"===n)return Math.round(e);if(NaN!==o&&"floor"===n)return Math.floor(e);if(NaN!==o&&"ceil"===n)return Math.ceil(e);if(NaN!==o&&"plus:"===n.substring(0,5)){var f=n.split(":");return o+Number(f[1])}if(NaN!==o&&"minus:"===n.substring(0,6)){var d=n.split(":");return o-Number(d[1])}if(NaN!==o&&"times:"===n.substring(0,6)){var p=n.split(":");return o*Number(p[1])}if(NaN!==o&&"max:"===n.substring(0,4)){var h=n.split(":"),c=Number(h[1]);return o>c?c:o}if(NaN!==o&&"min:"===n.substring(0,4)){var g=n.split(":"),m=Number(g[1]);return o<m?m:o}if(NaN!==o&&"num:"===n.substring(0,4)){var v=n.split(":");return s(o).format(v[1])}if("optional"===n&&Math.random()>=.5)return"";if("date:"===n.substring(0,5)){var y=n.split(":");return a.format(new Date(e),y[1])}return e}return"count"===n?e.length:"max"===n?E(e):"min"===n?z(e):"sum"===n?t.sum(e):"avg"===n?t.mean(e):"rand"===n?t.sample(e):e}function ee(e,t){for(var n=X(e,t[1]),i=2;t.length>i;)n=X(n,t[i]),i++;return n}function te(e,t,n,i){var r=e[0];if(void 0!==i[r]){for(var a,s=[],l=0,o=i[r];l<o.length;l+=1)(a=o[l])[t+"_id"]===n&&s.push(e.length>1?a[e[1]]:a.id);return s}return[]}function ne(e,t,n){var i=!1,r=t.slice(0),a=e;if(0===t.length)return null;for(;!i;){var s=r.shift();if(void 0===a[s+"_id"])return void 0!==a[s]?void 0!==a[s][t[t.length-1]]?a[s][t[t.length-1]]:"object"!=typeof a[s]?a[s]:null:null;var l=void 0,o=u.plural(s);if(void 0!==n[o])for(l in n[o])n[o][l].id===a[s+"_id"]&&(a=n[o][l]);0===r.length&&(i=!0)}return null}function ie(e){var t="undefined",n=!1;return"boolean"==typeof e?t="boolean":"number"==typeof e?t=Math.round(e)===e?"int":"float":"string"==typeof e?/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(e)?t="date":!function(e){return/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$/.test(e)}(e)?!function(e){return/^[0-9]{2}:[0-9]{2}:[0-9]{2}$|^[0-9]{2}:[0-9]{2}$/.test(e)}(e)?1===e.length?t="char":(/{{\s*([\w\.\?\|\:\, ]+)\s*}}/.test(e)&&(n=!0),t="string"):t="time":t="datetime":"object"==typeof e&&(t=Array.isArray(e)?"array":"JSON"),{fieldType:t,containsTemplate:n}}function re(e,t,n){return t==n?e:(e.hasOwnProperty(t)&&(e[n]=e[t],delete e[t]),e)}function ae(e,t,n,i){for(var r=[],a=0,s=i;a<s.length;a+=1)if(prevField=s[a],"int"!==n&&"float"!==n||"int"!==prevField.type&&"float"!==prevField.type){if("date"===n&&"date"===prevField.type||"datetime"===n&&"datetime"===prevField.type){var l=new Date(t),o=new Date(prevField.value);r.push(l>o?e+">"+prevField.key:l<o?e+"<"+prevField.key:e+"="+prevField.key)}}else t>prevField.value?r.push(e+">"+prevField.key):t<prevField.value?r.push(e+"<"+prevField.key):r.push(e+"="+prevField.key);return r}function se(e){for(var t,n=[],i=0,r=e;i<r.length;i+=1){var a=(t=r[i]).split(/>|<|=/);t.indexOf("<")>-1&&-1===e.indexOf(a[0]+">"+a[1])&&-1===e.indexOf(a[0]+"="+a[1])&&n.push(t),t.indexOf(">")>-1&&-1===e.indexOf(a[0]+"<"+a[1])&&-1===e.indexOf(a[0]+"="+a[1])&&n.push(t),t.indexOf("=")>-1&&-1===e.indexOf(a[0]+">"+a[1])&&-1===e.indexOf(a[0]+"<"+a[1])&&n.push(t)}return n}function le(e,t,n,i){if(0===t.length)return!0;if(""===e)return!1;for(var r,a=0,s=t;a<s.length;a+=1){var l=(r=s[a]).split(/>|<|=/);if(void 0!==n[l[1]]&&""!==n[l[1]])if("int"===i||"float"===i){if(r.indexOf("<")>-1&&e>=n[l[1]])return!1;if(r.indexOf(">")>-1&&e<=n[l[1]])return!1;if(r.indexOf("=")>-1&&e!==n[l[1]])return!1}else if("date"===i||"datetime"===i){var o=new Date(e),u=new Date(n[l[1]]);if(r.indexOf("<")>-1&&o>=u)return!1;if(r.indexOf(">")>-1&&o<=u)return!1;if(r.indexOf("=")>-1&&o!==u)return!1}}return!0}function oe(e,t,n){var i;for(i in t)if(e.indexOf(n+"="+i)>-1)return t[i];return null}function ue(e){for(var t,n=null,i="",r=0,a=e;r<a.length;r+=1){var s="";if((t=a[r]).length<2)return!1;if(null===n)n=t.length;else if(t.length!==n)return!1;for(var l=0,o=t;l<o.length;l+=1)char=o[l],f.isAlpha(char)?f.isLowerCase(char)?s+="a":s+="A":f.isDigit(char)?s+="D":f.isBlank(char)?s+="B":s+=char;if(""===i)i=s;else if(i!==s)return!1}return i}function fe(e){for(var n="",i=0,r=e;i<r.length;i+=1)char=r[i],"A"===char?n+=t.sample("ABCDEFGHIJKLMNOPQRSTUVWXYZ"):"a"===char?n+=t.sample("abcdefghijklmnopqrstuvwxyz"):"D"===char?n+=Math.floor(10*Math.random()):"B"===char?n+=" ":n+=char;return n}function de(e){for(type in e)for(row in e[type]){var n=function(){var n,i=e[type][row][field],r=e[type][row].id;"string"==typeof i&&(e[type][row][field]=i.replace(/{{\s*([^\}]+)\s*}}/g,function(n,i){var a=t.sample(i.split("||")),s=a.split("?"),l=s[0].split("|"),o=l[0].split(".");if("/"===a[0]&&a.endsWith("/"))return d.randexp(a.slice(1,-1).replace(/❵/g,"}"));if("number"===o[0]&&1===o.length)return Math.floor(10*Math.random());if("sentence"===o[0]&&1===o.length)return x();if("paragraph"===o[0]&&1===o.length)return W();if("word"===o[0]&&2===o.length){if(void 0!==k[o[1]])return l.length>1?ee(k[o[1]](),l):k[o[1]]()}else if("fake"===o[0]&&2===o.length){if("function"==typeof N[o[1]])return l.length>1?ee(N[o[1]](),l):N[o[1]]()}else if("fake"===o[0]&&3===o.length){if("function"==typeof p[o[1]][o[2]])return l.length>1?ee(p[o[1]][o[2]](),l):p[o[1]][o[2]]()}else{if("field"===o[0]&&2===o.length&&void 0!==e[type][row][o[1]])return l.length>1?ee(e[type][row][o[1]],l):e[type][row][o[1]];if("field"===o[0]&&o.length>2){var f=o.slice(1),h=ne(e[type][row],f,e);if(null!==h)return l.length>1?ee(h,l):h;if(s.length>1)return s[1]}else{if("connected"===o[0]&&o.length>1){var c=te(o.slice(1),u.singular(type),r,e);return l.length>1?ee(c,l):c.length>1?[c.slice(0,-1).join(", "),c.slice(-1)[0]].join(c.length<2?"":" and "):c.join(",")}if(s.length>1)return s[1]}}return n}),e[type][row][field]=t.trim(e[type][row][field].replace(/  +/g," ")),n=e[type][row][field],!isNaN(parseFloat(n))&&isFinite(n)&&(e[type][row][field]=Number(e[type][row][field])))};for(field in e[type][row])n()}}var pe,he=new n;pe=b.concat(["congratulations to the {{noun}} that won the {{adjective}} {{noun}} with {{a_noun}}","incomprehensibilities of a {{adjective}} {{noun}} and {{a_noun}} made {{a_noun}} {{adjective}}"]),b=function(e){for(var t=[],n=0;n<e.length;n++)-1===t.indexOf(e[n])&&t.push(e[n]);return t}(pe),module.exports=function(e){var n,i,r,a,s,l,o,u,f,d,c,g,m=!1,v={},y=[],w={},b=[];for(n in"string"==typeof v?(v=JSON.parse(e),m=!0):v=e,v)for(r in v[n])for(i in v[n][r]){var M=i.split("__");"__"!==i.substr(0,2)?M.length>1&&(w[n+"."+M[1]]=n+"."+M[0],re(v[n][r],i,M[1])):(b.push(n+"."+i.substr(2)),re(v[n][r],i,i.substr(2)))}for(n in v){var j={key:n,minID:1,maxID:1,totalCount:0,fields:{}};for(r in v[n]){var k=[];for(i in v[n][r]){var _=v[n][r][i],q=ie(_),X=q.fieldType,ee=q.containsTemplate;if(void 0===j.fields[i]?j.fields[i]={types:[X],entries:[_],allEntries:[_],containsTemplate:ee,rules:[],cnt:1}:(j.fields[i].types.push(X),j.fields[i].types=t.uniq(j.fields[i].types),j.fields[i].entries.push(_),j.fields[i].entries=t.uniq(j.fields[i].entries),j.fields[i].allEntries.push(_),j.fields[i].cnt++,ee&&(j.fields[i].containsTemplate=!0)),"JSON"===X){var te=void 0;for(te in _){var ne=_[te],pe=ie(ne),ce=pe.fieldType,ge=pe.containsTemplate;void 0===j.fields[i+"."+te]?j.fields[i+"."+te]={types:[ce],entries:[ne],allEntries:[ne],containsTemplate:ge,cnt:1}:(j.fields[i+"."+te].types.push(ce),j.fields[i+"."+te].types=t.uniq(j.fields[i+"."+te].types),j.fields[i+"."+te].entries.push(ne),j.fields[i+"."+te].entries=t.uniq(j.fields[i+"."+te].entries),j.fields[i+"."+te].allEntries.push(ne),j.fields[i+"."+te].cnt++,ge&&(j.fields[i+"."+te].objContainsTemplate=!0))}}if(k.length>0&&"id"!==i&&!i.endsWith("_id")&&!i.endsWith("_ids")){var me=ae(i,_,X,k);me.length>0&&(j.fields[i].rules=j.fields[i].rules.concat(me))}"id"===i||i.endsWith("_id")||i.endsWith("_ids")||k.push({key:i,value:_,type:X})}}for(i in j.fields)"id"===i&&(j.totalCount=j.fields[i].cnt);for(i in j.fields)j.fields[i].type=1===j.fields[i].types.length?j.fields[i].types[0]:2==j.fields[i].types.length&&j.fields[i].types.indexOf("int")>-1&&j.fields[i].types.indexOf("float")>-1?"float":"string",j.fields[i].pattern="string"===j.fields[i].type&&!j.fields[i].containsTemplate&&ue(j.fields[i].entries),j.fields[i].entries.length<j.fields[i].cnt||j.fields[i].containsTemplate?(j.fields[i].repeatEntries=!0,j.fields[i].weights=K(j.fields[i].allEntries,j.fields[i].entries)):j.fields[i].repeatEntries=!1,j.fields[i].required=!(j.fields[i].cnt<j.totalCount),j.fields[i].rules=se(t.uniq(j.fields[i].rules)),j.fields[i].dir=!1,"int"!==j.fields[i].type&&"float"!==j.fields[i].type||(j.fields[i].dir=R(j.fields[i].entries)),"date"!==j.fields[i].type&&"datetime"!==j.fields[i].type||(j.fields[i].dir=V(j.fields[i].entries));j.gap=D(j.fields.id.entries),y.push(j)}for(n in y){var ve=y[n];if(ve.gap){var ye=void 0,we=void 0;for(ye=ve.gap.start;ye<=ve.gap.end;ye++){var be={};for(we in ve.fields){var Me="";if(ve.fields[we].repeatEntries||ve.fields[we].containsTemplate)Me=he.weighted(ve.fields[we].entries,ve.fields[we].weights);else{if("id"===we&&(Me=ye),"age"!==we&&!we.endsWith(".age")||"int"!==ve.fields[we].type||(Me=he.age()),"firstname"!==we&&!we.endsWith(".firstname")||"string"!==ve.fields[we].type||(Me=he.first()),"lastname"!==we&&!we.endsWith(".lastname")||"string"!==ve.fields[we].type||(Me=he.last()),"company"!==we&&!we.endsWith(".company")||"string"!==ve.fields[we].type||(Me=he.company()),"country"!==we&&!we.endsWith(".country")||"string"!==ve.fields[we].type||(Me=he.country()),"email"!==we&&!we.endsWith(".email")||"string"!==ve.fields[we].type||(Me=p.internet.exampleEmail()),"color"!==we&&!we.endsWith(".color")||"string"!==ve.fields[we].type||(Me=he.color()),"ip"!==we&&!we.endsWith(".ip")||"string"!==ve.fields[we].type||(Me=he.ip()),"profession"!==we&&!we.endsWith(".profession")||"string"!==ve.fields[we].type||(Me=he.profession()),"url"!==we&&!we.endsWith(".url")||"string"!==ve.fields[we].type||(Me=he.url()),"city"!==we&&!we.endsWith(".city")||"string"!==ve.fields[we].type||(Me=he.city()),"street"!==we&&!we.endsWith(".street")||"string"!==ve.fields[we].type||(Me=he.street()),"zip"!==we&&!we.endsWith(".zip")||"int"!==ve.fields[we].type||(Me=parseInt(he.zip())),"weekday"!==we&&!we.endsWith(".weekday")||"string"!==ve.fields[we].type||(Me=he.weekday()),"year"!==we&&!we.endsWith(".year")||"int"!==ve.fields[we].type||(Me=parseInt(he.year())),"password"!==we&&!we.endsWith(".password")||"string"!==ve.fields[we].type||(Me=he.hash()),"guid"!==we&&!we.endsWith(".guid")||"string"!==ve.fields[we].type||(Me=he.guid()),"product"!==we&&!we.endsWith(".product")||"string"!==ve.fields[we].type||(Me=p.commerce.productName()),"material"!==we&&!we.endsWith(".material")||"string"!==ve.fields[we].type||(Me=p.commerce.productMaterial()),"iban"!==we&&!we.endsWith(".iban")||"string"!==ve.fields[we].type||(Me=p.finance.iban()),"bic"!==we&&!we.endsWith(".bic")||"string"!==ve.fields[we].type||(Me=p.finance.bic()),"avatar"!==we&&!we.endsWith(".avatar")||"string"!==ve.fields[we].type||(Me=p.image.avatar()),"username"!==we&&!we.endsWith(".username")||"string"!==ve.fields[we].type||(Me=p.internet.userName()),"homepage"!==we&&!we.endsWith(".homepage")||"string"!==ve.fields[we].type||(Me=p.internet.url()),"job"!==we&&!we.endsWith(".job")||"string"!==ve.fields[we].type||(Me=p.name.jobTitle()),"mimetype"!==we&&!we.endsWith(".mimetype")||"string"!==ve.fields[we].type||(Me=p.system.mimeType()),""===Me&&"JSON"===ve.fields[we].type&&(Me={}),""===Me&&"array"===ve.fields[we].type){for(var je=null,ke=null,_e=0,xe=0,We=ve.fields[we].entries;xe<We.length;xe+=1){arrEntry=We[xe];var Te=z(arrEntry),Ne=E(arrEntry),Oe=arrEntry.length;Oe>0&&(null===je||Te<je)&&(je=Te),Oe>0&&(null===ke||Ne>ke)&&(ke=Ne),Oe>_e&&(_e=Oe)}(Me=Array.from({length:Math.floor(Math.random()*_e)+1},function(){return S(je,ke,1)})).sort(function(e,t){return e-t})}if(""===Me&&"string"===ve.fields[we].type){var De=Math.min.apply(Math,ve.fields[we].entries.map(function(e){return e.length})),qe=$(ve.fields[we].entries),Fe=(I(ve.fields[we].entries),L(ve.fields[we].entries)),Ce=J(ve.fields[we].entries),ze=B(ve.fields[we].entries),Ee=Y(ve.fields[we].entries),Ae=H(ve.fields[we].entries);Ae>1?Me=T(Math.floor(Math.random()*Ae)+Ee):ze>1?Me=W(Math.floor(Math.random()*ze)+Ce):Fe>1?(Me=x(),ve.fields[we].entries[0].endsWith(".")||ve.fields[we].entries[0].endsWith("!")||ve.fields[we].entries[0].endsWith("?")||(Me=Me.slice(0,-1))):Me=ve.fields[we].pattern?fe(ve.fields[we].pattern):ve.fields[we].entries[0][0].toUpperCase()===ve.fields[we].entries[0][0]?he.capitalize(he.word({length:Math.floor(Math.random()*De)+qe})):he.string({length:Math.floor(Math.random()*De)+qe}),ve.fields[we].entries[0]===ve.fields[we].entries[0].toUpperCase()?Me=Me.toUpperCase():ve.fields[we].entries[0]===ve.fields[we].entries[0].toLowerCase()?Me=Me.toLowerCase():C(ve.fields[we].entries)&&(Me=G(Me))}if(""===Me&&"int"===ve.fields[we].type){var Se=z(ve.fields[we].entries),Ue=E(ve.fields[we].entries),$e=A(ve.fields[we].entries),Ie=0,Le=oe(ve.fields[we].rules,be,we),Je=(Ue-Se)/(ve.gap.end-ve.gap.start+1);if("asc"===ve.fields[we].dir?(Ue=Math.ceil(Se+(ye-ve.gap.start+1)*Je-1),Se=Math.floor(Se+(ye-ve.gap.start)*Je+1)):"desc"===ve.fields[we].dir&&(Se=Math.ceil(Ue-(ye-ve.gap.start+1)*Je+1),Ue=Math.floor(Ue-(ye-ve.gap.start)*Je-1)),we.endsWith("_id"))Me=U(Se,Ue);else if(null===Le)for(;0===Ie||!le(Me,ve.fields[we].rules,be,ve.fields[we].type)&&Ie<100;)Me=S(Se,Ue,$e),Ie++;else Me=Le}if(""===Me&&"float"===ve.fields[we].type){var Be=z(ve.fields[we].entries),Ye=E(ve.fields[we].entries),He=F(ve.fields[we].entries),Ze=0,Pe=oe(ve.fields[we].rules,be,we),Qe=(Ye-Be-1)/(ve.gap.end-ve.gap.start+1);if("asc"===ve.fields[we].dir?(Ye=Be+(ye-ve.gap.start+1)*Qe+1,Be=Be+(ye-ve.gap.start)*Qe+1):"desc"===ve.fields[we].dir&&(Be=Ye-(ye-ve.gap.start+1)*Qe-1,Ye=Ye-(ye-ve.gap.start)*Qe-1),null===Pe)for(;0===Ze||!le(Me,ve.fields[we].rules,be,ve.fields[we].type)&&Ze<100;)Me=Number(he.floating({min:Be,max:Ye}).toFixed(He)),Ze++;else Me=Pe}if(""===Me&&"char"===ve.fields[we].type&&(Me=ve.fields[we].entries[0]===ve.fields[we].entries[0].toUpperCase()?he.letter({casing:"upper"}):ve.fields[we].entries[0]===ve.fields[we].entries[0].toLowerCase()?he.letter({casing:"lower"}):he.letter()),""===Me&&"date"===ve.fields[we].type){var Ge=Z(Q(ve.fields[we].entries)),Ke=P(Q(ve.fields[we].entries)),Re=0,Ve=oe(ve.fields[we].rules,be,we),Xe=ve.gap.end-ve.gap.start+1,et=(Ke.getTime()-Ge.getTime()-1)/Xe;if("asc"===ve.fields[we].dir?(Ke=new Date(Ge.getTime()+(ye-ve.gap.start+1)*et+1),Ge=new Date(Ge.getTime()+(ye-ve.gap.start)*et+1)):"desc"===ve.fields[we].dir&&(Ge=new Date(Ke.getTime()-(ye-ve.gap.start+1)*et-1),Ke=new Date(Ke.getTime()-(ye-ve.gap.start)*et-1)),null===Ve)for(;0===Re||!le(Me,ve.fields[we].rules,be,ve.fields[we].type)&&Re<100;)o=Ge,u=Ke,f=void 0,d=void 0,c=void 0,g=void 0,f=new Date(o.getTime()+Math.random()*(u.getTime()-o.getTime())),d=""+(f.getMonth()+1),c=""+f.getDate(),g=f.getFullYear(),d.length<2&&(d="0"+d),c.length<2&&(c="0"+c),Me=[g,d,c].join("-"),Re++;else Me=Ve}if(""===Me&&"datetime"===ve.fields[we].type){var tt=Z(Q(ve.fields[we].entries)),nt=P(Q(ve.fields[we].entries)),it=0,rt=oe(ve.fields[we].rules,be,we),at=ve.gap.end-ve.gap.start+1,st=(nt.getTime()-tt.getTime()-1)/at;if("asc"===ve.fields[we].dir?(nt=new Date(tt.getTime()+(ye-ve.gap.start+1)*st+1),tt=new Date(tt.getTime()+(ye-ve.gap.start)*st+1)):"desc"===ve.fields[we].dir&&(tt=new Date(nt.getTime()-(ye-ve.gap.start+1)*st-1),nt=new Date(nt.getTime()-(ye-ve.gap.start)*st-1)),null===rt)for(;0===it||!le(Me,ve.fields[we].rules,be,ve.fields[we].type)&&it<100;)Me=O(tt,nt),it++;else Me=rt}""===Me&&"time"===ve.fields[we].type&&(a=void 0,s=void 0,l=void 0,a=String(N.hour({twentyfour:!0})),s=String(N.minute()),l=String(N.second()),1===a.length&&(a="0"+a),1===s.length&&(s="0"+s),1===l.length&&(l="0"+l),Me=Math.random()>=.5?[a,s,l].join(":"):[a,s].join(":")),""===Me&&"boolean"===ve.fields[we].type&&(Me=Math.random()>=.5)}if(ve.fields[we].required||Math.random()>=.5)if(we.indexOf(".")>-1){var lt=we.split(".");void 0!==be[lt[0]]&&(be[lt[0]][lt[1]]=Me)}else be[we]=Me}v[ve.key].push(be)}v[ve.key]=v[ve.key].sort(function(e,t){return e.id-t.id})}}for(n in de(v),de(v),v)for(r in v[n])for(i in v[n][r])b.indexOf(n+"."+i)>-1&&delete v[n][r][i],void 0!==w[n+"."+i]&&re(v[n][r],i,w[n+"."+i].split(".")[1]);return m?h(v):v};
-//# sourceMappingURL=blowson.js.map
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('lodash'), require('chance'), require('faker'), require('json-stringify-pretty-compact'), require('slugify'), require('md5'), require('date-fns'), require('numeral'), require('marked'), require('prob.js'), require('pluralize'), require('voca'), require('randexp')) :
+  typeof define === 'function' && define.amd ? define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify', 'md5', 'date-fns', 'numeral', 'marked', 'prob.js', 'pluralize', 'voca', 'randexp'], factory) :
+  (global = global || self, factory(global._, global.Chance, global.faker, global.stringify, global.slugify, global.md5, global.dateFns, global.numeral, global.marked, global.Prob, global.pluralize, global.v, global.RandExp));
+}(this, function (_, Chance, faker, stringify, slugify, md5, dateFns, numeral, marked, Prob, pluralize, v, RandExp) { 'use strict';
+
+  _ = _ && _.hasOwnProperty('default') ? _['default'] : _;
+  Chance = Chance && Chance.hasOwnProperty('default') ? Chance['default'] : Chance;
+  faker = faker && faker.hasOwnProperty('default') ? faker['default'] : faker;
+  stringify = stringify && stringify.hasOwnProperty('default') ? stringify['default'] : stringify;
+  slugify = slugify && slugify.hasOwnProperty('default') ? slugify['default'] : slugify;
+  md5 = md5 && md5.hasOwnProperty('default') ? md5['default'] : md5;
+  numeral = numeral && numeral.hasOwnProperty('default') ? numeral['default'] : numeral;
+  marked = marked && marked.hasOwnProperty('default') ? marked['default'] : marked;
+  Prob = Prob && Prob.hasOwnProperty('default') ? Prob['default'] : Prob;
+  pluralize = pluralize && pluralize.hasOwnProperty('default') ? pluralize['default'] : pluralize;
+  v = v && v.hasOwnProperty('default') ? v['default'] : v;
+  RandExp = RandExp && RandExp.hasOwnProperty('default') ? RandExp['default'] : RandExp;
+
+  // utils
+
+  const unique = (a) => {
+    let r = [];
+    for (let i = 0; i < a.length; i++) {
+      if (r.indexOf(a[i]) === -1) {
+        r.push(a[i]);
+      }
+    }
+    return r;
+  };
+
+  const random = (min, max) => {
+    let offset = min;
+    let range = max - min + 1;
+    let rd = Math.floor(Math.random() * range) + offset;
+    return rd;
+  };
+
+  const rand = (a) => {
+    let w;
+    while (!w) {
+      w = a[random(0, a.length - 1)];
+    }
+    return w;
+  };
+
+  const pickLastPunc = () => {
+    let a = '.......!?!?;...'.split('');
+    return rand(a);
+  };
+
+  const pluralize$1 = (word) => {
+    if (word.endsWith('s')) {
+      return word;
+    }
+    if (word.match(/(ss|ish|ch|x|us)$/)) {
+      word += 'e';
+    } else if (word.endsWith('y') && !vowels.includes(word.charAt(word.length - 2))) {
+      word = word.slice(0, word.length - 1);
+      word += 'ie';
+    }
+    return word + 's';
+  };
+
+  const normalize = (word) => {
+    let a = 'a';
+    if (word.match(/^(a|e|i|o)/)) {
+      a = 'an';
+    }
+    return `${a} ${word}`;
+  };
+
+  // samples
+
+  /* eslint-disable */
+  var nouns = [ 'alligator', 'ant', 'bear', 'bee', 'bird', 'camel', 'cat', 'cheetah', 'chicken', 'chimpanzee', 'cow', 'crocodile', 'deer', 'dog', 'dolphin', 'duck', 'eagle', 'elephant', 'fish', 'fly', 'fox', 'frog', 'giraffe', 'goat', 'goldfish', 'hamster', 'hippopotamus', 'horse', 'kangaroo', 'kitten', 'lion', 'lobster', 'monkey', 'octopus', 'owl', 'panda', 'pig', 'puppy', 'rabbit', 'rat', 'scorpion', 'seal', 'shark', 'sheep', 'snail', 'snake', 'spider', 'squirrel', 'tiger', 'turtle', 'wolf', 'zebra', 'apple', 'apricot', 'banana', 'blackberry', 'blueberry', 'cherry', 'cranberry', 'currant', 'fig', 'grape', 'grapefruit', 'grapes', 'kiwi', 'kumquat', 'lemon', 'lime', 'melon', 'nectarine', 'orange', 'peach', 'pear', 'persimmon', 'pineapple', 'plum', 'pomegranate', 'prune', 'raspberry', 'strawberry', 'tangerine', 'watermelon' ];
+  var adjectives = [ 'adaptable', 'adventurous', 'affable', 'affectionate', 'agreeable', 'alert', 'alluring', 'ambitious', 'ambitious', 'amiable', 'amicable', 'amused', 'amusing', 'boundless', 'brave', 'brave', 'bright', 'bright', 'broad-minded', 'calm', 'calm', 'capable', 'careful', 'charming', 'charming', 'cheerful', 'coherent', 'comfortable', 'communicative', 'compassionate', 'confident', 'conscientious', 'considerate', 'convivial', 'cooperative', 'courageous', 'courageous', 'courteous', 'creative', 'credible', 'cultured', 'dashing', 'dazzling', 'debonair', 'decisive', 'decisive', 'decorous', 'delightful', 'detailed', 'determined', 'determined', 'diligent', 'diligent', 'diplomatic', 'discreet', 'discreet', 'dynamic', 'dynamic', 'eager', 'easygoing', 'efficient', 'elated', 'eminent', 'emotional', 'enchanting', 'encouraging', 'endurable', 'energetic', 'energetic', 'entertaining', 'enthusiastic', 'enthusiastic', 'excellent', 'excited', 'exclusive', 'exuberant', 'exuberant', 'fabulous', 'fair', 'fair-minded', 'faithful', 'faithful', 'fantastic', 'fearless', 'fearless', 'fine', 'forceful', 'frank', 'frank', 'friendly', 'friendly', 'funny', 'funny', 'generous', 'generous', 'gentle', 'gentle', 'glorious', 'good', 'good', 'gregarious', 'happy', 'hard-working', 'harmonious', 'helpful', 'helpful', 'hilarious', 'honest', 'honorable', 'humorous', 'imaginative', 'impartial', 'impartial', 'independent', 'industrious', 'instinctive', 'intellectual', 'intelligent', 'intuitive', 'inventive', 'jolly', 'joyous', 'kind', 'kind', 'kind-hearted', 'knowledgeable', 'level', 'likeable', 'lively', 'lovely', 'loving', 'loving', 'loyal', 'lucky', 'mature', 'modern', 'modest', 'neat', 'nice', 'nice', 'obedient', 'optimistic', 'painstaking', 'passionate', 'patient', 'peaceful', 'perfect', 'persistent', 'philosophical', 'pioneering', 'placid', 'placid', 'plausible', 'pleasant', 'plucky', 'plucky', 'polite', 'powerful', 'practical', 'pro-active', 'productive', 'protective', 'proud', 'punctual', 'quick-witted', 'quiet', 'quiet', 'rational', 'receptive', 'reflective', 'reliable', 'relieved', 'reserved', 'resolute', 'resourceful', 'responsible', 'rhetorical', 'righteous', 'romantic', 'romantic', 'sedate', 'seemly', 'selective', 'self-assured', 'self-confident', 'self-disciplined', 'sensible', 'sensitive', 'sensitive', 'shrewd', 'shy', 'silly', 'sincere', 'sincere', 'skillful', 'smiling', 'sociable', 'splendid', 'steadfast', 'stimulating', 'straightforward', 'successful', 'succinct', 'sympathetic', 'talented', 'thoughtful', 'thoughtful', 'thrifty', 'tidy', 'tough', 'tough', 'trustworthy', 'unassuming', 'unbiased', 'understanding', 'unusual', 'upbeat', 'versatile', 'vigorous', 'vivacious', 'warm', 'warmhearted', 'willing', 'willing', 'wise', 'witty', 'witty', 'wonderful' ];
+
+  var vowels = [
+    'a', 'e', 'i', 'o', 'u', 'y'
+  ];
+
+  var sentenceTemplates = [
+    'the {{noun}} is {{a_noun}}',
+    '{{a_noun}} is {{an_adjective}} {{noun}}',
+    'the first {{adjective}} {{noun}} is, in its own way, {{a_noun}}',
+    'their {{noun}} was, in this moment, {{an_adjective}} {{noun}}',
+    '{{a_noun}} is {{a_noun}} from the right perspective',
+    'the literature would have us believe that {{an_adjective}} {{noun}} is not but {{a_noun}}',
+    '{{an_adjective}} {{noun}} is {{a_noun}} of the mind',
+    'the {{adjective}} {{noun}} reveals itself as {{an_adjective}} {{noun}} to those who look',
+    'authors often misinterpret the {{noun}} as {{an_adjective}} {{noun}}, when in actuality it feels more like {{an_adjective}} {{noun}}',
+    'we can assume that any instance of {{a_noun}} can be construed as {{an_adjective}} {{noun}}',
+    'they were lost without the {{adjective}} {{noun}} that composed their {{noun}}',
+    'the {{adjective}} {{noun}} comes from {{an_adjective}} {{noun}}',
+    '{{a_noun}} can hardly be considered {{an_adjective}} {{noun}} without also being {{a_noun}}',
+    'few can name {{an_adjective}} {{noun}} that isn\'t {{an_adjective}} {{noun}}',
+    'some posit the {{adjective}} {{noun}} to be less than {{adjective}}',
+    '{{a_noun}} of the {{noun}} is assumed to be {{an_adjective}} {{noun}}',
+    '{{a_noun}} sees {{a_noun}} as {{an_adjective}} {{noun}}',
+    'the {{noun}} of {{a_noun}} becomes {{an_adjective}} {{noun}}',
+    '{{a_noun}} is {{a_noun}}\'s {{noun}}',
+    '{{a_noun}} is the {{noun}} of {{a_noun}}',
+    '{{an_adjective}} {{noun}}\'s {{noun}} comes with it the thought that the {{adjective}} {{noun}} is {{a_noun}}',
+    '{{nouns}} are {{adjective}} {{nouns}}',
+    '{{adjective}} {{nouns}} show us how {{nouns}} can be {{nouns}}',
+    'before {{nouns}}, {{nouns}} were only {{nouns}}',
+    'those {{nouns}} are nothing more than {{nouns}}',
+    'some {{adjective}} {{nouns}} are thought of simply as {{nouns}}',
+    'one cannot separate {{nouns}} from {{adjective}} {{nouns}}',
+    'the {{nouns}} could be said to resemble {{adjective}} {{nouns}}',
+    '{{an_adjective}} {{noun}} without {{nouns}} is truly a {{noun}} of {{adjective}} {{nouns}}'
+  ];
+
+  var phrases = [
+    'to be more specific, ',
+    'in recent years, ',
+    'however, ',
+    'by the way',
+    'of course, ',
+    'some assert that ',
+    'if this was somewhat unclear, ',
+    'unfortunately, that is wrong; on the contrary, ',
+    'it\'s very tricky, if not impossible, ',
+    'this could be, or perhaps ',
+    'this is not to discredit the idea that ',
+    'we know that ',
+    'it\'s an undeniable fact, really; ',
+    'framed in a different way, ',
+    'what we don\'t know for sure is whether or not ',
+    'as far as we can estimate, ',
+    'as far as he is concerned, ',
+    'the zeitgeist contends that ',
+    'though we assume the latter, ',
+    'far from the truth, ',
+    'extending this logic, ',
+    'nowhere is it disputed that ',
+    'in modern times ',
+    'in ancient times ',
+    'recent controversy aside, ',
+    'washing and polishing the car,',
+    'having been a gymnast, ',
+    'after a long day at school and work, ',
+    'waking to the buzz of the alarm clock, ',
+    'draped neatly on a hanger, ',
+    'shouting with happiness, '
+  ];
+
+  const addTemplates = (ls) => {
+    let a = sentenceTemplates.concat(ls);
+    sentenceTemplates = unique(a);
+    return sentenceTemplates.length;
+  };
+
+  /**
+   * txtgen
+   * @ndaidong
+  **/
+
+  let actions = [
+    'noun', 'a_noun', 'nouns',
+    'adjective', 'an_adjective',
+  ];
+
+  const generator = {
+    noun: () => {
+      return rand(nouns);
+    },
+    a_noun: () => { // eslint-disable-line camelcase
+      return normalize(rand(nouns));
+    },
+    nouns: () => {
+      return pluralize$1(rand(nouns));
+    },
+    adjective: () => {
+      return rand(adjectives);
+    },
+    an_adjective: () => { // eslint-disable-line camelcase
+      return normalize(rand(adjectives));
+    },
+  };
+
+  const trim = (s) => {
+    return s.replace(/^[\s\xa0]+|[\s\xa0]+$/g, '')
+      .replace(/\r?\n|\r/g, ' ')
+      .replace(/\s\s+|\r/g, ' ');
+  };
+
+  const make = (template) => {
+    let sentence = template;
+    let occurrences = template.match(/\{\{(.+?)\}\}/g);
+
+    if (occurrences && occurrences.length) {
+      for (let i = 0; i < occurrences.length; i++) {
+        let action = trim(occurrences[i].replace('{{', '').replace('}}', ''));
+        let result;
+        if (actions.includes(action)) {
+          result = generator[action]();
+        }
+        sentence = sentence.replace(occurrences[i], result);
+      }
+    }
+    return sentence;
+  };
+
+  const randomStartingPhrase = () => {
+    if (Math.random() < 0.33) {
+      return rand(phrases);
+    }
+    return '';
+  };
+
+  const makeSentenceFromTemplate = () => {
+    return make(rand(sentenceTemplates));
+  };
+
+  const sentence = () => {
+    let phrase = randomStartingPhrase();
+    let s = phrase + makeSentenceFromTemplate();
+    s = s.charAt(0).toUpperCase() + s.slice(1);
+    s += pickLastPunc();
+    if (Math.random() >= 0.9) {
+      let quotationEntries = [
+        'He said',
+        'She said',
+        'In his own words',
+        'In her own words',
+        'Yelling',
+        'Wispering',
+        'Quoting with intend'
+      ];
+      s = `${rand(quotationEntries)}: "${s}"`;
+    }
+    return s;
+  };
+
+  const paragraph = (len = 0) => {
+    if (!len) {
+      len = random(3, 10);
+    }
+    let t = Math.min(len, 15);
+    let a = [];
+    while (a.length < t) {
+      let s = sentence();
+      a.push(s);
+    }
+    return a.join(' ');
+  };
+
+  const article = (len = 0) => {
+    if (!len) {
+      len = random(3, 10);
+    }
+    let t = Math.min(len, 15);
+    let a = [];
+    while (a.length < t) {
+      let s = paragraph();
+      a.push(s);
+    }
+    return a.join('\n\n');
+  };
+
+  const chance = new Chance();
+
+  function randomTime() {
+      let hours = String(chance.hour({ twentyfour: true })),
+          minutes = String(chance.minute()),
+          seconds = String(chance.second());
+
+      if (hours.length === 1) hours = '0' + hours;
+      if (minutes.length === 1) minutes = '0' + minutes;
+      if (seconds.length === 1) seconds = '0' + seconds;
+
+      if (Math.random() >= 0.5) {
+          return [hours, minutes, seconds].join(':');
+      } else {
+          return [hours, minutes].join(':');
+      }
+  }
+
+  function randomDate(start, end) {
+      var d = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+
+      return [year, month, day].join('-');
+  }
+
+  function randomDatetime(start, end) {
+      var d = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear(),
+          hours = '' + d.getHours(),
+          minutes = '' + d.getMinutes(),
+          seconds = '' + d.getSeconds();
+
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      if (hours.length < 2) hours = '0' + hours;
+      if (minutes.length < 2) minutes = '0' + minutes;
+      if (seconds.length < 2) seconds = '0' + seconds;
+
+      return [year, month, day].join('-') + 'T' + [hours, minutes, seconds].join(':') + '+01:00';
+  }
+
+  function findGap(numArray) {
+      let min = Math.min.apply(Math, numArray),
+          max = Math.max.apply(Math, numArray),
+          missingNums = [],
+          i;
+
+      for (i = min; i <= max; i++) {
+          if (numArray.indexOf(i) == -1) {
+              missingNums.push(i);
+          }
+      }
+
+      if (missingNums.length > 0) {
+          return {
+              start: Math.min.apply(Math, missingNums),
+              end: Math.max.apply(Math, missingNums)
+          };
+      } else {
+          return false;
+      }
+  }
+
+  function floatPrecision(a) {
+      if (!isFinite(a)) return 0;
+
+      var e = 1, p = 0;
+
+      while (Math.round(a * e) / e !== a) {
+          e *= 10; p++;
+      }
+
+      return p;
+  }
+
+  function getMaxPrecision(floatArray) {
+      let maxPrecision = 0,
+          value;
+
+      for (value of floatArray) {
+          let precision = floatPrecision(value);
+
+          if (precision > maxPrecision) {
+              maxPrecision = precision;
+          }
+      }
+
+      return maxPrecision;
+  }
+
+  function everythingCapitalized(stringArray) {
+      let isCapitalized = true,
+          str;
+
+      for (str of stringArray) {
+          if (capitalize(str) !== str) {
+              isCapitalized = false;
+              break;
+          }
+      }
+
+      return isCapitalized;
+  }
+
+  function minNumber(intArray) {
+      return Math.min.apply(Math, intArray);
+  }
+
+  function maxNumber(intArray) {
+      return Math.max.apply(Math, intArray);
+  }
+
+  function minGapOfIntArray(intArray) {
+      let minGap = 999999999,
+          value1,
+          value2;
+
+      for (value1 of intArray) {
+          for (value2 of intArray) {
+              if (value1 !== value2 && Math.abs(value1 - value2) < minGap) {
+                  minGap = Math.abs(value1 - value2);
+              }
+          }
+      }
+
+      return minGap;
+  }
+
+  function randomIntWithStep(min, max, step) {
+      let delta,
+          range,
+          rand;
+
+      if (arguments.length < 2) {
+          max = min;
+          min = 0;
+      }
+
+      if (!step) {
+          step = 1;
+      }
+
+      delta = max - min;
+      range = delta / step;
+      rand = Math.random();
+      rand *= range;
+      rand = Math.floor(rand);
+      rand *= step;
+      rand += min;
+
+      return rand;
+  }
+
+  function normalDistRandomInt(min, max) {
+      let normal = Math.abs((Prob.normal(0, 1)() + 3) / 6),
+          result = Math.floor((normal * (max - min)) + min);
+
+      if (result < min) result = min;
+      if (result > max) result = max;
+
+      return result;
+  }
+
+  function minStrLength(strArray) {
+      return Math.min.apply(Math, strArray.map(function (str) { return str.length; }));
+  }
+
+  function maxStrLength(strArray) {
+      return Math.max.apply(Math, strArray.map(function (str) { return str.length; }));
+  }
+
+  function minWordCount(strArray) {
+      return Math.min.apply(Math, strArray.map(function (str) {
+          let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+          return parts.length; 
+      }));
+  }
+
+  function maxWordCount(strArray) {
+      return Math.max.apply(Math, strArray.map(function (str) {
+          let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+          return parts.length; 
+      }));
+  }
+
+  function minSentenceCount(strArray) {
+      return Math.min.apply(Math, strArray.map(function (str) {
+          let parts = _.compact(str.split(/[\.\!\?]+/));
+          return parts.length; 
+      }));
+  }
+
+  function maxSentenceCount(strArray) {
+      return Math.max.apply(Math, strArray.map(function (str) {
+          let parts = _.compact(str.split(/[\.\!\?]+/));
+          return parts.length; 
+      }));
+  }
+
+  function minParagraphCount(strArray) {
+      return Math.min.apply(Math, strArray.map(function (str) {
+          let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+          return parts.length;
+      }));
+  }
+
+  function maxParagraphCount(strArray) {
+      return Math.max.apply(Math, strArray.map(function (str) {
+          let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+          return parts.length;
+      }));
+  }
+
+  function minDate(dateArray) {
+      return new Date(Math.min.apply(null, dateArray));
+  }
+
+  function maxDate(dateArray) {
+      return new Date(Math.max.apply(null, dateArray));
+  }
+
+  function convertStringDateArray(stringDateArray) {
+      let newArray = [],
+          dateString;
+
+      for (dateString of stringDateArray) {
+          newArray.push(new Date(dateString));
+      }
+
+      return newArray;
+  }
+
+  function capitalize(str) {
+      return str.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
+  }
+  function isDateString(str) {
+      return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(str);
+  }
+
+  function isDatetimeString(str) {
+      return /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\+[0-9]{2}:[0-9]{2}$/.test(str);
+  }
+
+  function isTimeString(str) {
+      return /^[0-9]{2}:[0-9]{2}:[0-9]{2}$|^[0-9]{2}:[0-9]{2}$/.test(str);
+  }
+
+  function getWeights(allEntries, uniqueEntries) {
+      let weightedEntries = {},
+          weights = [],
+          entry;
+      
+      for (entry of allEntries) {
+          if (typeof weightedEntries[entry] === 'undefined') {
+              weightedEntries[entry] = 1;
+          } else {
+              weightedEntries[entry]++;
+          }
+      }
+
+      for (entry of uniqueEntries) {
+          weights.push(weightedEntries[entry]);
+      }
+
+      return weights;
+  }
+
+  function getNumberDirection(entries) {
+      let direction = null,
+          lastValue = null,
+          noDirection = false,
+          value;
+
+      for (value of entries) {
+          if (lastValue !== null && value > lastValue) {
+              if (direction === 'desc') {
+                  noDirection = true;
+                  break;
+              }
+              direction = 'asc';
+          }
+          if (lastValue !== null && value < lastValue) {
+              if (direction === 'asc') {
+                  noDirection = true;
+                  break;
+              }
+              direction = 'desc';
+          }
+          lastValue = value;
+      }
+
+      if (noDirection || direction === null) {
+          return false;
+      } else {
+          return direction;
+      }
+  }
+
+  function getDateDirection(entries) {
+      let direction = null,
+          lastValue = null,
+          noDirection = false,
+          value;
+
+      for (value of entries) {
+          let dateValue = new Date(value);
+
+          if (lastValue !== null && dateValue > lastValue) {
+              if (direction === 'desc') {
+                  noDirection = true;
+                  break;
+              }
+              direction = 'asc';
+          }
+          if (lastValue !== null && dateValue < lastValue) {
+              if (direction === 'asc') {
+                  noDirection = true;
+                  break;
+              }
+              direction = 'desc';
+          }
+          lastValue = dateValue;
+      }
+
+      if (noDirection || direction === null) {
+          return false;
+      } else {
+          return direction;
+      }
+  }
+
+  function filterValue(value, filter) {
+      if (value.constructor !== Array) {
+          value = String(value);
+          let numValue = Number(value);
+
+          if (filter === 'slug') {
+              return slugify(value, { lower: true });
+          } else if (filter === 'lower') {
+              return value.toLowerCase();
+          } else if (filter === 'upper') {
+              return value.toUpperCase();
+          } else if (filter === 'md5') {
+              return md5(value);
+          } else if (filter === 'capitalize') {
+              return capitalize(value);
+          } else if (filter === 'plural') {
+              return pluralize.plural(value);
+          } else if (filter === 'singular') {
+              return pluralize.singular(value);
+          } else if (filter === 'trim') {
+              return _.trim(value);
+          } else if (filter === 'md') {
+              return marked(value);
+          } else if (numValue !== NaN && filter === 'round') {
+              return Math.round(value);
+          } else if (numValue !== NaN && filter === 'floor') {
+              return Math.floor(value);
+          } else if (numValue !== NaN && filter === 'ceil') {
+              return Math.ceil(value);
+          } else if (numValue !== NaN && filter.substring(0, 5) === 'plus:') {
+              let filterSplit = filter.split(':');
+              return (numValue + Number(filterSplit[1]));
+          } else if (numValue !== NaN && filter.substring(0, 6) === 'minus:') {
+              let filterSplit = filter.split(':');
+              return (numValue - Number(filterSplit[1]));
+          } else if (numValue !== NaN && filter.substring(0, 6) === 'times:') {
+              let filterSplit = filter.split(':');
+              return (numValue * Number(filterSplit[1]));
+          } else if (numValue !== NaN && filter.substring(0, 4) === 'max:') {
+              let filterSplit = filter.split(':'),
+                  limit = Number(filterSplit[1]);
+              if (numValue > limit) {
+                  return limit;
+              } else {
+                  return numValue;
+              }
+          } else if (numValue !== NaN && filter.substring(0, 4) === 'min:') {
+              let filterSplit = filter.split(':'),
+                  limit = Number(filterSplit[1]);
+              if (numValue < limit) {
+                  return limit;
+              } else {
+                  return numValue;
+              }
+          } else if (numValue !== NaN && filter.substring(0, 4) === 'num:') {
+              let filterSplit = filter.split(':');
+              return numeral(numValue).format(filterSplit[1]);
+          } else if (filter === 'optional' && Math.random() >= 0.5) {
+              return '';
+          } else if (filter.substring(0, 5) === 'date:') {
+              let filterSplit = filter.split(':');
+              return dateFns.format(new Date(value), filterSplit[1]);
+          } else {
+              return value;
+          }
+      } else {
+          if (filter === 'count') {
+              return value.length;
+          } else if (filter === 'max') {
+              return maxNumber(value);
+          } else if (filter === 'min') {
+              return minNumber(value);
+          } else if (filter === 'sum') {
+              return _.sum(value);
+          } else if (filter === 'avg') {
+              return _.mean(value);
+          } else if (filter === 'rand') {
+              return _.sample(value);
+          } else {
+              return value;
+          }
+      }
+  }
+
+  function applyFilters(value, filters) {
+      let filtered = filterValue(value, filters[1]),
+          nr = 2;
+
+      while (filters.length > nr) {
+          filtered = filterValue(filtered, filters[nr]);
+          nr++;
+      }
+
+      return filtered;
+  }
+
+  function getValuesByPath(path, reftype, id, data) {
+      let type = path[0];
+
+      if (typeof data[type] !== 'undefined') {
+          let row, values = [];
+
+          for (row of data[type]) {
+              if (row[`${reftype}_id`] === id) {
+                  if (path.length > 1) {
+                      values.push(row[path[1]]);
+                  } else {
+                      values.push(row.id);
+                  }
+              }
+          }
+
+          // Just return the ids
+          return values;
+      } else {
+          return [];
+      }
+  }
+
+  function getFieldByPath(row, path, data) {
+      let found = false,
+          nextSteps = path.slice(0),
+          currentRow = row;
+
+      if (path.length === 0) {
+          return null;
+      }
+
+      while (!found) {
+          let nextStep = nextSteps.shift();
+
+          if (typeof currentRow[nextStep + '_id'] !== 'undefined') {
+              let item,
+                  pluralNextStep = pluralize.plural(nextStep);
+
+              if (typeof data[pluralNextStep] !== 'undefined') {
+                  for (item in data[pluralNextStep]) {
+                      if (data[pluralNextStep][item]['id'] === currentRow[nextStep + '_id']) {
+                          currentRow = data[pluralNextStep][item];
+                      }
+                  }
+              }
+          } else if (typeof currentRow[nextStep] !== 'undefined') {
+              if (typeof currentRow[nextStep][path[path.length - 1]] !== 'undefined') {
+                  return currentRow[nextStep][path[path.length - 1]];
+              } else {
+                  if (typeof currentRow[nextStep] !== 'object') {
+                      return currentRow[nextStep];
+                  } else {
+                      return null;
+                  }
+              }
+          } else {
+              return null;
+          }
+
+          if (nextSteps.length === 0) {
+              found = true;
+          }
+      }
+
+      return null;
+  }
+
+  function detectFieldType(fieldValue) {
+      let fieldType = 'undefined',
+          containsTemplate = false;
+
+      if (typeof fieldValue === 'boolean') {
+          fieldType = 'boolean';
+      } else if (typeof fieldValue === 'number') {
+          if (Math.round(fieldValue) === fieldValue) {
+              fieldType = 'int';
+          } else {
+              fieldType = 'float';
+          }
+      } else if (typeof fieldValue === 'string') {
+          if (isDateString(fieldValue)) {
+              fieldType = 'date';
+          } else if (isDatetimeString(fieldValue)) {
+              fieldType = 'datetime';
+          } else if (isTimeString(fieldValue)) {
+              fieldType = 'time';
+          } else if (fieldValue.length === 1) {
+              fieldType = 'char';
+          } else {
+              if (/{{\s*([\w\.\?\|\:\, ]+)\s*}}/.test(fieldValue)) {
+                  containsTemplate = true;
+              }
+              fieldType = 'string';
+          }
+      } else if (typeof fieldValue === 'object') {
+          if (Array.isArray(fieldValue)) {
+              fieldType = 'array';
+          } else {
+              fieldType = 'JSON';
+          }
+      }
+
+      return {
+          fieldType: fieldType,
+          containsTemplate: containsTemplate
+      }
+  }
+
+  function renameProperty(obj, oldName, newName) {
+      if (oldName == newName) {
+          return obj;
+      }
+
+      if (obj.hasOwnProperty(oldName)) {
+          obj[newName] = obj[oldName];
+          delete obj[oldName];
+      }
+
+      return obj;
+  }
+
+  function getFieldRules(key, value, type, prevFields) {
+      let rules = [],
+          prevField;
+
+      for (prevField of prevFields) {
+          if ((type === 'int' || type === 'float') && (prevField.type === 'int' || prevField.type === 'float')) {
+              if (value > prevField.value) {
+                  rules.push(`${key}>${prevField.key}`);
+              } else if (value < prevField.value) {
+                  rules.push(`${key}<${prevField.key}`);
+              } else {
+                  rules.push(`${key}=${prevField.key}`);
+              }
+          } else if ((type === 'date' && prevField.type === 'date') || (type === 'datetime' && prevField.type === 'datetime')) {
+              let valueDate = new Date(value),
+                  prevValueDate = new Date(prevField.value);
+
+              if (valueDate > prevValueDate) {
+                  rules.push(`${key}>${prevField.key}`);
+              } else if (valueDate < prevValueDate) {
+                  rules.push(`${key}<${prevField.key}`);
+              } else {
+                  rules.push(`${key}=${prevField.key}`);
+              }
+          }
+      }
+
+      return rules;
+  }
+
+  function removeIncompatibleRules(rules) {
+      let filteredRules = [],
+          rule;
+
+      for (rule of rules) {
+          let ruleSplit = rule.split(/>|<|=/);
+          
+          if (rule.indexOf('<') > -1 && rules.indexOf(`${ruleSplit[0]}>${ruleSplit[1]}`) === -1 && rules.indexOf(`${ruleSplit[0]}=${ruleSplit[1]}`) === -1) {
+              filteredRules.push(rule);
+          }
+          if (rule.indexOf('>') > -1 && rules.indexOf(`${ruleSplit[0]}<${ruleSplit[1]}`) === -1 && rules.indexOf(`${ruleSplit[0]}=${ruleSplit[1]}`) === -1) {
+              filteredRules.push(rule);
+          }
+          if (rule.indexOf('=') > -1 && rules.indexOf(`${ruleSplit[0]}>${ruleSplit[1]}`) === -1 && rules.indexOf(`${ruleSplit[0]}<${ruleSplit[1]}`) === -1) {
+              filteredRules.push(rule);
+          }
+      }
+
+      return filteredRules;
+  }
+
+  function rulesAreValid(value, rules, row, type) {
+      if (rules.length === 0) return true;
+      if (value === '') return false;
+
+      let rule;
+
+      for (rule of rules) {
+          let ruleSplit = rule.split(/>|<|=/);
+
+          if (typeof row[ruleSplit[1]] !== 'undefined' && row[ruleSplit[1]] !== '') {
+              if (type === 'int' || type === 'float') {
+                  if (rule.indexOf('<') > -1 && value >= row[ruleSplit[1]]) {
+                      return false;
+                  }
+                  if (rule.indexOf('>') > -1 && value <= row[ruleSplit[1]]) {
+                      return false;
+                  }
+                  if (rule.indexOf('=') > -1 && value !== row[ruleSplit[1]]) {
+                      return false;
+                  }
+              } else if (type === 'date' || type === 'datetime') {
+                  let valueDate = new Date(value),
+                      rowValueDate = new Date(row[ruleSplit[1]]);
+
+                  if (rule.indexOf('<') > -1 && valueDate >= rowValueDate) {
+                      return false;
+                  }
+                  if (rule.indexOf('>') > -1 && valueDate <= rowValueDate) {
+                      return false;
+                  }
+                  if (rule.indexOf('=') > -1 && valueDate !== rowValueDate) {
+                      return false;
+                  }
+              }
+          }
+      }
+
+      return true;
+  }
+
+  function ruleBasedValue(rules, row, key) {
+      let field;
+
+      for (field in row) {
+          if (rules.indexOf(`${key}=${field}`) > -1) {
+              return row[field];
+          }
+      }
+
+      return null;
+  }
+
+  function isNumeric(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
+  function detectStringpattern(strings) {
+      let stringLength = null,
+          pattern = '',
+          str;
+
+      for (str of strings) {
+          let newPattern = '',
+              char;
+
+          if (str.length < 2) return false;
+
+          if (stringLength === null) {
+              stringLength = str.length;
+          } else {
+              if (str.length !== stringLength) {
+                  return false;
+              }
+          }
+
+          for (char of str) {
+              if (v.isAlpha(char)) {
+                  if (v.isLowerCase(char)) {
+                      newPattern += 'a';
+                  } else {
+                      newPattern += 'A';
+                  }
+              } else if (v.isDigit(char)) {
+                  newPattern += 'D';
+              } else if (v.isBlank(char)) {
+                  newPattern += 'B';
+              } else {
+                  newPattern += char;
+              }
+          }
+
+          if (pattern === '') {
+              pattern = newPattern;
+          } else {
+              if (pattern !== newPattern) {
+                  return false;
+              }
+          }
+      }
+
+      return pattern;
+  }
+
+  function stringFromPattern(pattern) {
+      let output = '',
+          char;
+
+      for (char of pattern) {
+          if (char === 'A') {
+              output += _.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+          } else if (char === 'a') {
+              output += _.sample('abcdefghijklmnopqrstuvwxyz');
+          } else if (char === 'D') {
+              output += Math.floor(Math.random() * 10);
+          } else if (char === 'B') {
+              output += ' ';
+          } else {
+              output += char;
+          }
+      }
+
+      return output;
+  }
+
+  function parseTemplateVariables(data) {
+      let type, row, field;
+      
+      for (type in data) {
+          for (row in data[type]) {
+              for (field in data[type][row]) {
+                  let value = data[type][row][field],
+                      id = data[type][row].id;
+
+                  if (typeof value === 'string') {
+                      data[type][row][field] = value.replace(/{{\s*([^\}]+)\s*}}/g, function (match, capture) {
+                          let randomPart = _.sample(capture.split('||')),
+                              defaultParts = randomPart.split('?'),
+                              filterParts = defaultParts[0].split('|'),
+                              parts = filterParts[0].split('.');
+
+                          if (randomPart[0] === '/' && randomPart.endsWith('/')) {
+                              return RandExp.randexp(randomPart.slice(1, -1).replace(/❵/g, '}'));
+                          } else if (parts[0] === 'number' && parts.length === 1) {
+                              return Math.floor(Math.random() * 10);
+                          } else if (parts[0] === 'sentence' && parts.length === 1) {
+                              return sentence();
+                          } else if (parts[0] === 'paragraph' && parts.length === 1) {
+                              return paragraph();
+                          } else if (parts[0] === 'word' && parts.length === 2) {
+                              if (typeof generator[parts[1]] !== 'undefined') {
+                                  if (filterParts.length > 1) {
+                                      return applyFilters(generator[parts[1]](), filterParts);
+                                  } else {
+                                      return generator[parts[1]]();
+                                  }
+                              }
+                          } else if (parts[0] === 'fake' && parts.length === 2) {
+                              if (typeof chance[parts[1]] === 'function') {
+                                  if (filterParts.length > 1) {
+                                      return applyFilters(chance[parts[1]](), filterParts);
+                                  } else {
+                                      return chance[parts[1]]();
+                                  }
+                              }
+                          } else if (parts[0] === 'fake' && parts.length === 3) {
+                              if (typeof faker[parts[1]][parts[2]] === 'function') {
+                                  if (filterParts.length > 1) {
+                                      return applyFilters(faker[parts[1]][parts[2]](), filterParts);
+                                  } else {
+                                      return faker[parts[1]][parts[2]]();
+                                  }
+                              }
+                          } else if (parts[0] === 'field' && parts.length === 2 && typeof data[type][row][parts[1]] !== 'undefined') {
+                              if (filterParts.length > 1) {
+                                  return applyFilters(data[type][row][parts[1]], filterParts);
+                              } else {
+                                  return data[type][row][parts[1]];
+                              }
+                          } else if (parts[0] === 'field' && parts.length > 2) {
+                              let path = parts.slice(1),
+                                  value = getFieldByPath(data[type][row], path, data);
+
+                              if (value !== null) {
+                                  if (filterParts.length > 1) {
+                                      return applyFilters(value, filterParts);
+                                  } else {
+                                      return value;
+                                  }
+                              }
+
+                              if (defaultParts.length > 1) {
+                                  return defaultParts[1];
+                              }
+                          } else if (parts[0] === 'connected' && parts.length > 1) {
+                              let path = parts.slice(1),
+                                  values = getValuesByPath(path, pluralize.singular(type), id, data);
+
+                              if (filterParts.length > 1) {
+                                  return applyFilters(values, filterParts);
+                              } else {
+                                  if (values.length > 1) {
+                                      return [values.slice(0, -1).join(', '), values.slice(-1)[0]].join(values.length < 2 ? '' : ' and ');
+                                  } else {
+                                      return values.join(',');
+                                  }
+                              }
+                          } else if (defaultParts.length > 1) {
+                              return defaultParts[1];
+                          }
+
+                          return match;
+                      });
+
+                      data[type][row][field] = _.trim(data[type][row][field].replace(/  +/g, ' '));
+
+                      if (isNumeric(data[type][row][field])) {
+                          data[type][row][field] = Number(data[type][row][field]);
+                      }
+                  }
+              }
+          }
+      }
+  }
+
+  const chance$1 = new Chance();
+
+  addTemplates([
+      'congratulations to the {{noun}} that won the {{adjective}} {{noun}} with {{a_noun}}',
+      'incomprehensibilities of a {{adjective}} {{noun}} and {{a_noun}} made {{a_noun}} {{adjective}}'
+  ]);
+
+  module.exports = function blowson(inputData) {
+      let dataIsJSON = false,
+          data = {},
+          types = [],
+          type,
+          field,
+          entry,
+          customKeyNames = {},
+          tempKeys = [];
+
+      if (typeof data === 'string') {
+          data = JSON.parse(inputData);
+          dataIsJSON = true;
+      } else {
+          data = inputData;
+      }
+
+      for (type in data) {
+          for (entry in data[type]) {
+              for (field in data[type][entry]) {
+                  let fieldSplit = field.split('__');
+
+                  if (field.substr(0, 2) === '__') {
+                      tempKeys.push(`${type}.${field.substr(2)}`);
+                      renameProperty(data[type][entry], field, field.substr(2));
+                      continue;
+                  }
+
+                  if (fieldSplit.length > 1) {
+                      customKeyNames[`${type}.${fieldSplit[1]}`] = `${type}.${fieldSplit[0]}`;
+                      renameProperty(data[type][entry], field, fieldSplit[1]);
+                  }
+              }
+          }
+      }
+
+      for (type in data) {
+          let typeDef = {
+                  key: type,
+                  minID: 1,
+                  maxID: 1,
+                  totalCount: 0,
+                  fields: {}
+              };
+
+          for (entry in data[type]) {
+              let prevFields = [];
+
+              for (field in data[type][entry]) {
+                  let fieldValue = data[type][entry][field],
+                      { fieldType, containsTemplate } = detectFieldType(fieldValue);
+
+                  if (typeof typeDef.fields[field] === 'undefined') {
+                      typeDef.fields[field] = {
+                          types: [fieldType],
+                          entries: [fieldValue],
+                          allEntries: [fieldValue],
+                          containsTemplate: containsTemplate,
+                          rules: [],
+                          cnt: 1
+                      };
+                  } else {
+                      typeDef.fields[field].types.push(fieldType);
+                      typeDef.fields[field].types = _.uniq(typeDef.fields[field].types);
+                      typeDef.fields[field].entries.push(fieldValue);
+                      typeDef.fields[field].entries = _.uniq(typeDef.fields[field].entries);
+                      typeDef.fields[field].allEntries.push(fieldValue);
+                      typeDef.fields[field].cnt++;
+                      if (containsTemplate) {
+                          typeDef.fields[field].containsTemplate = true;
+                      }
+                  }
+
+                  if (fieldType === 'JSON') {
+                      let objField;
+
+                      for (objField in fieldValue) {
+                          let objFieldValue = fieldValue[objField],
+                              result = detectFieldType(objFieldValue),
+                              objFieldType = result.fieldType,
+                              objContainsTemplate = result.containsTemplate;
+
+                          if (typeof typeDef.fields[field + '.' + objField] === 'undefined') {
+                              typeDef.fields[field + '.' + objField] = {
+                                  types: [objFieldType],
+                                  entries: [objFieldValue],
+                                  allEntries: [objFieldValue],
+                                  containsTemplate: objContainsTemplate,
+                                  cnt: 1
+                              };
+                          } else {
+                              typeDef.fields[field + '.' + objField].types.push(objFieldType);
+                              typeDef.fields[field + '.' + objField].types = _.uniq(typeDef.fields[field + '.' + objField].types);
+                              typeDef.fields[field + '.' + objField].entries.push(objFieldValue);
+                              typeDef.fields[field + '.' + objField].entries = _.uniq(typeDef.fields[field + '.' + objField].entries);
+                              typeDef.fields[field + '.' + objField].allEntries.push(objFieldValue);
+                              typeDef.fields[field + '.' + objField].cnt++;
+                              if (objContainsTemplate) {
+                                  typeDef.fields[field + '.' + objField].objContainsTemplate = true;
+                              }
+                          }
+                      }
+                  }
+
+                  if (prevFields.length > 0 && field !== 'id' && !field.endsWith('_id') && !field.endsWith('_ids')) {
+                      let rules = getFieldRules(field, fieldValue, fieldType, prevFields);
+                      
+                      if (rules.length > 0) {
+                          typeDef.fields[field].rules = typeDef.fields[field].rules.concat(rules);
+                      }
+                  }
+
+                  if (field !== 'id' && !field.endsWith('_id') && !field.endsWith('_ids')) {
+                      prevFields.push({
+                          key: field,
+                          value: fieldValue,
+                          type: fieldType
+                      });
+                  }
+              }
+          }
+
+          for (field in typeDef.fields) {
+              if (field === 'id') {
+                  typeDef.totalCount = typeDef.fields[field].cnt;
+              }
+          }
+
+          for (field in typeDef.fields) {
+              if (typeDef.fields[field].types.length === 1) {
+                  typeDef.fields[field].type = typeDef.fields[field].types[0];
+              } else {
+                  if (typeDef.fields[field].types.length == 2 && typeDef.fields[field].types.indexOf('int') > -1 && typeDef.fields[field].types.indexOf('float') > -1) {
+                      typeDef.fields[field].type = 'float';
+                  } else {
+                      typeDef.fields[field].type = 'string';
+                  }
+              }
+
+              if (typeDef.fields[field].type === 'string' && !typeDef.fields[field].containsTemplate) {
+                  typeDef.fields[field].pattern = detectStringpattern(typeDef.fields[field].entries);
+              } else {
+                  typeDef.fields[field].pattern = false;
+              }
+
+              if (typeDef.fields[field].entries.length < typeDef.fields[field].cnt || typeDef.fields[field].containsTemplate) {
+                  typeDef.fields[field].repeatEntries = true;
+                  typeDef.fields[field].weights = getWeights(typeDef.fields[field].allEntries, typeDef.fields[field].entries);
+              } else {
+                  typeDef.fields[field].repeatEntries = false;
+              }
+
+              if (typeDef.fields[field].cnt < typeDef.totalCount) {
+                  typeDef.fields[field].required = false;
+              } else {
+                  typeDef.fields[field].required = true;
+              }
+
+              typeDef.fields[field].rules = removeIncompatibleRules(_.uniq(typeDef.fields[field].rules));
+              
+              typeDef.fields[field].dir = false;
+
+              if (typeDef.fields[field].type === 'int' || typeDef.fields[field].type === 'float') {
+                  typeDef.fields[field].dir = getNumberDirection(typeDef.fields[field].entries);
+              }
+              if (typeDef.fields[field].type === 'date' || typeDef.fields[field].type === 'datetime') {
+                  typeDef.fields[field].dir = getDateDirection(typeDef.fields[field].entries);
+              }
+          }
+
+          typeDef.gap = findGap(typeDef.fields['id'].entries);
+
+          types.push(typeDef);
+      }
+
+      for (type in types) {
+          let settings = types[type];
+
+          if (settings.gap) {
+              let id,
+                  field;
+
+              for (id = settings.gap.start; id <= settings.gap.end; id++) {
+                  let row = {};
+
+                  for (field in settings.fields) {
+                      let value = '';
+
+                      if (settings.fields[field].repeatEntries || settings.fields[field].containsTemplate) {
+                          value = chance$1.weighted(settings.fields[field].entries, settings.fields[field].weights);
+                      } else {
+
+                          if (field === 'id') value = id;
+                          if ((field === 'age' || field.endsWith('.age')) && settings.fields[field].type === 'int') value = chance$1.age();
+                          if ((field === 'firstname' || field.endsWith('.firstname')) && settings.fields[field].type === 'string') value = chance$1.first();
+                          if ((field === 'lastname' || field.endsWith('.lastname')) && settings.fields[field].type === 'string') value = chance$1.last();
+                          if ((field === 'company' || field.endsWith('.company')) && settings.fields[field].type === 'string') value = chance$1.company();
+                          if ((field === 'country' || field.endsWith('.country')) && settings.fields[field].type === 'string') value = chance$1.country();
+                          if ((field === 'email' || field.endsWith('.email')) && settings.fields[field].type === 'string') value = faker.internet.exampleEmail();
+                          if ((field === 'color' || field.endsWith('.color')) && settings.fields[field].type === 'string') value = chance$1.color();
+                          if ((field === 'ip' || field.endsWith('.ip')) && settings.fields[field].type === 'string') value = chance$1.ip();
+                          if ((field === 'profession' || field.endsWith('.profession')) && settings.fields[field].type === 'string') value = chance$1.profession();
+                          if ((field === 'url' || field.endsWith('.url')) && settings.fields[field].type === 'string') value = chance$1.url();
+                          if ((field === 'city' || field.endsWith('.city')) && settings.fields[field].type === 'string') value = chance$1.city();
+                          if ((field === 'street' || field.endsWith('.street')) && settings.fields[field].type === 'string') value = chance$1.street();
+                          if ((field === 'zip' || field.endsWith('.zip')) && settings.fields[field].type === 'int') value = parseInt(chance$1.zip());
+                          if ((field === 'weekday' || field.endsWith('.weekday')) && settings.fields[field].type === 'string') value = chance$1.weekday();
+                          if ((field === 'year' || field.endsWith('.year')) && settings.fields[field].type === 'int') value = parseInt(chance$1.year());
+                          if ((field === 'password' || field.endsWith('.password')) && settings.fields[field].type === 'string') value = chance$1.hash();
+                          if ((field === 'guid' || field.endsWith('.guid')) && settings.fields[field].type === 'string') value = chance$1.guid();
+                          if ((field === 'product' || field.endsWith('.product')) && settings.fields[field].type === 'string') value = faker.commerce.productName();
+                          if ((field === 'material' || field.endsWith('.material')) && settings.fields[field].type === 'string') value = faker.commerce.productMaterial();
+                          if ((field === 'iban' || field.endsWith('.iban')) && settings.fields[field].type === 'string') value = faker.finance.iban();
+                          if ((field === 'bic' || field.endsWith('.bic')) && settings.fields[field].type === 'string') value = faker.finance.bic();
+                          if ((field === 'avatar' || field.endsWith('.avatar')) && settings.fields[field].type === 'string') value = faker.image.avatar();
+                          if ((field === 'username' || field.endsWith('.username')) && settings.fields[field].type === 'string') value = faker.internet.userName();
+                          if ((field === 'homepage' || field.endsWith('.homepage')) && settings.fields[field].type === 'string') value = faker.internet.url();
+                          if ((field === 'job' || field.endsWith('.job')) && settings.fields[field].type === 'string') value = faker.name.jobTitle();
+                          if ((field === 'mimetype' || field.endsWith('.mimetype')) && settings.fields[field].type === 'string') value = faker.system.mimeType();
+
+                          if (value === '' && settings.fields[field].type === 'JSON') {
+                              value = {};
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'array') {
+                              let min = null, 
+                                  max = null, 
+                                  maxCount = 0,
+                                  arrEntry;
+
+                              for (arrEntry of settings.fields[field].entries) {
+                                  let arrMin = minNumber(arrEntry),
+                                      arrMax = maxNumber(arrEntry),
+                                      arrCount = arrEntry.length;
+                                  
+                                  if (arrCount > 0 && (min === null || arrMin < min)) {
+                                      min = arrMin;
+                                  }
+                                  if (arrCount > 0 && (max === null || arrMax > max)) {
+                                      max = arrMax;
+                                  }
+                                  if (arrCount > maxCount) {
+                                      maxCount = arrCount;
+                                  }
+                              }
+
+                              value = Array.from({ length: Math.floor(Math.random() * maxCount) + 1 }, () => randomIntWithStep(min, max, 1));
+                              value.sort(function (a, b) {
+                                  return a - b;
+                              });
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'string') {
+                              let minLength = minStrLength(settings.fields[field].entries),
+                                  maxLength = maxStrLength(settings.fields[field].entries),
+                                  minWords = minWordCount(settings.fields[field].entries),
+                                  maxWords = maxWordCount(settings.fields[field].entries),
+                                  minSentences = minSentenceCount(settings.fields[field].entries),
+                                  maxSentences = maxSentenceCount(settings.fields[field].entries),
+                                  minParagraphs = minParagraphCount(settings.fields[field].entries),
+                                  maxParagraphs = maxParagraphCount(settings.fields[field].entries);
+
+                              if (maxParagraphs > 1) {
+                                  value = article(Math.floor(Math.random() * maxParagraphs) + minParagraphs);
+                              } else if (maxSentences > 1) {
+                                  value = paragraph(Math.floor(Math.random() * maxSentences) + minSentences);
+                              } else if (maxWords > 1) {
+                                  value = sentence();
+                                  if (!(settings.fields[field].entries[0].endsWith('.') || settings.fields[field].entries[0].endsWith('!') || settings.fields[field].entries[0].endsWith('?'))) {
+                                      value = value.slice(0, -1);
+                                  }
+                              } else {
+                                  if (settings.fields[field].pattern) {
+                                      value = stringFromPattern(settings.fields[field].pattern);
+                                  } else {
+                                      if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
+                                          value = chance$1.capitalize(chance$1.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
+                                      } else {
+                                          value = chance$1.string({ length: Math.floor(Math.random() * minLength) + maxLength });
+                                      }
+                                  }
+                              }
+
+                              if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                                  value = value.toUpperCase();
+                              } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                                  value = value.toLowerCase();
+                              } else if (everythingCapitalized(settings.fields[field].entries)) {
+                                  value = capitalize(value);
+                              }
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'int') {
+                              let minInt = minNumber(settings.fields[field].entries),
+                                  maxInt = maxNumber(settings.fields[field].entries),
+                                  minGap = minGapOfIntArray(settings.fields[field].entries),
+                                  cnt = 0,
+                                  ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                  dirSteps = settings.gap.end - settings.gap.start + 1,
+                                  averageStepGap = (maxInt - minInt) / dirSteps;
+
+                              if (settings.fields[field].dir === 'asc') {
+                                  maxInt = Math.ceil(minInt + ((id - settings.gap.start + 1) * averageStepGap) - 1);
+                                  minInt = Math.floor(minInt + ((id - settings.gap.start) * averageStepGap) + 1);
+                              } else if (settings.fields[field].dir === 'desc') {
+                                  minInt = Math.ceil(maxInt - ((id - settings.gap.start + 1) * averageStepGap) + 1);
+                                  maxInt = Math.floor(maxInt - ((id - settings.gap.start) * averageStepGap) - 1);
+                              }
+                              
+                              if (field.endsWith('_id')) {
+                                  value = normalDistRandomInt(minInt, maxInt);
+                              } else {
+                                  if (ruleValue === null) {
+                                      while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                          value = randomIntWithStep(minInt, maxInt, minGap);
+                                          cnt++;
+                                      }
+                                  } else {
+                                      value = ruleValue;
+                                  }
+                              }
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'float') {
+                              let minFloat = minNumber(settings.fields[field].entries),
+                                  maxFloat = maxNumber(settings.fields[field].entries),
+                                  maxPrecision = getMaxPrecision(settings.fields[field].entries),
+                                  cnt = 0,
+                                  ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                  dirSteps = settings.gap.end - settings.gap.start + 1,
+                                  averageStepGap = (maxFloat - minFloat - 1) / dirSteps;
+
+                              if (settings.fields[field].dir === 'asc') {
+                                  maxFloat = minFloat + ((id - settings.gap.start + 1) * averageStepGap) + 1;
+                                  minFloat = minFloat + ((id - settings.gap.start) * averageStepGap) + 1;
+                              } else if (settings.fields[field].dir === 'desc') {
+                                  minFloat = maxFloat - ((id - settings.gap.start + 1) * averageStepGap) - 1;
+                                  maxFloat = maxFloat - ((id - settings.gap.start) * averageStepGap) - 1;
+                              }
+
+                              if (ruleValue === null) {
+                                  while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                      value = Number(chance$1.floating({ min: minFloat, max: maxFloat }).toFixed(maxPrecision));
+                                      cnt++;
+                                  }
+                              } else {
+                                  value = ruleValue;
+                              }
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'char') {
+                              if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                                  value = chance$1.letter({ casing: 'upper' });
+                              } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                                  value = chance$1.letter({ casing: 'lower' });
+                              } else {
+                                  value = chance$1.letter();
+                              }
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'date') {
+                              let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
+                                  maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
+                                  cnt = 0,
+                                  ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                  dirSteps = settings.gap.end - settings.gap.start + 1,
+                                  averageStepGap = (maxDateDate.getTime() - minDateDate.getTime() - 1) / dirSteps;
+
+                              if (settings.fields[field].dir === 'asc') {
+                                  maxDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start + 1) * averageStepGap) + 1);
+                                  minDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start) * averageStepGap) + 1);
+                              } else if (settings.fields[field].dir === 'desc') {
+                                  minDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start + 1) * averageStepGap) - 1);
+                                  maxDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start) * averageStepGap) - 1);
+                              }
+
+                              if (ruleValue === null) {
+                                  while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                      value = randomDate(minDateDate, maxDateDate);
+                                      cnt++;
+                                  }
+                              } else {
+                                  value = ruleValue;
+                              }
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'datetime') {
+                              let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
+                                  maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
+                                  cnt = 0,
+                                  ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
+                                  dirSteps = settings.gap.end - settings.gap.start + 1,
+                                  averageStepGap = (maxDateDate.getTime() - minDateDate.getTime() - 1) / dirSteps;
+
+                              if (settings.fields[field].dir === 'asc') {
+                                  maxDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start + 1) * averageStepGap) + 1);
+                                  minDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start) * averageStepGap) + 1);
+                              } else if (settings.fields[field].dir === 'desc') {
+                                  minDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start + 1) * averageStepGap) - 1);
+                                  maxDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start) * averageStepGap) - 1);
+                              }
+
+                              if (ruleValue === null) {
+                                  while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
+                                      value = randomDatetime(minDateDate, maxDateDate);
+                                      cnt++;
+                                  }
+                              } else {
+                                  value = ruleValue;
+                              }
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'time') {
+                              value = randomTime();
+                          }
+
+                          if (value === '' && settings.fields[field].type === 'boolean') {
+                              if (Math.random() >= 0.5) {
+                                  value = true;
+                              } else {
+                                  value = false;
+                              }
+                          }
+
+                      }
+
+                      if (settings.fields[field].required || Math.random() >= 0.5) {
+                          if (field.indexOf('.') > -1) {
+                              let fieldSplit = field.split('.');
+
+                              if (typeof row[fieldSplit[0]] !== 'undefined') {
+                                  row[fieldSplit[0]][fieldSplit[1]] = value;
+                              }
+                          } else {
+                              row[field] = value;
+                          }
+                      }
+                  }
+
+                  data[settings.key].push(row);
+              }
+
+              // Sort by id:
+              data[settings.key] = data[settings.key].sort(function (a, b) {
+                  return a.id - b.id;
+              });
+
+          }
+
+      }
+
+      parseTemplateVariables(data);
+
+      // Repeat template variable parsing, so we can at least once reference a field that contains template variables:
+      parseTemplateVariables(data);
+
+      for (type in data) {
+          for (entry in data[type]) {
+              for (field in data[type][entry]) {
+                  if (tempKeys.indexOf(`${type}.${field}`) > -1) {
+                      delete (data[type][entry][field]);
+                  }
+                  if (typeof customKeyNames[`${type}.${field}`] !== 'undefined') {
+                      renameProperty(data[type][entry], field, customKeyNames[`${type}.${field}`].split('.')[1]);
+                  }
+              }
+          }
+      }
+
+      if (dataIsJSON) {
+          return stringify(data);
+      }
+
+      return data;
+  };
+
+}));
