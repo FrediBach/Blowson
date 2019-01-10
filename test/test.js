@@ -58,3 +58,33 @@ describe('Basics', function () {
         });
     });
 });
+
+describe('Detections', function () {
+    describe('Keys', function () {
+        it('age', function () {
+            expect(parsed['../examples/kitchensink.js'].keyDetections[7].age, 'to be positive');
+        });
+        it('country', function () {
+            expect(parsed['../examples/kitchensink.js'].keyDetections[7].country, 'to have length', 2);
+        });
+        it('email', function () {
+            expect(parsed['../examples/kitchensink.js'].keyDetections[7].email, 'to contain', '@');
+        });
+    });
+    describe('Content', function () {
+        it('word', function () {
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].word, 'to be non-empty');
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].word.split(' ').length, 'to equal', 1);
+        });
+        it('sentence', function () {
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].sentence, 'to be non-empty');
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].sentence.split(' ').length, 'to be greater than', 1);
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].sentence.slice(-1), 'to be one of', ['.','!','?']);
+        });
+        it('headline', function () {
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].headline, 'to be non-empty');
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].headline.split(' ').length, 'to be greater than', 1);
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].headline.slice(-1), 'not to be one of', ['.', '!', '?']);
+        });
+    });
+});
