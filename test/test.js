@@ -6,9 +6,9 @@ const _ = require('lodash');
 const blowson = require('../dist/blowson');
 
 const testFiles = {
-    '../examples/kitchensink.js': '../examples/kitchensink-extended.js',
-    '../examples/poi-comp.js': '../examples/poi-comp-extended.js',
-    '../examples/quotes.js': '../examples/quotes-extended.js'
+    '../examples/kitchensink.js': 'examples/kitchensink-extended.js',
+    '../examples/poi-comp.js': 'examples/poi-comp-extended.js',
+    '../examples/quotes.js': 'examples/quotes-extended.js'
 };
 
 let parsed = {};
@@ -20,6 +20,7 @@ for (original in testFiles) {
     let extendedData = blowson(data);
 
     parsed[original] = extendedData;
+    console.log(extended);
     writeFile.sync(extended, `module.exports = ${stringify(extendedData)};`);
 }
 
@@ -79,12 +80,12 @@ describe('Detections', function () {
         it('sentence', function () {
             expect(parsed['../examples/kitchensink.js'].contentDetections[7].sentence, 'to be non-empty');
             expect(parsed['../examples/kitchensink.js'].contentDetections[7].sentence.split(' ').length, 'to be greater than', 1);
-            expect(parsed['../examples/kitchensink.js'].contentDetections[7].sentence.slice(-1), 'to be one of', ['.','!','?']);
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].sentence.slice(-1), 'to be one of', ['.','!','?','"']);
         });
         it('headline', function () {
             expect(parsed['../examples/kitchensink.js'].contentDetections[7].headline, 'to be non-empty');
             expect(parsed['../examples/kitchensink.js'].contentDetections[7].headline.split(' ').length, 'to be greater than', 1);
-            expect(parsed['../examples/kitchensink.js'].contentDetections[7].headline.slice(-1), 'not to be one of', ['.', '!', '?']);
+            expect(parsed['../examples/kitchensink.js'].contentDetections[7].headline.slice(-1), 'not to be one of', ['.', '!', '?','"']);
         });
     });
 });
