@@ -18,9 +18,9 @@
   "module": "dist/blowson.m.js",
   "repository": "FrediBach/Blowson",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "microbundle",
-    "dev": "microbundle watch"
+    "test": "node ./node_modules/mocha/bin/mocha",
+    "build": "rollup",
+    "dev": "rollup watch"
   },
   "bin": {
     "blowson": "./cli.js"
@@ -44,6 +44,8 @@
     "write": "^1.0.3"
   },
   "devDependencies": {
-    "microbundle": "^0.6.0"
+    "microbundle": "^0.6.0",
+    "mocha": "^5.2.0",
+    "unexpected": "^11.0.0"
   }
 }

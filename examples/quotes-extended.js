@@ -1,211 +1,215 @@
 module.exports = {
   "quotes": [
     {
-      "title": "Isaac Timmothy Newton",
+      "title": "Isaac Jordyn Newton",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=1",
       "birthday": "January 1, 1901",
       "deathday": "December 31, 2001",
-      "text": "In modern times the succinct apple reveals itself as a neat bird to those who look. The snakes could be said to resemble kind alligators.",
+      "text": "Though we assume the latter, the energetic fox comes from a communicative banana. As far as he is concerned, the fly of a fig becomes an affable fox;",
       "linkText": "www.isaac-newton.bio.com",
       "linkURL": "http://www.isaac-newton.bio.com/"
     },
     {
-      "title": "Ora Ezekiel Montero",
+      "title": "Susie Dupuis",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=2",
-      "birthday": "March 19, 1901",
-      "text": "Congratulations to the kangaroo that won the funny cat with a cheetah. As far as he is concerned, before puppies, grapes were only kittens?",
-      "linkText": "www.ora-montero.bio.com",
-      "linkURL": "http://www.ora-montero.bio.com/"
+      "birthday": "May 21, 1902",
+      "text": "An alligator sees a sheep as a willing scorpion; An eagle is the plum of a frog.",
+      "linkText": "www.susie-dupuis.bio.com",
+      "linkURL": "http://www.susie-dupuis.bio.com/"
     },
     {
-      "title": "Dr Minnie Alexander Brazzini",
+      "title": "Marian del Bencini",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=3",
-      "birthday": "July 12, 1902",
-      "text": "Shouting with happiness, nectarines are reflective squirrels. Those elephants are nothing more than rats.",
-      "linkText": "www.minnie-brazzini.bio.com",
-      "linkURL": "http://www.minnie-brazzini.bio.com/"
+      "birthday": "April 6, 1903",
+      "deathday": "February 18, 2003",
+      "text": "They were lost without the ambitious fly that composed their hippopotamus! Quoting with intend: \"It's very tricky, if not impossible, some faithful grapes are thought of simply as nectarines.\"",
+      "linkText": "www.marian-bencini.bio.com",
+      "linkURL": "http://www.marian-bencini.bio.com/"
     },
     {
-      "title": "Shane de Zwart",
+      "title": "Dr PhD Jean von Harding",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=4",
-      "birthday": "January 26, 1905",
-      "deathday": "August 16, 2003",
-      "text": "He said: \"If this was somewhat unclear, the dog is a kitten;\"",
-      "linkText": "www.shane-de-zwart.bio.com",
-      "linkURL": "http://www.shane-de-zwart.bio.com/"
+      "birthday": "November 15, 1904",
+      "deathday": "July 31, 2003",
+      "text": "Those blueberries are nothing more than horses?",
+      "linkText": "www.jean-harding.bio.com",
+      "linkURL": "http://www.jean-harding.bio.com/"
     },
     {
-      "title": "Mark Anastacio Cheng",
+      "title": "Jerry Kondo",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=5",
-      "birthday": "August 16, 1905",
-      "text": "The first courteous lemon is, in its own way, a dog.",
-      "linkText": "www.mark-cheng.bio.com",
-      "linkURL": "http://www.mark-cheng.bio.com/"
+      "birthday": "September 10, 1905",
+      "deathday": "April 5, 2004",
+      "text": "She said: \"A shark of the melon is assumed to be a thoughtful lobster?\"",
+      "linkText": "www.jerry-kondo.bio.com",
+      "linkURL": "http://www.jerry-kondo.bio.com/"
     },
     {
-      "title": "Elsie Miller",
+      "title": "Betty Focardi",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=6",
-      "birthday": "September 3, 1907",
-      "text": "Nowhere is it disputed that a gregarious lobster without prunes is truly a apricot of affectionate frogs. We know that the bee is a crocodile.",
-      "linkText": "www.elsie-miller.bio.com",
-      "linkURL": "http://www.elsie-miller.bio.com/"
+      "birthday": "March 14, 1908",
+      "deathday": "May 7, 2005",
+      "text": "Incomprehensibilities of a trustworthy strawberry and a goat made a lobster relieved. Before pigs, rabbits were only nectarines.",
+      "linkText": "www.betty-focardi.bio.com",
+      "linkURL": "http://www.betty-focardi.bio.com/"
     },
     {
-      "title": "Professor Antonio Price Gardner",
+      "title": "Estella Saito",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=7",
-      "birthday": "September 11, 1908",
-      "text": "To be more specific, a pomegranate is an optimistic monkey?",
-      "linkText": "www.antonio-gardner.bio.com",
-      "linkURL": "http://www.antonio-gardner.bio.com/"
+      "birthday": "September 29, 1909",
+      "text": "As far as we can estimate, before pears, horses were only persimmons? Few can name a good goat that isn't a pleasant frog.",
+      "linkText": "www.estella-saito.bio.com",
+      "linkURL": "http://www.estella-saito.bio.com/"
     },
     {
-      "title": "Professor Duane von Alberti",
+      "title": "Professor Jesse Tia van der Lamb",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=8",
-      "birthday": "September 22, 1910",
-      "text": "Incomprehensibilities of a fine cranberry and a duck made a lobster productive. Those plums are nothing more than cheetahs;",
-      "linkText": "www.duane-alberti.bio.com",
-      "linkURL": "http://www.duane-alberti.bio.com/"
+      "birthday": "November 3, 1910",
+      "deathday": "December 31, 2006",
+      "text": "The literature would have us believe that a dynamic ant is not but a scorpion! To be more specific, a understanding nectarine's apricot comes with it the thought that the determined chicken is an ant.",
+      "linkText": "www.jesse-lamb.bio.com",
+      "linkURL": "http://www.jesse-lamb.bio.com/"
     },
     {
-      "title": "Randy Huet",
+      "title": "Andrew Braeden Harper",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=9",
-      "birthday": "May 20, 1912",
-      "deathday": "September 3, 2007",
-      "text": "A fox of the octopus is assumed to be a dashing plum. An alligator can hardly be considered a resourceful kitten without also being a bear.",
-      "linkText": "www.randy-huet.bio.com",
-      "linkURL": "http://www.randy-huet.bio.com/"
+      "birthday": "September 26, 1912",
+      "text": "The first receptive strawberry is, in its own way, a strawberry. Unfortunately, that is wrong; on the contrary, the spider is an apricot.",
+      "linkText": "www.andrew-harper.bio.com",
+      "linkURL": "http://www.andrew-harper.bio.com/"
     },
     {
-      "title": "Dr PhD Randall Ruthe le Pierce",
+      "title": "John Joanne Schut",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=10",
-      "birthday": "October 8, 1912",
-      "text": "Far from the truth, the seemly giraffe comes from a frank panda.",
-      "linkText": "www.randall-pierce.bio.com",
-      "linkURL": "http://www.randall-pierce.bio.com/"
+      "birthday": "January 9, 1913",
+      "deathday": "August 20, 2008",
+      "text": "An impartial deer is a lobster of the mind.",
+      "linkText": "www.john-schut.bio.com",
+      "linkURL": "http://www.john-schut.bio.com/"
     },
     {
-      "title": "Victor Janelle Rizzo",
+      "title": "Peter Judah Wallace",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=11",
-      "birthday": "January 4, 1915",
-      "deathday": "January 19, 2009",
-      "text": "A tiger sees a panda as a dynamic hippopotamus.",
-      "linkText": "www.victor-rizzo.bio.com",
-      "linkURL": "http://www.victor-rizzo.bio.com/"
+      "birthday": "January 20, 1915",
+      "deathday": "November 30, 2008",
+      "text": "An amicable octopus without snakes is truly a banana of knowledgeable cheetahs! A tidy orange's fig comes with it the thought that the warm apricot is a grapes.",
+      "linkText": "www.peter-wallace.bio.com",
+      "linkURL": "http://www.peter-wallace.bio.com/"
     },
     {
-      "title": "Cody Fuentes",
+      "title": "Hettie Le GallGall",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=12",
-      "birthday": "January 24, 1916",
-      "text": "The convivial pig reveals itself as a tidy peach to those who look.",
-      "linkText": "www.cody-fuentes.bio.com",
-      "linkURL": "http://www.cody-fuentes.bio.com/"
+      "birthday": "March 6, 1916",
+      "text": "The bees could be said to resemble cultured zebras. Recent controversy aside, a lobster is a spider from the right perspective.",
+      "linkText": "www.hettie-le-gallgall.bio.com",
+      "linkURL": "http://www.hettie-le-gallgall.bio.com/"
     },
     {
-      "title": "Adelaide Russel Saito",
+      "title": "Maud Myrtis van der Marsden",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=13",
-      "birthday": "January 3, 1918",
-      "text": "The receptive pomegranate reveals itself as an intellectual spider to those who look? A discreet blueberry is a pig of the mind.",
-      "linkText": "www.adelaide-saito.bio.com",
-      "linkURL": "http://www.adelaide-saito.bio.com/"
+      "birthday": "June 13, 1918",
+      "text": "Waking to the buzz of the alarm clock, a lobster is a scorpion from the right perspective.",
+      "linkText": "www.maud-marsden.bio.com",
+      "linkURL": "http://www.maud-marsden.bio.com/"
     },
     {
-      "title": "Marguerite Carlie Hurst",
+      "title": "Dylan Ozella Heinrich",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=14",
-      "birthday": "September 11, 1919",
-      "text": "Grapefruits are plausible flies. Incomprehensibilities of a loving orange and a chimpanzee made a lobster shy.",
-      "linkText": "www.marguerite-hurst.bio.com",
-      "linkURL": "http://www.marguerite-hurst.bio.com/"
+      "birthday": "August 28, 1919",
+      "text": "An ant is a prune from the right perspective.",
+      "linkText": "www.dylan-heinrich.bio.com",
+      "linkURL": "http://www.dylan-heinrich.bio.com/"
     },
     {
-      "title": "Hulda Townsend",
+      "title": "Jeffrey Bacci",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=15",
-      "birthday": "March 1, 1920",
-      "text": "One cannot separate limes from glorious blackberries. To be more specific, before bears, raspberries were only chickens.",
-      "linkText": "www.hulda-townsend.bio.com",
-      "linkURL": "http://www.hulda-townsend.bio.com/"
+      "birthday": "July 14, 1921",
+      "text": "Obedient apples show us how prunes can be figs! The zeitgeist contends that some placid grapes are thought of simply as lions.",
+      "linkText": "www.jeffrey-bacci.bio.com",
+      "linkURL": "http://www.jeffrey-bacci.bio.com/"
     },
     {
-      "title": "Roxie Roest",
+      "title": "Nicholas Tucker",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=16",
-      "birthday": "November 6, 1921",
-      "deathday": "August 23, 2012",
-      "text": "A perfect grapes is a pomegranate of the mind; This is not to discredit the idea that the cherries could be said to resemble eminent snakes.",
-      "linkText": "www.roxie-roest.bio.com",
-      "linkURL": "http://www.roxie-roest.bio.com/"
+      "birthday": "July 26, 1922",
+      "deathday": "September 29, 2012",
+      "text": "Their kangaroo was, in this moment, a communicative currant. Washing and polishing the car,an agreeable cranberry without alligators is truly a kangaroo of honorable blueberries.",
+      "linkText": "www.nicholas-tucker.bio.com",
+      "linkURL": "http://www.nicholas-tucker.bio.com/"
     },
     {
-      "title": "Norman Gentili",
+      "title": "Kathryn Jovanny van der Walter",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=17",
-      "birthday": "August 18, 1923",
-      "text": "A thoughtful watermelon is a peach of the mind.",
-      "linkText": "www.norman-gentili.bio.com",
-      "linkURL": "http://www.norman-gentili.bio.com/"
+      "birthday": "January 9, 1924",
+      "deathday": "August 19, 2013",
+      "text": "The rat is a blueberry?",
+      "linkText": "www.kathryn-walter.bio.com",
+      "linkURL": "http://www.kathryn-walter.bio.com/"
     },
     {
-      "title": "Timothy Sommer",
+      "title": "Professor Harvey Testi",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=18",
-      "birthday": "February 18, 1925",
-      "text": "However, few can name an enthusiastic crocodile that isn't a placid pineapple.",
-      "linkText": "www.timothy-sommer.bio.com",
-      "linkURL": "http://www.timothy-sommer.bio.com/"
+      "birthday": "October 20, 1924",
+      "deathday": "April 2, 2014",
+      "text": "An impartial blueberry is a peach of the mind. We can assume that any instance of a spider can be construed as a silly tiger!",
+      "linkText": "www.harvey-testi.bio.com",
+      "linkURL": "http://www.harvey-testi.bio.com/"
     },
     {
-      "title": "Hilda Retha Baccani",
+      "title": "Raymond le Pagliai",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=19",
-      "birthday": "May 31, 1926",
-      "deathday": "January 25, 2015",
-      "text": "Some assert that we can assume that any instance of a sheep can be construed as an intellectual pig.",
-      "linkText": "www.hilda-baccani.bio.com",
-      "linkURL": "http://www.hilda-baccani.bio.com/"
+      "birthday": "July 13, 1926",
+      "text": "A raspberry sees a pear as a stimulating duck.",
+      "linkText": "www.raymond-pagliai.bio.com",
+      "linkURL": "http://www.raymond-pagliai.bio.com/"
     },
     {
-      "title": "Robert Theo Willis",
+      "title": "Kathryn Bouchet",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=20",
-      "birthday": "April 1, 1928",
-      "text": "A practical snail's frog comes with it the thought that the powerful cherry is an apricot! She said: \"Some posit the practical sheep to be less than diplomatic?\"",
-      "linkText": "www.robert-willis.bio.com",
-      "linkURL": "http://www.robert-willis.bio.com/"
+      "birthday": "July 2, 1928",
+      "text": "The rat is a raspberry. The bear is a goldfish.",
+      "linkText": "www.kathryn-bouchet.bio.com",
+      "linkURL": "http://www.kathryn-bouchet.bio.com/"
     },
     {
-      "title": "Dr Ada Martens",
+      "title": "Maria Cielo Poirier",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=21",
-      "birthday": "July 13, 1929",
-      "deathday": "July 26, 2016",
-      "text": "Wispering: \"The shark is a hamster.\" The zeitgeist contends that congratulations to the apricot that won the quiet crocodile with a horse.",
-      "linkText": "www.ada-martens.bio.com",
-      "linkURL": "http://www.ada-martens.bio.com/"
+      "birthday": "July 9, 1929",
+      "deathday": "July 2, 2016",
+      "text": "Authors often misinterpret the grapes as a kind turtle, when in actuality it feels more like a comfortable bear. Yelling: \"An owl of the panda is assumed to be a loyal scorpion.\"",
+      "linkText": "www.maria-poirier.bio.com",
+      "linkURL": "http://www.maria-poirier.bio.com/"
     },
     {
-      "title": "Polly Manuelli",
+      "title": "Warren Edmond Boyle",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=22",
-      "birthday": "March 20, 1931",
-      "text": "A plucky persimmon is a deer of the mind. Their goat was, in this moment, a courageous cranberry.",
-      "linkText": "www.polly-manuelli.bio.com",
-      "linkURL": "http://www.polly-manuelli.bio.com/"
+      "birthday": "May 28, 1931",
+      "text": "Unfortunately, that is wrong; on the contrary, a sheep can hardly be considered a courageous pig without also being a lime?",
+      "linkText": "www.warren-boyle.bio.com",
+      "linkURL": "http://www.warren-boyle.bio.com/"
     },
     {
-      "title": "Caroline Zani",
+      "title": "Dr MD Hulda Otto Hernandez",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=23",
-      "birthday": "November 20, 1932",
-      "deathday": "July 21, 2017",
-      "text": "The plums could be said to resemble plucky squirrels? After a long day at school and work, a camel is a frog's cheetah.",
-      "linkText": "www.caroline-zani.bio.com",
-      "linkURL": "http://www.caroline-zani.bio.com/"
+      "birthday": "November 2, 1932",
+      "deathday": "November 17, 2017",
+      "text": "A lion sees a goldfish as an amused ant;",
+      "linkText": "www.hulda-hernandez.bio.com",
+      "linkURL": "http://www.hulda-hernandez.bio.com/"
     },
     {
-      "title": "Nettie Mora",
+      "title": "Mike Pieri",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=24",
-      "birthday": "May 25, 1933",
-      "deathday": "June 1, 2018",
-      "text": "The melon of a fly becomes a fearless dolphin.",
-      "linkText": "www.nettie-mora.bio.com",
-      "linkURL": "http://www.nettie-mora.bio.com/"
+      "birthday": "March 12, 1934",
+      "text": "Congratulations to the pig that won the discreet lion with a kangaroo; Few can name a placid nectarine that isn't an endurable strawberry.",
+      "linkText": "www.mike-pieri.bio.com",
+      "linkURL": "http://www.mike-pieri.bio.com/"
     },
     {
-      "title": "Subrahmanyan Davon Csikszentmihalyi",
+      "title": "Dr PhD Subrahmanyan Prudence Csikszentmihalyi",
       "imageURL": "https://placebeard.it/g/232x150/notag?r=25",
       "birthday": "September 29, 1934",
-      "text": "Sympathetic oranges show us how persimmons can be elephants.",
+      "text": "A modern lobster is a seal of the mind!",
       "linkText": "www.subrahmanyan-csikszentmihalyi.bio.com",
       "linkURL": "http://www.subrahmanyan-csikszentmihalyi.bio.com/"
     }
