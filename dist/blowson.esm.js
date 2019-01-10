@@ -1,20 +1,16 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _ = _interopDefault(require('lodash'));
-var Chance = _interopDefault(require('chance'));
-var faker = _interopDefault(require('faker'));
-var stringify = _interopDefault(require('json-stringify-pretty-compact'));
-var slugify = _interopDefault(require('slugify'));
-var md5 = _interopDefault(require('md5'));
-var dateFns = require('date-fns');
-var numeral = _interopDefault(require('numeral'));
-var marked = _interopDefault(require('marked'));
-var Prob = _interopDefault(require('prob.js'));
-var pluralize = _interopDefault(require('pluralize'));
-var v = _interopDefault(require('voca'));
-var RandExp = _interopDefault(require('randexp'));
+import _ from 'lodash';
+import Chance from 'chance';
+import faker from 'faker';
+import stringify from 'json-stringify-pretty-compact';
+import slugify from 'slugify';
+import md5 from 'md5';
+import { format } from 'date-fns';
+import numeral from 'numeral';
+import marked from 'marked';
+import Prob from 'prob.js';
+import pluralize from 'pluralize';
+import v from 'voca';
+import RandExp from 'randexp';
 
 // utils
 
@@ -658,7 +654,7 @@ function filterValue(value, filter) {
             return '';
         } else if (filter.substring(0, 5) === 'date:') {
             let filterSplit = filter.split(':');
-            return dateFns.format(new Date(value), filterSplit[1]);
+            return format(new Date(value), filterSplit[1]);
         } else {
             return value;
         }
