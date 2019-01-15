@@ -254,6 +254,10 @@ module.exports = {
         { "id": 1, "name": "{{field.firstname}} {{field.lastname}}", "__firstname": "Tim", "__lastname": "Jones" },
         { "id": 5, "name": "{{field.firstname}} {{field.lastname}}", "__firstname": "Mike", "__lastname": "Williams" }
     ],
+    arrayToObject: [
+        { "___id": 1, "firstname": "Mike", "lastname": "Smith" },
+        { "___id": 5, "firstname": "Lucy", "lastname": "Johnson" }
+    ],
     relationshipSources: [
         { "id": 1, "firstname": "Mike", age: 12 },
         { "id": 2, "firstname": "Alex", age: 77 },
@@ -262,7 +266,7 @@ module.exports = {
     relationShipTargets: [
         { "id": 1, "relationshipSource_id": 1, "text": "Hi {{field.relationshipSource.firstname}} (age {{field.relationshipSource.age}}), well done. Congrats!" },
         { "id": 2, "relationshipSource_id": 2, "text": "Hi {{field.relationshipSource.firstname}} (age {{field.relationshipSource.age}}), well done. Congrats!" },
-        { "id": 25, "relationshipSource_id": 5, "text": "Hello {{field.relationshipSource.firstname}} (id: {{field.relationshipSource_id}}), don't stop what you're doing!" }
+        { "id": 25, "relationshipSource_id": 5, "text": "Hello {{field.relationshipSource.firstname}} (age: {{field.relationshipSource.age}}), don't stop what you're doing!" }
     ],
     posts: [
         { "id": 1, "text": "Bla ...", "commentCount": "{{connected.comments|count}}" },

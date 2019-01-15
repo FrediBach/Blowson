@@ -208,22 +208,27 @@ describe('Detections', function () {
         });
     });
     describe('Relationship Fields', function () {
-
+        it('firstname', function () {
+            expect(parsed['../examples/kitchensink.js'].relationShipTargets[3].text, 'to contain', parsed['../examples/kitchensink.js'].relationshipSources[parsed['../examples/kitchensink.js'].relationShipTargets[3].relationshipSource_id-1].firstname);
+            expect(parsed['../examples/kitchensink.js'].relationShipTargets[9].text, 'to contain', parsed['../examples/kitchensink.js'].relationshipSources[parsed['../examples/kitchensink.js'].relationShipTargets[9].relationshipSource_id - 1].firstname);
+            expect(parsed['../examples/kitchensink.js'].relationShipTargets[19].text, 'to contain', parsed['../examples/kitchensink.js'].relationshipSources[parsed['../examples/kitchensink.js'].relationShipTargets[19].relationshipSource_id - 1].firstname);
+        });
+        it('age', function () {
+            expect(parsed['../examples/kitchensink.js'].relationShipTargets[3].text, 'to contain', String(parsed['../examples/kitchensink.js'].relationshipSources[parsed['../examples/kitchensink.js'].relationShipTargets[3].relationshipSource_id - 1].age));
+            expect(parsed['../examples/kitchensink.js'].relationShipTargets[9].text, 'to contain', String(parsed['../examples/kitchensink.js'].relationshipSources[parsed['../examples/kitchensink.js'].relationShipTargets[9].relationshipSource_id - 1].age));
+            expect(parsed['../examples/kitchensink.js'].relationShipTargets[19].text, 'to contain', String(parsed['../examples/kitchensink.js'].relationshipSources[parsed['../examples/kitchensink.js'].relationShipTargets[19].relationshipSource_id - 1].age));
+        });
     });
 });
 
 describe('Templates', function () {
-    describe('Field Variables', function () {
-
-    });
-    describe('Relationship Fields', function () {
-
-    });
-    describe('Connected Entries', function () {
-
-    });
     describe('Filters', function () {
-
+        it('slug', function () {
+            expect(parsed['../examples/kitchensink.js'].filters[0].slug, 'to equal', 'test-string');
+        });
+        it('lower', function () {
+            expect(parsed['../examples/kitchensink.js'].filters[0].lower, 'to equal', 'test string');
+        });
     });
     describe('Defaults', function () {
 

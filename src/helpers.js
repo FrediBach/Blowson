@@ -750,6 +750,14 @@ export function stringFromPattern(pattern) {
     return output;
 }
 
+export function arrayToObject(array, key) {
+    return array.reduce((obj, item) => {
+        obj[item[key]] = item;
+        delete(obj[item[key]][key]);
+        return obj
+    }, {});
+}
+
 export function parseTemplateVariables(data) {
     let type, row, field;
     

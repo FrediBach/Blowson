@@ -45,7 +45,8 @@ import {
     ruleBasedValue,
     detectStringpattern,
     stringFromPattern,
-    parseTemplateVariables
+    parseTemplateVariables,
+    arrayToObject
 } from './helpers';
 
 const chance = new Chance();
@@ -60,11 +61,11 @@ module.exports = function blowson(inputData) {
         data = {},
         types = [],
         type,
-        row,
         field,
         entry,
         customKeyNames = {},
-        tempKeys = [];
+        tempKeys = [],
+        objKeys = [];
 
     if (typeof data === 'string') {
         data = JSON.parse(inputData);
@@ -77,6 +78,12 @@ module.exports = function blowson(inputData) {
         for (entry in data[type]) {
             for (field in data[type][entry]) {
                 let fieldSplit = field.split('__');
+
+                if (field.substr(0, 3) === '___') {
+                    objKeys.push(`${type}.${field.substr(3)}`);
+                    renameProperty(data[type][entry], field, field.substr(3));
+                    continue;
+                }
 
                 if (field.substr(0, 2) === '__') {
                     tempKeys.push(`${type}.${field.substr(2)}`);
@@ -520,6 +527,19 @@ module.exports = function blowson(inputData) {
                 }
                 if (typeof customKeyNames[`${type}.${field}`] !== 'undefined') {
                     renameProperty(data[type][entry], field, customKeyNames[`${type}.${field}`].split('.')[1]);
+                }
+            }
+        }
+    }
+
+    // Convert this type array to an object with this key
+    for (type in data) {
+        for (entry in data[type]) {
+            for (field in data[type][entry]) {
+                if (objKeys.indexOf(`${type}.${field}`) > -1) {
+                    if (Array.isArray(data[type])) {
+                        data[type] = arrayToObject(data[type], field);
+                    }
                 }
             }
         }

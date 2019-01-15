@@ -19,7 +19,7 @@
   "repository": "FrediBach/Blowson",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha",
-    "build": "rollup",
+    "build": "rollup -c",
     "dev": "rollup watch"
   },
   "bin": {

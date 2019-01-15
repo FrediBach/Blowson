@@ -91,3 +91,30 @@ Result would be something like:
 ```
 
 Another use for temporary fields is removing the id field. As you know, the id field is needed to detect a gap, but if you only want to generate data for non database usecases, you probably don't need an id field, so just declare it as temporary with `__id` and it will be removed in the output. Of course you can't use relationships in this usecase.
+
+## Object Keys
+
+Sometimes you don't want an array of objects, you want an object of objects where a selected field, normally the id, acts as the key for the object. This is for example needed if you want to use Firebase and than convert to Hasura. You define the key with three underscores like this: `___id`. An example:
+
+```json
+{
+    "names": [
+        { "___id": 1, "firstname": "Mike", "lastname": "Smith" },
+        { "___id": 5, "firstname": "Lucy", "lastname": "Johnson" }
+    ]
+}
+```
+
+Will end up as something like:
+
+```json
+{
+    "names": {
+        "1": {"firstname": "Mike", "lastname": "Smith"},
+        "2": {"firstname": "Alvin", "lastname": "Garcia"},
+        "3": {"firstname": "Cordelia", "lastname": "Schouten"},
+        "4": {"firstname": "Lucille", "lastname": "Booth"},
+        "5": {"firstname": "Lucy", "lastname": "Johnson"}
+    }
+}
+```
