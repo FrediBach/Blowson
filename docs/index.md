@@ -4,6 +4,8 @@ Blow up JSON like sample data in an awesomely realistic way!
 
 > Blowson is awesome!
 
+Demo: [FakeQL](https://fakeql.com)
+
 ## About
 
 Blowson was created to make mocking of API's with realistic sample data easier and more powerful. It's an integral part of a Frontend First Development workflow described here: [www.frontendfirstdevelopment.com](http://www.frontendfirstdevelopment.com/)
