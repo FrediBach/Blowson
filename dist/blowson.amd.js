@@ -760,7 +760,8 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
 
   function detectFieldType(fieldValue) {
       let fieldType = 'undefined',
-          containsTemplate = false;
+          containsTemplate = false,
+          refTypes = [];
 
       if (typeof fieldValue === 'boolean') {
           fieldType = 'boolean';
@@ -788,6 +789,17 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
       } else if (typeof fieldValue === 'object') {
           if (Array.isArray(fieldValue)) {
               fieldType = 'array';
+              if (fieldValue.length > 0) {
+                  let subType = detectFieldType(fieldValue[0]).fieldType;
+                  if (subType === 'JSON' && Object.keys(fieldValue[0])[0].endsWith('_id')) {
+                      let v$$1;
+
+                      for (v$$1 of fieldValue) {
+                          refTypes.push(Object.keys(v$$1)[0].slice(0, -3));
+                      }
+                  }
+                  fieldType += '.' + subType;
+              }
           } else {
               fieldType = 'JSON';
           }
@@ -795,7 +807,8 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
 
       return {
           fieldType: fieldType,
-          containsTemplate: containsTemplate
+          containsTemplate: containsTemplate,
+          refTypes: _.uniq(refTypes)
       }
   }
 
@@ -1159,7 +1172,7 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
 
               for (field in data[type][entry]) {
                   let fieldValue = data[type][entry][field],
-                      { fieldType, containsTemplate } = detectFieldType(fieldValue);
+                      { fieldType, containsTemplate, refTypes } = detectFieldType(fieldValue);
 
                   if (typeof typeDef.fields[field] === 'undefined') {
                       typeDef.fields[field] = {
@@ -1167,6 +1180,7 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                           entries: [fieldValue],
                           allEntries: [fieldValue],
                           containsTemplate: containsTemplate,
+                          refTypes: refTypes,
                           rules: [],
                           cnt: 1
                       };
@@ -1189,7 +1203,8 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                           let objFieldValue = fieldValue[objField],
                               result = detectFieldType(objFieldValue),
                               objFieldType = result.fieldType,
-                              objContainsTemplate = result.containsTemplate;
+                              objContainsTemplate = result.containsTemplate,
+                              objRefTypes = result.refTypes;
 
                           if (typeof typeDef.fields[field + '.' + objField] === 'undefined') {
                               typeDef.fields[field + '.' + objField] = {
@@ -1197,6 +1212,7 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                                   entries: [objFieldValue],
                                   allEntries: [objFieldValue],
                                   containsTemplate: objContainsTemplate,
+                                  refTypes: objRefTypes,
                                   cnt: 1
                               };
                           } else {
@@ -1333,32 +1349,73 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                               value = {};
                           }
 
-                          if (value === '' && settings.fields[field].type === 'array') {
-                              let min = null, 
-                                  max = null, 
+                          if (value === '' && settings.fields[field].type.startsWith('array')) {
+                              let typeSplit = settings.fields[field].type.split('.'),
+                                  arrayType = 'normal',
                                   maxCount = 0,
                                   arrEntry;
 
+                              if (typeSplit.length > 1) {
+                                  arrayType = typeSplit[1];
+                              }
+
                               for (arrEntry of settings.fields[field].entries) {
-                                  let arrMin = minNumber(arrEntry),
-                                      arrMax = maxNumber(arrEntry),
-                                      arrCount = arrEntry.length;
-                                  
-                                  if (arrCount > 0 && (min === null || arrMin < min)) {
-                                      min = arrMin;
-                                  }
-                                  if (arrCount > 0 && (max === null || arrMax > max)) {
-                                      max = arrMax;
-                                  }
+                                  let arrCount = arrEntry.length;
                                   if (arrCount > maxCount) {
                                       maxCount = arrCount;
                                   }
                               }
 
-                              value = Array.from({ length: Math.floor(Math.random() * maxCount) + 1 }, () => randomIntWithStep(min, max, 1));
-                              value.sort(function (a, b) {
-                                  return a - b;
-                              });
+                              if (arrayType === 'int' || arrayType === 'float') {
+                                  let min = null,
+                                      max = null;
+
+                                  for (arrEntry of settings.fields[field].entries) {
+                                      let arrMin = minNumber(arrEntry),
+                                          arrMax = maxNumber(arrEntry),
+                                          arrCount = arrEntry.length;
+                                      
+                                      if (arrCount > 0 && (min === null || arrMin < min)) {
+                                          min = arrMin;
+                                      }
+                                      if (arrCount > 0 && (max === null || arrMax > max)) {
+                                          max = arrMax;
+                                      }
+                                  }
+
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => randomIntWithStep(min, max, 1));
+
+                                  value.sort(function (a, b) {
+                                      return a - b;
+                                  });
+                              } else if (arrayType === 'string') {
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => sentence());
+                              } else if (arrayType === 'date') {
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => randomDate(new Date('1950-01-01'), new Date()));
+                              } else if (arrayType === 'datetime') {
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => randomDatetime(new Date('1950-01-01'), new Date()));
+                              } else if (arrayType === 'time') {
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => randomTime());
+                              } else if (arrayType === 'boolean') {
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => _.sample([true, false]));
+                              } else if (arrayType === 'char') {
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => _.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ'));
+                              } else if (arrayType === 'JSON') {
+                                  let refs = settings.fields[field].refTypes.map(ref => `${ref}_id`);
+                                  value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
+                                  value = value.map(() => {
+                                      return {[_.sample(refs)]: _.random(0, 5)}
+                                  });
+                              } else {
+                                  value = [];
+                              }
                           }
 
                           if (value === '' && settings.fields[field].type === 'string') {

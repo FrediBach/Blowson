@@ -523,7 +523,8 @@ export function getFieldByPath(row, path, data) {
 
 export function detectFieldType(fieldValue) {
     let fieldType = 'undefined',
-        containsTemplate = false;
+        containsTemplate = false,
+        refTypes = [];
 
     if (typeof fieldValue === 'boolean') {
         fieldType = 'boolean';
@@ -551,6 +552,17 @@ export function detectFieldType(fieldValue) {
     } else if (typeof fieldValue === 'object') {
         if (Array.isArray(fieldValue)) {
             fieldType = 'array';
+            if (fieldValue.length > 0) {
+                let subType = detectFieldType(fieldValue[0]).fieldType;
+                if (subType === 'JSON' && Object.keys(fieldValue[0])[0].endsWith('_id')) {
+                    let v;
+
+                    for (v of fieldValue) {
+                        refTypes.push(Object.keys(v)[0].slice(0, -3));
+                    }
+                }
+                fieldType += '.' + subType;
+            }
         } else {
             fieldType = 'JSON';
         }
@@ -558,7 +570,8 @@ export function detectFieldType(fieldValue) {
 
     return {
         fieldType: fieldType,
-        containsTemplate: containsTemplate
+        containsTemplate: containsTemplate,
+        refTypes: _.uniq(refTypes)
     }
 }
 
