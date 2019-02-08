@@ -524,7 +524,8 @@ export function getFieldByPath(row, path, data) {
 export function detectFieldType(fieldValue) {
     let fieldType = 'undefined',
         containsTemplate = false,
-        refTypes = [];
+        refTypes = [],
+        refTypeIds = {};
 
     if (typeof fieldValue === 'boolean') {
         fieldType = 'boolean';
@@ -558,7 +559,14 @@ export function detectFieldType(fieldValue) {
                     let v;
 
                     for (v of fieldValue) {
-                        refTypes.push(Object.keys(v)[0].slice(0, -3));
+                        let type = Object.keys(v)[0].slice(0, -3),
+                            id = v[Object.keys(v)[0]];
+                        refTypes.push(type);
+                        if (typeof refTypeIds[type] === 'undefined') {
+                            refTypeIds[type] = [id];
+                        } else {
+                            refTypeIds[type].push(id);
+                        }
                     }
                 }
                 fieldType += '.' + subType;
@@ -571,7 +579,8 @@ export function detectFieldType(fieldValue) {
     return {
         fieldType: fieldType,
         containsTemplate: containsTemplate,
-        refTypes: _.uniq(refTypes)
+        refTypes: _.uniq(refTypes),
+        refTypeIds: refTypeIds
     }
 }
 

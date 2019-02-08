@@ -113,7 +113,7 @@ module.exports = function blowson(inputData) {
 
             for (field in data[type][entry]) {
                 let fieldValue = data[type][entry][field],
-                    { fieldType, containsTemplate, refTypes } = detectFieldType(fieldValue);
+                    { fieldType, containsTemplate, refTypes, refTypeIds } = detectFieldType(fieldValue);
 
                 if (typeof typeDef.fields[field] === 'undefined') {
                     typeDef.fields[field] = {
@@ -122,6 +122,7 @@ module.exports = function blowson(inputData) {
                         allEntries: [fieldValue],
                         containsTemplate: containsTemplate,
                         refTypes: refTypes,
+                        refTypeIds: refTypeIds,
                         rules: [],
                         cnt: 1
                     };
@@ -132,6 +133,14 @@ module.exports = function blowson(inputData) {
                     typeDef.fields[field].entries = _.uniq(typeDef.fields[field].entries);
                     typeDef.fields[field].allEntries.push(fieldValue);
                     typeDef.fields[field].cnt++;
+                    typeDef.fields[field].refTypes = _.union(typeDef.fields[field].refTypes, refTypes);
+                    for (const ref in refTypeIds) {
+                        if (typeof typeDef.fields[field].refTypeIds[ref] !== 'undefined') {
+                            typeDef.fields[field].refTypeIds[ref] = _.union(typeDef.fields[field].refTypeIds[ref], refTypeIds[ref]);
+                        } else {
+                            typeDef.fields[field].refTypeIds[ref] = refTypeIds[ref];
+                        }
+                    }
                     if (containsTemplate) {
                         typeDef.fields[field].containsTemplate = true;
                     }
@@ -145,7 +154,8 @@ module.exports = function blowson(inputData) {
                             result = detectFieldType(objFieldValue),
                             objFieldType = result.fieldType,
                             objContainsTemplate = result.containsTemplate,
-                            objRefTypes = result.refTypes;
+                            objRefTypes = result.refTypes,
+                            objRefTypeIds = result.refTypeIds
 
                         if (typeof typeDef.fields[field + '.' + objField] === 'undefined') {
                             typeDef.fields[field + '.' + objField] = {
@@ -154,6 +164,7 @@ module.exports = function blowson(inputData) {
                                 allEntries: [objFieldValue],
                                 containsTemplate: objContainsTemplate,
                                 refTypes: objRefTypes,
+                                refTypeIds: objRefTypeIds,
                                 cnt: 1
                             };
                         } else {
@@ -162,6 +173,14 @@ module.exports = function blowson(inputData) {
                             typeDef.fields[field + '.' + objField].entries.push(objFieldValue);
                             typeDef.fields[field + '.' + objField].entries = _.uniq(typeDef.fields[field + '.' + objField].entries);
                             typeDef.fields[field + '.' + objField].allEntries.push(objFieldValue);
+                            typeDef.fields[field + '.' + objField].refTypes = _.union(typeDef.fields[field + '.' + objField].refTypes, objRefTypes);
+                            for (const ref in objRefTypeIds) {
+                                if (typeof typeDef.fields[field + '.' + objField].refTypeIds[ref] !== 'undefined') {
+                                    typeDef.fields[field + '.' + objField].refTypeIds[ref] = _.union(typeDef.fields[field + '.' + objField].refTypeIds[ref], objRefTypeIds[ref]);
+                                } else {
+                                    typeDef.fields[field + '.' + objField].refTypeIds[ref] = objRefTypeIds[ref];
+                                }
+                            }
                             typeDef.fields[field + '.' + objField].cnt++;
                             if (objContainsTemplate) {
                                 typeDef.fields[field + '.' + objField].objContainsTemplate = true;
@@ -352,7 +371,10 @@ module.exports = function blowson(inputData) {
                                 let refs = settings.fields[field].refTypes.map(ref => `${ref}_id`);
                                 value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
                                 value = value.map(() => {
-                                    return {[_.sample(refs)]: _.random(0, 5)}
+                                    let ref = _.sample(settings.fields[field].refTypes),
+                                        minRef = minNumber(settings.fields[field].refTypeIds[ref]),
+                                        maxRef = maxNumber(settings.fields[field].refTypeIds[ref]);
+                                    return {[ref]: _.random(minRef, maxRef)}
                                 });
                             } else {
                                 value = [];

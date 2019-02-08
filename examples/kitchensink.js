@@ -397,6 +397,30 @@ module.exports = {
             text: '{{fake.lorem.sentence}} - {{fake.system.fileName}} - {{fake.finance.transactionType}} - {{fake.dollar}} - {{fake.month}}'
         }
     ],
+    array_types: [
+        {
+            "id": 1,
+            "ints": [1, 23, 99],
+            "floats": [1.4, 22, 4.91],
+            "strings": ["string 1", "string 2", "string 3"],
+            "booleans": [true, false, true],
+            "dates": ["2018-02-11", "2017-08-03"],
+            "times": ["10:11", "09:56"],
+            "chars": ["A", "D"],
+            "content": [{ "text_block_id": 1 }, { "image_block_id": 1 }, { "text_block_id": 2 }, { "text_block_id": 8 }, { "text_block_id": 4 }]
+        },
+        {
+            "id": 10,
+            "ints": [2, 11, 88],
+            "floats": [3.4, 17, 8.88],
+            "strings": ["string 4", "string 5", "string 6"],
+            "booleans": [false, true, true],
+            "dates": ["2014-02-11", "2013-08-03"],
+            "times": ["22:45", "11:01"],
+            "chars": ["B", "Z"],
+            "content": [{ "image_block_id": 10 }, { "text_block_id": 25 }]
+        }
+    ],
     markdown: [
         {
             id: 1,

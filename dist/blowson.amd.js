@@ -761,7 +761,8 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
   function detectFieldType(fieldValue) {
       let fieldType = 'undefined',
           containsTemplate = false,
-          refTypes = [];
+          refTypes = [],
+          refTypeIds = {};
 
       if (typeof fieldValue === 'boolean') {
           fieldType = 'boolean';
@@ -795,7 +796,14 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                       let v$$1;
 
                       for (v$$1 of fieldValue) {
-                          refTypes.push(Object.keys(v$$1)[0].slice(0, -3));
+                          let type = Object.keys(v$$1)[0].slice(0, -3),
+                              id = v$$1[Object.keys(v$$1)[0]];
+                          refTypes.push(type);
+                          if (typeof refTypeIds[type] === 'undefined') {
+                              refTypeIds[type] = [id];
+                          } else {
+                              refTypeIds[type].push(id);
+                          }
                       }
                   }
                   fieldType += '.' + subType;
@@ -808,7 +816,8 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
       return {
           fieldType: fieldType,
           containsTemplate: containsTemplate,
-          refTypes: _.uniq(refTypes)
+          refTypes: _.uniq(refTypes),
+          refTypeIds: refTypeIds
       }
   }
 
@@ -1172,7 +1181,7 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
 
               for (field in data[type][entry]) {
                   let fieldValue = data[type][entry][field],
-                      { fieldType, containsTemplate, refTypes } = detectFieldType(fieldValue);
+                      { fieldType, containsTemplate, refTypes, refTypeIds } = detectFieldType(fieldValue);
 
                   if (typeof typeDef.fields[field] === 'undefined') {
                       typeDef.fields[field] = {
@@ -1181,6 +1190,7 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                           allEntries: [fieldValue],
                           containsTemplate: containsTemplate,
                           refTypes: refTypes,
+                          refTypeIds: refTypeIds,
                           rules: [],
                           cnt: 1
                       };
@@ -1191,6 +1201,14 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                       typeDef.fields[field].entries = _.uniq(typeDef.fields[field].entries);
                       typeDef.fields[field].allEntries.push(fieldValue);
                       typeDef.fields[field].cnt++;
+                      typeDef.fields[field].refTypes = _.union(typeDef.fields[field].refTypes, refTypes);
+                      for (const ref in refTypeIds) {
+                          if (typeof typeDef.fields[field].refTypeIds[ref] !== 'undefined') {
+                              typeDef.fields[field].refTypeIds[ref] = _.union(typeDef.fields[field].refTypeIds[ref], refTypeIds[ref]);
+                          } else {
+                              typeDef.fields[field].refTypeIds[ref] = refTypeIds[ref];
+                          }
+                      }
                       if (containsTemplate) {
                           typeDef.fields[field].containsTemplate = true;
                       }
@@ -1204,7 +1222,8 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                               result = detectFieldType(objFieldValue),
                               objFieldType = result.fieldType,
                               objContainsTemplate = result.containsTemplate,
-                              objRefTypes = result.refTypes;
+                              objRefTypes = result.refTypes,
+                              objRefTypeIds = result.refTypeIds;
 
                           if (typeof typeDef.fields[field + '.' + objField] === 'undefined') {
                               typeDef.fields[field + '.' + objField] = {
@@ -1213,6 +1232,7 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                                   allEntries: [objFieldValue],
                                   containsTemplate: objContainsTemplate,
                                   refTypes: objRefTypes,
+                                  refTypeIds: objRefTypeIds,
                                   cnt: 1
                               };
                           } else {
@@ -1221,6 +1241,14 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                               typeDef.fields[field + '.' + objField].entries.push(objFieldValue);
                               typeDef.fields[field + '.' + objField].entries = _.uniq(typeDef.fields[field + '.' + objField].entries);
                               typeDef.fields[field + '.' + objField].allEntries.push(objFieldValue);
+                              typeDef.fields[field + '.' + objField].refTypes = _.union(typeDef.fields[field + '.' + objField].refTypes, objRefTypes);
+                              for (const ref in objRefTypeIds) {
+                                  if (typeof typeDef.fields[field + '.' + objField].refTypeIds[ref] !== 'undefined') {
+                                      typeDef.fields[field + '.' + objField].refTypeIds[ref] = _.union(typeDef.fields[field + '.' + objField].refTypeIds[ref], objRefTypeIds[ref]);
+                                  } else {
+                                      typeDef.fields[field + '.' + objField].refTypeIds[ref] = objRefTypeIds[ref];
+                                  }
+                              }
                               typeDef.fields[field + '.' + objField].cnt++;
                               if (objContainsTemplate) {
                                   typeDef.fields[field + '.' + objField].objContainsTemplate = true;
@@ -1411,7 +1439,10 @@ define(['lodash', 'chance', 'faker', 'json-stringify-pretty-compact', 'slugify',
                                   let refs = settings.fields[field].refTypes.map(ref => `${ref}_id`);
                                   value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
                                   value = value.map(() => {
-                                      return {[_.sample(refs)]: _.random(0, 5)}
+                                      let ref = _.sample(settings.fields[field].refTypes),
+                                          minRef = minNumber(settings.fields[field].refTypeIds[ref]),
+                                          maxRef = maxNumber(settings.fields[field].refTypeIds[ref]);
+                                      return {[ref]: _.random(minRef, maxRef)}
                                   });
                               } else {
                                   value = [];
