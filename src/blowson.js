@@ -374,7 +374,7 @@ module.exports = function blowson(inputData) {
                                     let ref = _.sample(settings.fields[field].refTypes),
                                         minRef = minNumber(settings.fields[field].refTypeIds[ref]),
                                         maxRef = maxNumber(settings.fields[field].refTypeIds[ref]);
-                                    return {[ref]: _.random(minRef, maxRef)}
+                                    return {[ref+'_id']: _.random(minRef, maxRef)}
                                 });
                             } else {
                                 value = [];
