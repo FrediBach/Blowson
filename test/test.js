@@ -9,7 +9,8 @@ const testFiles = {
     '../examples/kitchensink.js': 'examples/kitchensink-extended.js',
     '../examples/poi-comp.js': 'examples/poi-comp-extended.js',
     '../examples/quotes.js': 'examples/quotes-extended.js',
-    '../examples/union-types.js': 'examples/union-types-extended.js'
+    '../examples/union-types.js': 'examples/union-types-extended.js',
+    '../examples/events.js': 'examples/events-extended.js'
 };
 
 let parsed = {};
