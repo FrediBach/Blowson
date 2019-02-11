@@ -31,49 +31,49 @@ module.exports = {
             "user_id": 12
         }
     ],
-        "locations": [
-            {
-                "id": 1,
-                "name": "{{fake.address.city}}",
-                "desc": "{{paragraph}}",
-                "lat": "{{fake.address.latitude}}",
-                "lng": "{{fake.address.longitude}}"
-            },
-            {
-                "id": 25,
-                "name": "{{fake.address.city}}",
-                "desc": "{{paragraph}}",
-                "lat": "{{fake.address.latitude}}",
-                "lng": "{{fake.address.longitude}}"
-            }
-        ],
-            "user": [
-                {
-                    "id": 1,
-                    "username": "{{word.noun|capitalize}}{{number|optional}}",
-                    "email": "{{field.username|slug}}@gmail.com"
-                },
-                {
-                    "id": 25,
-                    "username": "{{word.noun|capitalize}}{{number|optional}}",
-                    "email": "{{field.username|slug}}@gmail.com"
-                }
-            ],
-                "participant": [
-                    {
-                        "id": 1,
-                        "user_id": 1,
-                        "event_id": 1
-                    },
-                    {
-                        "id": 49,
-                        "user_id": 25,
-                        "event_id": 25
-                    },
-                    {
-                        "id": 50,
-                        "user_id": 12,
-                        "event_id": 12
-                    }
-                ]
+    "locations": [
+        {
+            "id": 1,
+            "name": "{{fake.address.city}}",
+            "desc": "{{paragraph}}",
+            "lat": "{{fake.address.latitude}}",
+            "lng": "{{fake.address.longitude}}"
+        },
+        {
+            "id": 25,
+            "name": "{{fake.address.city}}",
+            "desc": "{{paragraph}}",
+            "lat": "{{fake.address.latitude}}",
+            "lng": "{{fake.address.longitude}}"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "username": "{{word.noun|capitalize}}{{number|optional}}",
+            "email": "{{field.username|slug}}@gmail.com"
+        },
+        {
+            "id": 25,
+            "username": "{{word.noun|capitalize}}{{number|optional}}",
+            "email": "{{field.username|slug}}@gmail.com"
+        }
+    ],
+    "participants": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "event_id": 1
+        },
+        {
+            "id": 49,
+            "user_id": 25,
+            "event_id": 25
+        },
+        {
+            "id": 50,
+            "user_id": 12,
+            "event_id": 12
+        }
+    ]
 };
