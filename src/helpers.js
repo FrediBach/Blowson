@@ -198,43 +198,61 @@ export function maxStrLength(strArray) {
 
 export function minWordCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 export function maxWordCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 export function minSentenceCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.split(/[\.\!\?]+/));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.split(/[\.\!\?]+/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 export function maxSentenceCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.split(/[\.\!\?]+/));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.split(/[\.\!\?]+/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 export function minParagraphCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
-        return parts.length;
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 export function maxParagraphCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
-        return parts.length;
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
@@ -258,7 +276,10 @@ export function convertStringDateArray(stringDateArray) {
 }
 
 export function capitalize(str) {
-    return str.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
+    if (typeof str === 'string') {
+        return str.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
+    }
+    return str;
 };
 
 export function isDateString(str) {

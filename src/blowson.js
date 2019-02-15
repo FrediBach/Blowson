@@ -404,7 +404,7 @@ module.exports = function blowson(inputData) {
                                 if (settings.fields[field].pattern) {
                                     value = stringFromPattern(settings.fields[field].pattern);
                                 } else {
-                                    if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
+                                    if (typeof settings.fields[field].entries[0][0] === 'string' && settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
                                         value = chance.capitalize(chance.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
                                     } else {
                                         value = chance.string({ length: Math.floor(Math.random() * minLength) + maxLength });
@@ -412,9 +412,9 @@ module.exports = function blowson(inputData) {
                                 }
                             }
 
-                            if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                            if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
                                 value = value.toUpperCase();
-                            } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                            } else if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
                                 value = value.toLowerCase();
                             } else if (everythingCapitalized(settings.fields[field].entries)) {
                                 value = capitalize(value);
@@ -480,9 +480,9 @@ module.exports = function blowson(inputData) {
                         }
 
                         if (value === '' && settings.fields[field].type === 'char') {
-                            if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                            if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
                                 value = chance.letter({ casing: 'upper' });
-                            } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                            } else if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
                                 value = chance.letter({ casing: 'lower' });
                             } else {
                                 value = chance.letter();

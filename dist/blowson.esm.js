@@ -435,43 +435,61 @@ function maxStrLength(strArray) {
 
 function minWordCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 function maxWordCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/[^\sA-Za-z]/g, '').split(' '));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 function minSentenceCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.split(/[\.\!\?]+/));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.split(/[\.\!\?]+/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 function maxSentenceCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.split(/[\.\!\?]+/));
-        return parts.length; 
+        if (typeof str === 'string') {
+            let parts = _.compact(str.split(/[\.\!\?]+/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 function minParagraphCount(strArray) {
     return Math.min.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
-        return parts.length;
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
 function maxParagraphCount(strArray) {
     return Math.max.apply(Math, strArray.map(function (str) {
-        let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
-        return parts.length;
+        if (typeof str === 'string') {
+            let parts = _.compact(str.replace(/\n$/gm, '').split(/\n/));
+            return parts.length;
+        }
+        return 0;
     }));
 }
 
@@ -495,7 +513,10 @@ function convertStringDateArray(stringDateArray) {
 }
 
 function capitalize(str) {
-    return str.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
+    if (typeof str === 'string') {
+        return str.replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
+    }
+    return str;
 }
 function isDateString(str) {
     return /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(str);
@@ -1471,7 +1492,7 @@ module.exports = function blowson(inputData) {
                                 if (settings.fields[field].pattern) {
                                     value = stringFromPattern(settings.fields[field].pattern);
                                 } else {
-                                    if (settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
+                                    if (typeof settings.fields[field].entries[0][0] === 'string' && settings.fields[field].entries[0][0].toUpperCase() === settings.fields[field].entries[0][0]) {
                                         value = chance$1.capitalize(chance$1.word({ length: Math.floor(Math.random() * minLength) + maxLength }));
                                     } else {
                                         value = chance$1.string({ length: Math.floor(Math.random() * minLength) + maxLength });
@@ -1479,9 +1500,9 @@ module.exports = function blowson(inputData) {
                                 }
                             }
 
-                            if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                            if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
                                 value = value.toUpperCase();
-                            } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                            } else if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
                                 value = value.toLowerCase();
                             } else if (everythingCapitalized(settings.fields[field].entries)) {
                                 value = capitalize(value);
@@ -1547,9 +1568,9 @@ module.exports = function blowson(inputData) {
                         }
 
                         if (value === '' && settings.fields[field].type === 'char') {
-                            if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
+                            if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toUpperCase()) {
                                 value = chance$1.letter({ casing: 'upper' });
-                            } else if (settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
+                            } else if (typeof settings.fields[field].entries[0] === 'string' && settings.fields[field].entries[0] === settings.fields[field].entries[0].toLowerCase()) {
                                 value = chance$1.letter({ casing: 'lower' });
                             } else {
                                 value = chance$1.letter();
