@@ -10,7 +10,8 @@ const testFiles = {
     '../examples/poi-comp.js': 'examples/poi-comp-extended.js',
     '../examples/quotes.js': 'examples/quotes-extended.js',
     '../examples/union-types.js': 'examples/union-types-extended.js',
-    '../examples/events.js': 'examples/events-extended.js'
+    '../examples/events.js': 'examples/events-extended.js',
+    '../examples/highscores.js': 'examples/highscores-extended.js'
 };
 
 let parsed = {};
