@@ -3,7 +3,7 @@ module.exports = {
         {
             "id": 1,
             "username": "{{word.noun|capitalize}}{{number|optional}}",
-            "email": "{{field.username|slug}}@gmail.com"
+            "email": "{{field.username|slug}}@gmail.com",
         },
         {
             "id": 25,
@@ -16,20 +16,22 @@ module.exports = {
             "id": 1,
             "title": "{{word.noun|capitalize}} {{word.noun|capitalize|optional}} {{number|optional}}",
             "slug": "{{field.title|slug}}",
-            "description": "{{paragraph}}"
+            "description": "{{paragraph}}",
+            "highscore": "{{connected.scores.score|max}}"
         },
         {
             "id": 10,
             "title": "{{word.noun|capitalize}} {{word.noun|capitalize|optional}} {{number|optional}}",
             "slug": "{{field.title|slug}}",
-            "description": "{{paragraph}}"
+            "description": "{{paragraph}}",
+            "highscore": "{{connected.scores.score|max}}"
         }
     ],
     "scores": [
         {
             "id": 1,
-            "user:_id": 1,
-            "game_id": 10,
+            "user_id": 1,
+            "game_id": 1,
             "score": 500,
             "difficulty": "easy",
             "level": 1,
@@ -37,7 +39,7 @@ module.exports = {
         },
         {
             "id": 100,
-            "user:_id": 1,
+            "user_id": 25,
             "game_id": 10,
             "score": 5500,
             "difficulty": "hard",
@@ -46,8 +48,8 @@ module.exports = {
         },
         {
             "id": 99,
-            "user:_id": 1,
-            "game_id": 10,
+            "user_id": 24,
+            "game_id": 9,
             "score": 250,
             "difficulty": "hard",
             "level": 9,
