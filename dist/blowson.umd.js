@@ -1461,13 +1461,20 @@
                                   value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
                                   value = value.map(() => _.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZ'));
                               } else if (arrayType === 'JSON') {
-                                  let refs = settings.fields[field].refTypes.map(ref => `${ref}_id`);
+                                  let refs = {};
                                   value = Array.from(Array(Math.floor(Math.random() * maxCount) + 1).keys());
                                   value = value.map(() => {
                                       let ref = _.sample(settings.fields[field].refTypes),
                                           minRef = minNumber(settings.fields[field].refTypeIds[ref]),
-                                          maxRef = maxNumber(settings.fields[field].refTypeIds[ref]);
-                                      return {[ref+'_id']: _.random(minRef, maxRef)}
+                                          maxRef = maxNumber(settings.fields[field].refTypeIds[ref]),
+                                          refId = _.random(minRef, maxRef);
+
+                                      while (refs['ref_' + refId] === true) {
+                                          refId = _.random(minRef, maxRef);
+                                      }
+
+                                      refs['ref_' + refId] = true;
+                                      return { [ref + '_id']: refId };
                                   });
                               } else {
                                   value = [];
