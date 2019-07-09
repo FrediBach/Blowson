@@ -12,7 +12,9 @@ const testFiles = {
     '../examples/union-types.js': 'examples/union-types-extended.js',
     '../examples/events.js': 'examples/events-extended.js',
     '../examples/highscores.js': 'examples/highscores-extended.js',
-    '../examples/shop.js': 'examples/shop-extended.js'
+    '../examples/shop.js': 'examples/shop-extended.js',
+    '../examples/many-to-many.js': 'examples/many-to-many-extended.js',
+    '../examples/pages.js': 'examples/pages-extended.js'
 };
 
 let parsed = {};

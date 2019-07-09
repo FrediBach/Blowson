@@ -497,25 +497,33 @@ module.exports = function blowson(inputData) {
                         }
 
                         if (value === '' && settings.fields[field].type === 'date') {
-                            let minDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
-                                maxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
+                            let initialMinDateDate = minDate(convertStringDateArray(settings.fields[field].entries)),
+                                initialMaxDateDate = maxDate(convertStringDateArray(settings.fields[field].entries)),
+                                minDateDate,
+                                maxDateDate,
                                 cnt = 0,
                                 ruleValue = ruleBasedValue(settings.fields[field].rules, row, field),
                                 dirSteps = settings.gap.end - settings.gap.start + 1,
-                                averageStepGap = (maxDateDate.getTime() - minDateDate.getTime() - 1) / dirSteps;
+                                averageStepGap = (initialMaxDateDate.getTime() - initialMinDateDate.getTime() - 1) / dirSteps;
 
                             if (settings.fields[field].dir === 'asc') {
-                                maxDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start + 1) * averageStepGap) + 1);
-                                minDateDate = new Date(minDateDate.getTime() + ((id - settings.gap.start) * averageStepGap) + 1);
+                                maxDateDate = new Date(initialMinDateDate.getTime() + ((id - settings.gap.start + 1) * averageStepGap) + 1);
+                                minDateDate = new Date(initialMinDateDate.getTime() + ((id - settings.gap.start) * averageStepGap) + 1);
                             } else if (settings.fields[field].dir === 'desc') {
-                                minDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start + 1) * averageStepGap) - 1);
-                                maxDateDate = new Date(maxDateDate.getTime() - ((id - settings.gap.start) * averageStepGap) - 1);
+                                minDateDate = new Date(initialMaxDateDate.getTime() - ((id - settings.gap.start + 1) * averageStepGap) - 1);
+                                maxDateDate = new Date(initialMaxDateDate.getTime() - ((id - settings.gap.start) * averageStepGap) - 1);
+                            } else {
+                                minDateDate = initialMinDateDate;
+                                maxDateDate = initialMaxDateDate;
                             }
 
                             if (ruleValue === null) {
                                 while (cnt === 0 || (!rulesAreValid(value, settings.fields[field].rules, row, settings.fields[field].type) && cnt < 100)) {
                                     value = randomDate(minDateDate, maxDateDate);
                                     cnt++;
+                                    if (cnt > 99) {
+                                        value = initialMaxDateDate;
+                                    }
                                 }
                             } else {
                                 value = ruleValue;

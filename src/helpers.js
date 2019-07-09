@@ -269,7 +269,8 @@ export function convertStringDateArray(stringDateArray) {
         dateString;
 
     for (dateString of stringDateArray) {
-        newArray.push(new Date(dateString));
+        let dateSplit = dateString.split('-');
+        newArray.push(new Date(Number(dateSplit[0]), Number(dateSplit[1]) - 1, Number(dateSplit[2]), 12, 0, 0));
     }
 
     return newArray;
