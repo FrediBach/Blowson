@@ -40,12 +40,12 @@ const commentCount = 250;
 
 module.exports = {
     "users": [
-        "id": 1, "firstname": "Mike", "age": 12,
-        "id": userCount, "firstname": "Lucy", "age": 31
+        { "id": 1, "firstname": "Mike", "age": 12 },
+        { "id": userCount, "firstname": "Lucy", "age": 31 }
     ],
     "comments": [
-        "id": 1, "user_id": 1, "text": "Some text",
-        "id": commentCount, "user_id": userCount, "text": "Some more text"
+        { "id": 1, "user_id": 1, "text": "Some text" }, 
+        { "id": commentCount, "user_id": userCount, "text": "Some more text" }
     ]
 };
 ```
